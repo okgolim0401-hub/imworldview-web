@@ -1,0 +1,20 @@
+# Ignore PowerShell scripts
+**/*.ps1
+
+# Ignore Python scripts
+**/*.py
+
+# Ignore backup and old files
+**/*.backup
+**/*.old
+**/*.backup.*
+**/*.copy.*
+**/*.txt
+
+# Ignore log files
+**/*.log
+**/*.jsonl
+
+# Ignore JSON files (except vercel.json)
+**/*.json
+!vercel.json
