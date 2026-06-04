@@ -1,5 +1,0 @@
-$path = 'C:\Users\PC\Desktop\IMWV\WEB\TokTokShadow_Bas_Relief\index.html'
-$html = Get-Content $path -Raw -Encoding UTF8
-
-# Base64 encoded texts to avoid PowerShell encoding corruption
-$ko1 = [System.Text.Encoding]::UTF8.GetString([Convert]::FromBase64String("Jmx0O1Rva1RvayBTaGFkb3cmZ3Q77J2YIO2bhOyGjeuOnQ== ... wait, I will do this from python script..."))
