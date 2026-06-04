@@ -1085,22 +1085,22 @@ function initDigitalScramble() {
 
     // 16 high-resolution gallery images list for arrow navigation
     const galleryImages = [
-        'BUBBLE_02.jpg',
-        'COOKIE_02.jpg',
-        'Crane_02.jpg',
-        'FACTORY_02.jpg',
-        'GLUTTON_02.jpg',
-        'hangerbar_02.png',
-        'Light House_02.jpg',
-        'NOMAD_02.jpg',
-        'pipe_02.jpg',
-        'PUMPKIN)-2.jpg',
-        'ROLYPOLY_02.jpg',
-        'Satellite_02.jpg',
-        'TRAY_02.jpg',
-        'Tunnel_02.jpg',
-        'Umbrella_02.jpg',
-        'WITCH_02.jpg'
+        '/work/bas-relief/BUBBLE_02.jpg',
+        '/work/bas-relief/COOKIE_02.jpg',
+        '/work/bas-relief/Crane_02.jpg',
+        '/work/bas-relief/FACTORY_02.jpg',
+        '/work/bas-relief/GLUTTON_02.jpg',
+        '/work/bas-relief/hangerbar_02.png',
+        '/work/bas-relief/Light House_02.jpg',
+        '/work/bas-relief/NOMAD_02.jpg',
+        '/work/bas-relief/pipe_02.jpg',
+        '/work/bas-relief/PUMPKIN)-2.jpg',
+        '/work/bas-relief/ROLYPOLY_02.jpg',
+        '/work/bas-relief/Satellite_02.jpg',
+        '/work/bas-relief/TRAY_02.jpg',
+        '/work/bas-relief/Tunnel_02.jpg',
+        '/work/bas-relief/Umbrella_02.jpg',
+        '/work/bas-relief/WITCH_02.jpg'
     ];
     let currentLightboxIndex = -1;
 
@@ -1161,7 +1161,7 @@ function initDigitalScramble() {
             updateLightboxState();
             if (specLabel) specLabel.style.display = 'none';
         } else {
-            lightboxImg.src = actualSrc;
+            lightboxImg.src = actualSrc.startsWith('/') ? actualSrc : `/work/bas-relief/${actualSrc}`;
             if (lightboxTitle) lightboxTitle.textContent = title;
             const counter = document.getElementById('lightbox-counter');
             if (counter) counter.textContent = "";

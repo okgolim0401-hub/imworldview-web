@@ -436,7 +436,7 @@ function initDigitalScramble() {
         dracoLoader.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.4.3/');
         loader.setDRACOLoader(dracoLoader);
 
-        loader.load('stellar_setup_compressed.glb', (gltf) => {
+        loader.load('/work/stellar-restomod/stellar_setup_compressed.glb', (gltf) => {
             console.log('GLTF loaded!');
             model = gltf.scene;
             window.stellarModel = model;
@@ -950,7 +950,7 @@ function initDigitalScramble() {
 
         document.body.style.overflow = 'hidden';
 
-        lightboxImg.src = src;
+        lightboxImg.src = src.startsWith('/') ? src : `/work/stellar-restomod/${src}`;
         if (lightboxTitle) { lightboxTitle.textContent = title; }
         const resEl = document.getElementById('lightbox-resolution');
         if (resEl && resolution) { resEl.textContent = 'RESOLUTION: ' + resolution; }
@@ -1275,3 +1275,4 @@ function initDigitalScramble() {
         lineObserver.observe(container);
     });
 })();
+
