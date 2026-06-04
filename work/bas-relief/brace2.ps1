@@ -1,0 +1,1 @@
+ = Get-Content app.js -Raw;  = 0;  = 0; foreach ( in .ToCharArray()) { if ( -eq '{') { ++ } if ( -eq '}') { ++ } }; Write-Host Open: , Close: 

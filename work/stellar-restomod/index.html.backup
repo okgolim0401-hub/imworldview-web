@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;500;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link rel="stylesheet" href="style.css"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "secondary-container": "#474746",
+                "outline-variant": "#444748",
+                "surface-container-highest": "#353535",
+                "primary-fixed": "#e2e2e2",
+                "on-tertiary-container": "#636565",
+                "tertiary-container": "#e2e2e2",
+                "on-secondary-fixed": "#1c1b1b",
+                "primary-fixed-dim": "#c6c6c7",
+                "on-surface-variant": "#c4c7c8",
+                "on-primary-fixed-variant": "#454747",
+                "surface-dim": "#131313",
+                "on-primary": "#2f3131",
+                "error-container": "#93000a",
+                "background": "#131313",
+                "surface": "#131313",
+                "surface-container": "#1f1f1f",
+                "primary": "#ffffff",
+                "on-tertiary-fixed-variant": "#454747",
+                "surface-variant": "#353535",
+                "secondary-fixed-dim": "#c8c6c5",
+                "inverse-on-surface": "#303030",
+                "on-tertiary-fixed": "#1a1c1c",
+                "inverse-primary": "#5d5f5f",
+                "secondary-fixed": "#e5e2e1",
+                "on-error-container": "#ffdad6",
+                "tertiary-fixed-dim": "#c6c6c7",
+                "on-surface": "#e2e2e2",
+                "surface-container-low": "#1b1b1b",
+                "surface-container-lowest": "#0e0e0e",
+                "outline": "#8e9192",
+                "on-primary-fixed": "#1a1c1c",
+                "on-primary-container": "#636565",
+                "on-secondary-container": "#b7b5b4",
+                "on-error": "#690005",
+                "on-background": "#e2e2e2",
+                "secondary": "#c8c6c5",
+                "on-secondary-fixed-variant": "#474746",
+                "tertiary-fixed": "#e2e2e2",
+                "tertiary": "#ffffff",
+                "surface-bright": "#393939",
+                "primary-container": "#e2e2e2",
+                "error": "#ffb4ab",
+                "on-tertiary": "#2f3131",
+                "on-secondary": "#313030",
+                "surface-container-high": "#2a2a2a",
+                "inverse-surface": "#e2e2e2",
+                "surface-tint": "#c6c6c7"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "margin": "48px",
+                "gutter": "24px",
+                "container-max": "1440px",
+                "unit": "4px",
+                "8": "32px",
+                "16": "64px",
+                "24": "96px",
+                "32": "128px"
+        },
+        "fontFamily": {
+                "label-caps": ["Inter"],
+                "body-base": ["Inter"],
+                "headline-md": ["Inter"],
+                "display-lg": ["Space Grotesk"],
+                "mono-data": ["Inter"],
+                "label-mono": ["Space Grotesk"],
+                "d-din": ["D-DIN", "sans-serif"]
+        },
+        "fontSize": {
+                "label-caps": [
+                        "12px",
+                        {
+                                "lineHeight": "1",
+                                "letterSpacing": "0.15em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-base": [
+                        "16px",
+                        {
+                                "lineHeight": "1.6",
+                                "letterSpacing": "0em",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-md": [
+                        "32px",
+                        {
+                                "lineHeight": "1.2",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "display-lg": [
+                        "72px",
+                        {
+                                "lineHeight": "1.1",
+                                "letterSpacing": "-0.04em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "mono-data": [
+                        "14px",
+                        {
+                                "lineHeight": "1.4",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "500"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<!-- Removed duplicate scripts from head -->
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #000000;
+            color: #e2e2e2;
+            overflow-x: hidden;
+        }
+        .grid-line-v {
+            width: 0.5px;
+            background-color: rgba(255, 255, 255, 0.15);
+            height: 100%;
+            position: absolute;
+            transform-origin: top;
+            transform: scaleY(0);
+            transition: transform 3s cubic-bezier(0.2, 0.9, 0.3, 1);
+        }
+        .grid-line-h {
+            height: 0.5px;
+            background-color: rgba(255, 255, 255, 0.15);
+            width: 100%;
+            position: absolute;
+            transform-origin: left;
+            transform: scaleX(0);
+            transition: transform 3s cubic-bezier(0.2, 0.9, 0.3, 1);
+        }
+        .grid-line-v.active, .grid-line-h.active {
+            transform: scale(1);
+        }
+        
+        /* Thin line animation */
+        .expand-line {
+            transform-origin: left;
+            transform: scaleX(0);
+            transition: transform 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .expand-line.expanded {
+            transform: scaleX(1);
+        }
+        
+        .button-ghost {
+            border: 1px solid white;
+            transition: all 0.2s ease;
+        }
+        .button-ghost:hover {
+            background-color: white;
+            color: #000000;
+        }
+
+        /* Diagram Box Drawing Animation */
+        .diagram-seq-box.is-drawn .border-draw-top,
+        .diagram-seq-box.is-drawn .border-draw-bottom {
+            width: calc(100% - 32px);
+        }
+        .diagram-seq-box.is-drawn .border-draw-right,
+        .diagram-seq-box.is-drawn .border-draw-left {
+            height: calc(100% - 32px);
+        }
+
+        /* Flowing Guide Line Animation */
+        @keyframes flowing-line {
+            0% { background-position: 0% -100%; }
+            100% { background-position: 0% 100%; }
+        }
+        .line-flowing {
+            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.8), transparent);
+            background-size: 100% 200%;
+            animation: flowing-line 2s linear infinite;
+        }
+        
+        /* Transition Dots & Lines (Waterfall Cascade) */
+        .transition-dot {
+            width: 3px;
+            height: 3px;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0;
+            transform: scale(0);
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.6s ease;
+            box-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
+        }
+        .transition-dot.active {
+            opacity: 1;
+            transform: scale(1);
+            animation: dot-pulse 2s infinite ease-in-out;
+        }
+        .transition-line {
+            width: 1px;
+            height: 0px;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), transparent);
+            opacity: 0;
+            margin-top: 16px; /* 16px gap to match diagram's detached aesthetic */
+            transition: height 1.8s cubic-bezier(0.2, 0.9, 0.3, 1), opacity 0.8s ease;
+            pointer-events: none;
+        }
+        .transition-line.active {
+            opacity: 1;
+            height: 420px;
+        }
+        
+        /* Corner Dots Animation */
+        @keyframes dot-pulse {
+            0%, 100% { opacity: 0.3; transform: scale(1); box-shadow: 0 0 2px rgba(255,255,255,0.2); }
+            50% { opacity: 1; transform: scale(1.5); box-shadow: 0 0 8px rgba(255,255,255,1); }
+        }
+        .corner-dot {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: white;
+            z-index: 30;
+            border-radius: 50%;
+            animation: dot-pulse 2s infinite ease-in-out;
+        }
+        .corner-dot.tl { top: 0; left: 0; animation-delay: 0.1s; }
+        .corner-dot.tr { top: 0; right: 0; animation-delay: 0.6s; }
+        .corner-dot.br { bottom: 0; right: 0; animation-delay: 0.3s; }
+        .corner-dot.bl { bottom: 0; left: 0; animation-delay: 0.8s; }
+
+        /* --- Simple Boot Intro --- */
+        #boot-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: #000;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1s ease;
+        }
+        
+        .pixel-sequence {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .pixel-container {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .pixel-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+        
+        .pixel-rect {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.9);
+            stroke-width: 1.5;
+            stroke-dasharray: 160;
+            stroke-dashoffset: 160;
+            transition: stroke-dashoffset 0.6s ease;
+            filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.8)) drop-shadow(0 0 12px rgba(255, 255, 255, 0.4));
+        }
+        
+        .pixel-container.drawn .pixel-rect {
+            stroke-dashoffset: 0;
+        }
+
+        @keyframes blink-twice {
+            0%, 20%, 40%, 100% { opacity: 1; }
+            10%, 30% { opacity: 0; }
+        }
+        
+        .pixel-container.blink {
+            animation: blink-twice 0.5s ease-in-out forwards;
+        }
+        
+        .pixel-container.blink .pixel-rect {
+            fill: rgba(255, 255, 255, 1);
+            stroke: none;
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.9));
+        }
+
+        /* --- Refik Anadol Tech SVG Artwork Animations --- */
+        .diagram-artwork-wrap {
+            opacity: 0;
+            transform: scale(0.96);
+            transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .diagram-seq-box.is-drawn .diagram-artwork-wrap {
+            opacity: 0.85;
+            transform: scale(1);
+        }
+
+        /* 1. Box 1 Wedge drawing animation */
+        .wedge-path {
+            stroke-dasharray: 600;
+            stroke-dashoffset: 600;
+            transition: stroke-dashoffset 2.0s cubic-bezier(0.22, 1, 0.36, 1);
+            transition-delay: 500ms;
+        }
+        .diagram-seq-box.is-drawn .wedge-path {
+            stroke-dashoffset: 0;
+        }
+        .wedge-path-shadow {
+            stroke-dasharray: 600;
+            stroke-dashoffset: 600;
+            transition: stroke-dashoffset 2.0s cubic-bezier(0.22, 1, 0.36, 1);
+            transition-delay: 500ms;
+        }
+        .diagram-seq-box.is-drawn .wedge-path-shadow {
+            stroke-dashoffset: 0;
+        }
+
+        /* 2. Box 2 Laser scanner & wave morphing animations */
+        @keyframes laserScan {
+            0% { transform: translateY(0); opacity: 0.2; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(240px); opacity: 0.2; }
+        }
+        .scanner-bar {
+            transform-origin: center;
+            animation: laserScan 4s ease-in-out infinite;
+        }
+
+        @keyframes waveOscillate {
+            0%, 100% { transform: translateY(0) scaleY(1); }
+            50% { transform: translateY(-6px) scaleY(1.06); }
+        }
+        .contour-wave {
+            transform-origin: center;
+            animation: waveOscillate 6s ease-in-out infinite;
+        }
+        .contour-wave.wave-2 {
+            animation-delay: -2s;
+            animation-duration: 5s;
+        }
+        .contour-wave.wave-3 {
+            animation-delay: -4s;
+            animation-duration: 7s;
+        }
+
+        @keyframes nodeSparkle {
+            0%, 100% { opacity: 0.2; r: 1.2; }
+            50% { opacity: 1; r: 2.2; filter: drop-shadow(0 0 3px rgba(255,255,255,0.8)); }
+        }
+        .sparkle-dot {
+            animation: nodeSparkle 3s infinite ease-in-out;
+        }
+        .sparkle-dot.s-2 { animation-delay: 0.7s; animation-duration: 2.5s; }
+        .sparkle-dot.s-3 { animation-delay: 1.4s; animation-duration: 3.5s; }
+        .sparkle-dot.s-4 { animation-delay: 2.1s; animation-duration: 2.8s; }
+
+        /* 3. Box 3 Circular radar sweep & satellite orbits */
+        @keyframes radarSweep {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .radar-sweep {
+            transform-origin: 200px 200px;
+            animation: radarSweep 8s linear infinite;
+        }
+
+        @keyframes orbitCW {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes orbitCCW {
+            0% { transform: rotate(360deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        .satellite-group {
+            transform-origin: 200px 200px;
+        }
+        .satellite-group.inner-rot {
+            animation: orbitCW 6s linear infinite;
+        }
+        .satellite-group.mid-rot {
+            animation: orbitCCW 10s linear infinite;
+        }
+        .satellite-group.outer-rot {
+            animation: orbitCW 15s linear infinite;
+        }
+
+        .sat-glow {
+            filter: drop-shadow(0 0 4px rgba(255,255,255,0.9));
+        }
+
+        @keyframes textFlicker {
+            0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% { opacity: 0.3; }
+            20%, 21.999%, 63%, 63.999%, 65%, 69.999% { opacity: 1; filter: drop-shadow(0 0 2px rgba(255,255,255,0.5)); }
+        }
+        .flicker-text {
+            animation: textFlicker 6s infinite;
+        }
+
+    </style>
+</head>
+<body class="font-body-base text-body-base selection:bg-primary selection:text-background bg-black">
+    <!-- Boot Loader Intro -->
+    <div id="boot-loader">
+        <div class="pixel-sequence">
+            <div class="pixel-container" id="c1">
+                <svg class="pixel-svg" viewBox="0 0 40 40">
+                    <rect class="pixel-rect" x="1" y="1" width="38" height="38" />
+                </svg>
+            </div>
+            <div class="pixel-container" id="c2">
+                <svg class="pixel-svg" viewBox="0 0 40 40">
+                    <rect class="pixel-rect" x="1" y="1" width="38" height="38" />
+                </svg>
+            </div>
+            <div class="pixel-container" id="c3">
+                <svg class="pixel-svg" viewBox="0 0 40 40">
+                    <rect class="pixel-rect" x="1" y="1" width="38" height="38" />
+                </svg>
+            </div>
+            <div class="pixel-container" id="c4">
+                <svg class="pixel-svg" viewBox="0 0 40 40">
+                    <rect class="pixel-rect" x="1" y="1" width="38" height="38" />
+                </svg>
+            </div>
+        </div>
+    </div>
+
+<div class="w-full relative bg-black">
+<!-- Global Layout Lines -->
+<div class="absolute inset-0 pointer-events-none z-50 overflow-hidden">
+</div>
+<!-- TopNavBar -->
+<nav class="sticky top-0 w-full z-[60] bg-black/20 backdrop-blur-xl border-b border-white/10 h-16 flex justify-between items-center px-margin">
+<div class="font-label-mono text-[12px] font-bold tracking-[0.2em] text-primary flex items-center">
+<img alt="IMWV Logo" class="h-6 w-auto object-contain brightness-0 invert" src="IMWV_logo.png"/>
+</div>
+<div class="hidden md:flex items-center gap-8 ml-auto">
+<a class="text-on-surface-variant font-label-mono text-[12px] uppercase tracking-wider hover:text-primary transition-colors duration-200" href="#">Work</a>
+<a class="text-on-surface-variant font-label-mono text-[12px] uppercase tracking-wider hover:text-primary transition-colors duration-200" href="#">About</a>
+<a class="text-on-surface-variant font-label-mono text-[12px] uppercase tracking-wider hover:text-primary transition-colors duration-200" href="#">Contact</a>
+<a aria-label="Instagram" class="text-on-surface-variant hover:text-primary transition-colors duration-200 ml-4" href="#">
+<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><rect height="20" rx="5" ry="5" width="20" x="2" y="2"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+</a>
+</div>
+</nav>
+<main class="relative">
+<!-- Hero Section -->
+<section class="min-h-screen relative flex flex-col justify-end pb-32 px-margin overflow-hidden">
+    <div class="absolute inset-0 z-0">
+        <img alt="STELLAR Hero Image" class="w-full h-full object-cover object-[center_80%]" src="4.jpg"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+    </div>
+    <div class="relative z-10 flex flex-col gap-6">
+        <span class="font-label-mono text-[13px] text-primary uppercase tracking-[0.5em] opacity-70 scramble-text ml-[6px]" data-original="Hyundai STELLAR Restomod Design competition" data-reveal-delay="0">Hyundai STELLAR Restomod Design competition</span>
+        <h1 class="font-display-lg text-primary uppercase tracking-[-0.04em] font-medium text-[64px] md:text-[96px] leading-[0.9] scramble-text break-keep whitespace-nowrap" data-original="STELLAR, STILL HERE" data-reveal-delay="300">STELLAR, STILL HERE</h1>
+        <div class="expand-line w-full h-[1px] bg-white/20 mt-8 mb-4"></div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="flex flex-col gap-1">
+                <span class="font-label-mono text-[13px] text-outline uppercase tracking-[0.2em] scramble-text" data-reveal-delay="2800">DATE</span>
+                <span class="font-label-mono text-[20px] text-primary uppercase font-bold tracking-tight scramble-text" data-original="2025" data-reveal-delay="2800">2025</span>
+            </div>
+            <div class="flex flex-col gap-1">
+                <span class="font-label-mono text-[13px] text-outline uppercase tracking-[0.2em] scramble-text" data-reveal-delay="3000">INDUSTRY</span>
+                <span class="font-label-mono text-[20px] text-primary uppercase font-bold tracking-tight scramble-text" data-original="MOBILITY" data-reveal-delay="3000">MOBILITY</span>
+            </div>
+            <div class="flex flex-col gap-1">
+                <span class="font-label-mono text-[13px] text-outline uppercase tracking-[0.2em] scramble-text" data-reveal-delay="3200">HOST</span>
+                <span class="font-label-mono text-[20px] text-primary uppercase font-bold tracking-tight scramble-text" data-original="HYUNDAI MOTOR STUDIO&#10;EREVO" data-reveal-delay="3200">HYUNDAI MOTOR STUDIO<br/>EREVO</span>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Concept Section -->
+<section class="min-h-screen py-32 px-margin flex flex-col justify-center relative bg-black">
+<div class="flex flex-col mb-24 md:mb-48">
+<span class="font-label-mono text-[12px] text-primary uppercase tracking-[0.3em] opacity-60 scramble-text" data-original="OVERVIEW / 01">OVERVIEW / 01</span>
+<div class="flex flex-col gap-12 mt-[50px]">
+<h2 class="font-headline-md text-[32px] md:text-[56px] text-primary tracking-tight font-light font-label-mono leading-[1.15] uppercase text-left scramble-text" data-scramble-type="random" data-original="CONNECTING&#10;PAST, PRESENT, AND FUTURE.">CONNECTING<br/>PAST, PRESENT, AND FUTURE.</h2>
+<div class="flex flex-col gap-10 max-w-[900px]">
+<p class="font-body-base text-[16px] md:text-[18px] text-on-surface leading-[2.2] font-normal text-left scramble-text">
+스텔라는 포니와 함께 대한민국 자동차 모델의 시작점이자 시대를 상징하는 유산으로, 단순한 과거의 기억이 아닌, 여전히 살아 숨 쉬는 영감의 원천입니다. 우리는 그 본질을 존중하면서도 현대적 언어로 다시 정의하여, 단순한 복원이 아닌 새로운 디자인 언어와 경험으로 재해석한 스텔라를 제안합니다.
+</p>
+<p id="english-text-trigger" class="font-body-base text-[15px] md:text-[17px] text-on-surface-variant leading-[2.2] font-normal tracking-wide text-left opacity-40 scramble-text">
+Stellar, alongside Pony, stands as a pioneering archetype of Korean automotive history and a heritage symbolizing an era. Far from being a mere relic of the past, it remains a living source of inspiration. Respecting its core essence while redefining it through a contemporary lens, we propose a reincarnated Stellar—reinterpreted not as a simple restoration, but as an entirely new design language and experience.
+</p>
+</div>
+</div>
+</div>
+<!-- Diagram -->
+<div class="w-full relative mt-0" id="diagram-container">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-0 relative z-10 w-full" id="diagram-grid">
+
+<!-- Box 1 -->
+<div class="diagram-seq-box aspect-square flex flex-col justify-between p-6 md:p-10 bg-transparent relative overflow-hidden transition-opacity duration-300">
+<!-- Corner Dots -->
+<div class="corner-dot tl"></div>
+<div class="corner-dot tr"></div>
+<div class="corner-dot br"></div>
+<div class="corner-dot bl"></div>
+<!-- Animated Borders -->
+<div class="border-draw-top absolute top-0 left-[16px] h-[1px] bg-white/40 w-0 transition-all duration-300 ease-linear z-20"></div>
+<div class="border-draw-right absolute top-[16px] right-0 w-[1px] bg-white/40 h-0 transition-all duration-300 delay-[300ms] ease-linear z-20"></div>
+<div class="border-draw-bottom absolute bottom-0 right-[16px] h-[1px] bg-white/40 w-0 transition-all duration-300 delay-[600ms] ease-linear z-20"></div>
+<div class="border-draw-left absolute bottom-[16px] left-0 w-[1px] bg-white/40 h-0 transition-all duration-300 delay-[900ms] ease-linear z-20"></div>
+<!-- Refik Anadol Style Tech SVG Artwork (Box 1: Wedge DNA) -->
+<div class="absolute inset-0 z-0 pointer-events-none opacity-0 scale-95 transition-all duration-1000 ease-out diagram-artwork-wrap">
+<svg class="w-full h-full text-white" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <pattern id="grid-p1" width="25" height="25" patternUnits="userSpaceOnUse">
+            <path d="M 25 0 L 0 0 0 25" fill="none" stroke="rgba(255, 255, 255, 0.05)" stroke-width="0.5" />
+        </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#grid-p1)" />
+    <g stroke="rgba(255, 255, 255, 0.12)" stroke-width="0.8" fill="none">
+        <line x1="40" y1="360" x2="360" y2="360" />
+        <line x1="40" y1="40" x2="40" y2="360" />
+        <line x1="40" y1="360" x2="360" y2="40" stroke-dasharray="4, 4" stroke="rgba(255,255,255,0.06)" />
+    </g>
+    <path class="wedge-path" d="M 40 360 L 160 200 L 260 280 L 360 40" fill="none" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1.2" />
+    <path class="wedge-path-shadow" d="M 40 360 L 160 200 L 260 280 L 360 40" fill="none" stroke="rgba(255, 255, 255, 0.08)" stroke-width="5" filter="blur(2px)" />
+    <circle r="3" fill="#ffffff" class="pulse-dot-1">
+        <animateMotion dur="5s" repeatCount="indefinite" path="M 40 360 L 160 200 L 260 280 L 360 40" />
+    </circle>
+    <circle r="2" fill="#ffffff" opacity="0.6" class="pulse-dot-2">
+        <animateMotion dur="3.5s" begin="1.5s" repeatCount="indefinite" path="M 40 360 L 160 200 L 260 280 L 360 40" />
+    </circle>
+    <g fill="rgba(255, 255, 255, 0.3)" font-family="Space Grotesk, Courier" font-size="8">
+        <text x="50" y="348">GEN_01 // DNA_WEDGE</text>
+        <text x="290" y="60">VAL: 84.1%</text>
+        <text x="170" y="192">CTRL_PT [160, 200]</text>
+    </g>
+</svg>
+</div>
+<div class="relative z-10 flex flex-col justify-between h-full pointer-events-none">
+<span class="font-label-mono text-[22px] md:text-[30px] text-primary font-light diagram-text" data-original="Legacy" style="opacity:0;"></span>
+<span class="font-label-mono text-[14px] md:text-[16px] text-primary text-right uppercase font-bold tracking-[0.3em] diagram-text" data-original="DNA" style="opacity:0;"></span>
+</div>
+</div>
+<!-- Box 2 -->
+<div class="diagram-seq-box aspect-square flex flex-col justify-between p-6 md:p-10 bg-transparent relative overflow-hidden transition-opacity duration-300">
+<div class="corner-dot tl"></div>
+<div class="corner-dot tr"></div>
+<div class="corner-dot br"></div>
+<div class="corner-dot bl"></div>
+<div class="border-draw-top absolute top-0 left-[16px] h-[1px] bg-white/40 w-0 transition-all duration-300 ease-linear z-20"></div>
+<div class="border-draw-right absolute top-[16px] right-0 w-[1px] bg-white/40 h-0 transition-all duration-300 delay-[300ms] ease-linear z-20"></div>
+<div class="border-draw-bottom absolute bottom-0 right-[16px] h-[1px] bg-white/40 w-0 transition-all duration-300 delay-[600ms] ease-linear z-20"></div>
+<div class="border-draw-left absolute bottom-[16px] left-0 w-[1px] bg-white/40 h-0 transition-all duration-300 delay-[900ms] ease-linear z-20"></div>
+<!-- Refik Anadol Style Tech SVG Artwork (Box 2: Surface Morph) -->
+<div class="absolute inset-0 z-0 pointer-events-none opacity-0 scale-95 transition-all duration-1000 ease-out diagram-artwork-wrap">
+<svg class="w-full h-full text-white" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <pattern id="grid-p2" width="20" height="20" patternUnits="userSpaceOnUse">
+            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255, 255, 255, 0.04)" stroke-width="0.5" />
+        </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#grid-p2)" />
+    <g fill="none" stroke="rgba(255, 255, 255, 0.15)" stroke-width="0.8">
+        <path class="contour-wave wave-1" d="M 40 180 Q 120 120, 200 180 T 360 180" />
+        <path class="contour-wave wave-2" d="M 40 220 Q 120 160, 200 220 T 360 220" />
+        <path class="contour-wave wave-3" d="M 40 260 Q 120 200, 200 260 T 360 260" />
+    </g>
+    <line class="scanner-bar" x1="40" y1="80" x2="360" y2="80" stroke="rgba(255, 255, 255, 0.35)" stroke-width="1.2" stroke-dasharray="2, 2" />
+    <g class="target-cross" stroke="rgba(255, 255, 255, 0.25)" stroke-width="0.8" fill="none">
+        <circle cx="200" cy="200" r="10" />
+        <line x1="185" y1="200" x2="215" y2="200" />
+        <line x1="200" y1="185" x2="200" y2="215" />
+    </g>
+    <circle cx="120" cy="180" r="1.5" fill="#ffffff" class="sparkle-dot s-1" />
+    <circle cx="280" cy="220" r="1.5" fill="#ffffff" class="sparkle-dot s-2" />
+    <circle cx="200" cy="260" r="1.5" fill="#ffffff" class="sparkle-dot s-3" />
+    <circle cx="240" cy="150" r="1.5" fill="#ffffff" class="sparkle-dot s-4" />
+    <g fill="rgba(255, 255, 255, 0.3)" font-family="Space Grotesk, Courier" font-size="8">
+        <text x="50" y="88" class="flicker-text">SYS_EXT // VOL_ACT</text>
+        <text x="215" y="194">SCAN_TGT [200, 200]</text>
+        <text x="270" y="330">SENSORS: ACTIVE</text>
+    </g>
+</svg>
+</div>
+<div class="relative z-10 flex flex-col justify-between h-full pointer-events-none">
+<span class="font-label-mono text-[22px] md:text-[30px] text-primary font-light diagram-text" data-original="Refined" style="opacity:0;"></span>
+<span class="font-label-mono text-[14px] md:text-[16px] text-primary text-right uppercase font-bold tracking-[0.3em] diagram-text" data-original="EXTERIOR" style="opacity:0;"></span>
+</div>
+</div>
+<!-- Box 3 -->
+<div class="diagram-seq-box aspect-square flex flex-col justify-between p-6 md:p-10 bg-transparent relative overflow-hidden transition-opacity duration-300">
+<div class="corner-dot tl"></div>
+<div class="corner-dot tr"></div>
+<div class="corner-dot br"></div>
+<div class="corner-dot bl"></div>
+<div class="border-draw-top absolute top-0 left-[16px] h-[1px] bg-white/40 w-0 transition-all duration-300 ease-linear z-20"></div>
+<div class="border-draw-right absolute top-[16px] right-0 w-[1px] bg-white/40 h-0 transition-all duration-300 delay-[300ms] ease-linear z-20"></div>
+<div class="border-draw-bottom absolute bottom-0 right-[16px] h-[1px] bg-white/40 w-0 transition-all duration-300 delay-[600ms] ease-linear z-20"></div>
+<div class="border-draw-left absolute bottom-[16px] left-0 w-[1px] bg-white/40 h-0 transition-all duration-300 delay-[900ms] ease-linear z-20"></div>
+<!-- Refik Anadol Style Tech SVG Artwork (Box 3: Compass Orbit) -->
+<div class="absolute inset-0 z-0 pointer-events-none opacity-0 scale-95 transition-all duration-1000 ease-out diagram-artwork-wrap">
+<svg class="w-full h-full text-white" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <pattern id="grid-p3" width="30" height="30" patternUnits="userSpaceOnUse">
+            <path d="M 30 0 L 0 0 0 30" fill="none" stroke="rgba(255, 255, 255, 0.04)" stroke-width="0.5" />
+        </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#grid-p3)" />
+    <g stroke="rgba(255, 255, 255, 0.15)" stroke-width="0.8" fill="none">
+        <circle cx="200" cy="200" r="50" stroke-dasharray="2, 4" />
+        <circle cx="200" cy="200" r="100" />
+        <circle cx="200" cy="200" r="140" stroke-dasharray="6, 8" />
+    </g>
+    <g stroke="rgba(255, 255, 255, 0.06)" stroke-width="0.8" fill="none">
+        <line x1="200" y1="40" x2="200" y2="360" />
+        <line x1="40" y1="200" x2="360" y2="200" />
+        <line x1="87" y1="87" x2="313" y2="313" />
+        <line x1="87" y1="313" x2="313" y2="87" />
+    </g>
+    <line class="radar-sweep" x1="200" y1="200" x2="200" y2="60" stroke="rgba(255, 255, 255, 0.35)" stroke-width="1.2" />
+    <g class="satellite-group inner-rot">
+        <circle cx="200" cy="150" r="2.5" fill="#ffffff" class="sat-glow" />
+    </g>
+    <g class="satellite-group mid-rot">
+        <circle cx="300" cy="200" r="3" fill="#ffffff" class="sat-glow" />
+    </g>
+    <g class="satellite-group outer-rot">
+        <circle cx="200" cy="340" r="2" fill="#ffffff" class="sat-glow" />
+    </g>
+    <g fill="rgba(255, 255, 255, 0.3)" font-family="Space Grotesk, Courier" font-size="8">
+        <text x="50" y="58">SYS_INT // BEYOND</text>
+        <text x="210" y="218">ORB_VEL: 1.08</text>
+        <text x="210" y="325">VECTOR: R_360</text>
+    </g>
+</svg>
+</div>
+<div class="relative z-10 flex flex-col justify-between h-full pointer-events-none">
+<span class="font-label-mono text-[22px] md:text-[30px] text-primary font-light diagram-text" data-original="Beyond" style="opacity:0;"></span>
+<span class="font-label-mono text-[14px] md:text-[16px] text-primary text-right uppercase font-bold tracking-[0.3em] diagram-text" data-original="INTERIOR" style="opacity:0;"></span>
+</div>
+</div>
+</div>
+</div>
+<!-- Staggered Waterfall Transition (5 Dots + 5 Lines) -->
+<div class="w-full mt-24 relative z-20 grid grid-cols-5 justify-items-center" id="transition-container">
+    <div class="flex flex-col items-center relative">
+        <div class="transition-dot"></div>
+        <div class="transition-line"></div>
+    </div>
+    <div class="flex flex-col items-center relative">
+        <div class="transition-dot"></div>
+        <div class="transition-line"></div>
+    </div>
+    <div class="flex flex-col items-center relative">
+        <div class="transition-dot"></div>
+        <div class="transition-line"></div>
+    </div>
+    <div class="flex flex-col items-center relative">
+        <div class="transition-dot"></div>
+        <div class="transition-line"></div>
+    </div>
+    <div class="flex flex-col items-center relative">
+        <div class="transition-dot"></div>
+        <div class="transition-line"></div>
+    </div>
+</div>
+</section>
+<!-- Digital Gallery / Grid -->
+<section class="pt-64 pb-32 px-margin relative">
+<div class="flex flex-col gap-8">
+<!-- Section Label -->
+<div class="flex justify-between items-center mb-4">
+<span class="font-label-mono text-[14px] text-primary uppercase tracking-[0.3em] font-bold scramble-text">DESIGN PROPOSAL</span>
+<span class="font-label-mono text-[11px] text-outline uppercase tracking-widest">SERIES: 003_MP</span>
+</div>
+
+<!-- Image Grid - Tight Layout -->
+<div class="flex flex-col gap-[10px]">
+<!-- Large Featured Image -->
+<div class="relative w-full overflow-hidden bg-black">
+<img alt="STELLAR Perspective" class="w-full h-auto block" src="1.jpg"/>
+<div class="absolute bottom-6 right-6 bg-black/70 backdrop-blur-md px-4 py-2 border border-white/15 cursor-pointer hover:bg-white/20 hover:border-white/40 transition-all duration-300 z-20 group/btn" onclick="openLightbox('1.jpg', 'STELLAR_PERSPECTIVE_01')">
+<span class="font-label-mono text-[10px] text-primary tracking-widest uppercase transition-colors duration-300">STELLAR_PERSPECTIVE_01</span>
+</div>
+</div>
+<!-- Bottom Two Images -->
+<div class="grid grid-cols-2 gap-[10px]">
+<div class="relative overflow-hidden bg-black">
+<img alt="STELLAR Side View" class="w-full h-auto block" src="2.jpg"/>
+<div class="absolute bottom-6 right-6 bg-black/70 backdrop-blur-md px-4 py-2 border border-white/15 cursor-pointer hover:bg-white/20 hover:border-white/40 transition-all duration-300 z-20 group/btn" onclick="openLightbox('2.jpg', 'STELLAR_SIDE_VIEW_01')">
+<span class="font-label-mono text-[10px] text-primary tracking-widest uppercase transition-colors duration-300">STELLAR_SIDE_VIEW_01</span>
+</div>
+</div>
+<div class="relative overflow-hidden bg-black">
+<img alt="STELLAR Rear" class="w-full h-auto block" src="3.jpg"/>
+<div class="absolute bottom-6 right-6 bg-black/70 backdrop-blur-md px-4 py-2 border border-white/15 cursor-pointer hover:bg-white/20 hover:border-white/40 transition-all duration-300 z-20 group/btn" onclick="openLightbox('3.jpg', 'STELLAR_REAR_02')">
+<span class="font-label-mono text-[10px] text-primary tracking-widest uppercase transition-colors duration-300">STELLAR_REAR_02</span>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Text Block -->
+<div class="flex flex-col gap-10 mt-16 max-w-[900px]">
+<p class="font-body-base text-[16px] md:text-[18px] text-on-surface leading-[2.2] font-normal text-left scramble-text">
+조르제토 주지아로(Giorgetto Giugiaro)가 정의한 스텔라의 원형, 즉 기하학적이고 날카로운 쐐기형(Wedge-shape) 디자인 DNA를 심층적으로 분석하여 이를 현대적인 비례감으로 재구성하는 데 집중했습니다. 1980년대 세단 고유의 수평적이고 날카로운 벨트라인을 유지하며 오리지널의 정체성을 계승하되, 자칫 평면적으로 보일 수 있는 휠하우스와 숄더 볼륨의 면 처리를 정교하게 다듬어 현대적인 서피스 텐션(Surface Tension)을 부여했습니다. 특히, 과거의 유산이 담긴 클래식한 실루엣 위에 현대의 디자인 언어인 픽셀 라이트(Pixel Light)와 차가우면서도 정교한 금속의 물성을 강조한 '아트 오브 스틸(Art of Steel)' 컨셉을 결합했습니다. 이러한 대비를 통해 단순히 과거를 복원하는 것에 그치지 않고, 시대적 경계를 허무는 새로운 레스토모드(Restomod)의 방향성을 시각화했습니다.
+</p>
+<p class="font-body-base text-[14px] md:text-[16px] text-on-surface-variant leading-[2.2] font-normal tracking-wide text-left opacity-80 scramble-text">
+This project reinterprets the sharp, geometric wedge-shape DNA of the original Stella, an archetype defined by Giorgetto Giugiaro. By retaining the signature horizontal beltline while meticulously honing the shoulder volumes and wheelhouses, I achieved a contemporary surface tension that evolves the classic aesthetic. The core of this design lies in the harmony of opposites: a heritage silhouette fused with modern Pixel Light and the 'Art of Steel' materiality. This approach defines a new restomod identity—one that doesn't just look back, but bridges the gap between heritage and the future.
+</p>
+</div>
+</div>
+</section>
+</section>
+<!-- 3D Viewer Section -->
+<section class="py-32 px-margin relative bg-black">
+<div class="flex flex-col gap-8">
+<!-- Section Header -->
+<div class="flex justify-between items-center">
+<div class="flex flex-col gap-1">
+<span class="font-label-mono text-[14px] text-primary uppercase tracking-[0.3em] font-bold scramble-text">DESIGN PERSPECTIVES</span>
+<span class="font-label-mono text-[10px] text-outline uppercase tracking-widest scramble-text" data-reveal-delay="200">VIEW: 360_EXPLORATION</span>
+</div>
+<div class="flex gap-3 items-center">
+<div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+<span class="font-label-mono text-[10px] text-outline uppercase tracking-widest scramble-text" data-reveal-delay="400">SYSTEM STATUS: ACTIVE</span>
+</div>
+</div>
+<!-- 3D Interactive Viewer Wrapper (Double Thin Border + Technical Corners) -->
+<div class="relative w-full p-2 border border-white/10 bg-black/40">
+    <!-- Technical corners -->
+    <div class="absolute -top-[1px] -left-[1px] w-3 h-3 border-t border-l border-white"></div>
+    <div class="absolute -top-[1px] -right-[1px] w-3 h-3 border-t border-r border-white"></div>
+    <div class="absolute -bottom-[1px] -left-[1px] w-3 h-3 border-b border-l border-white"></div>
+    <div class="absolute -bottom-[1px] -right-[1px] w-3 h-3 border-b border-r border-white"></div>
+    
+    <div class="relative w-full aspect-[16/9] md:h-[75vh] md:aspect-auto bg-surface-container-lowest border border-white/5 overflow-hidden group/viewer" id="viewer-wrapper">
+        <div id="webgl-container" class="w-full h-full"></div>
+        
+        <!-- Color Selector (Initially Visible) -->
+        <div class="absolute bottom-8 right-8 bg-black/70 backdrop-blur-xl border border-white/15 px-6 py-5 flex flex-col gap-4 z-20 opacity-100 pointer-events-auto transition-all duration-500" id="viewer-color-selector">
+            <span class="font-label-mono text-[10px] text-primary uppercase tracking-widest">COLOR SELECTOR</span>
+            <div class="flex gap-3">
+                <button class="swatch w-10 h-10 rounded-full border-2 border-white/40 hover:border-white transition-all active" data-color="#d1c1a5" data-name="Metallic Bronze" style="background:#d1c1a5; box-shadow: 0 0 10px rgba(209,193,165,0.3);"></button>
+                <button class="swatch w-10 h-10 rounded-full border-2 border-white/20 hover:border-white transition-all" data-color="#fdfdfb" data-name="Pearl Ivory" style="background:#fdfdfb; box-shadow: 0 0 10px rgba(255,255,255,0.2);"></button>
+                <button class="swatch w-10 h-10 rounded-full border-2 border-white/20 hover:border-white transition-all" data-color="#121212" data-name="Deep Obsidian" style="background:#121212; box-shadow: 0 0 10px rgba(0,0,0,0.5);"></button>
+                <button class="swatch w-10 h-10 rounded-full border-2 border-white/20 hover:border-white transition-all" data-color="#4a4a4a" data-name="Gunmetal Gray" style="background:#4a4a4a; box-shadow: 0 0 10px rgba(0,0,0,0.3);"></button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ANGLE STUDY / MULTI-VIEW (Images & Text removed, space preserved) -->
+<div class="flex flex-col gap-4 mt-8">
+<div class="grid grid-cols-4 gap-[4px]">
+<div class="bg-transparent aspect-[4/3] md:aspect-video"></div>
+<div class="bg-transparent aspect-[4/3] md:aspect-video"></div>
+<div class="bg-transparent aspect-[4/3] md:aspect-video"></div>
+<div class="bg-transparent aspect-[4/3] md:aspect-video"></div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-32 px-margin overflow-hidden bg-gradient-to-b from-black to-[#081020]">
+<div class="flex flex-col items-center text-center gap-8">
+<span class="font-label-mono text-[12px] text-outline uppercase tracking-[0.5em] scramble-text">CONTINUE THE DIALOGUE</span>
+<h2 class="font-headline-md text-[40px] text-primary leading-tight uppercase font-bold">
+    <span class="scramble-text block">STILL HERE.</span>
+    <span class="scramble-text block">STILL EVOLVING.</span>
+</h2>
+<div class="flex flex-col md:flex-row gap-4 mt-4">
+<button class="button-ghost px-12 py-4 font-label-mono text-[12px] uppercase tracking-widest text-primary rounded-sm">
+                    VIEW ARCHIVE
+                </button>
+<button class="px-12 py-4 font-label-mono text-[12px] uppercase tracking-widest bg-primary text-black border border-primary hover:bg-transparent hover:text-primary transition-all duration-300 rounded-sm">
+                    REQUEST ACCESS
+                </button>
+</div>
+</div>
+</section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-[#081020] border-t border-white/10 py-8 px-margin flex flex-col md:flex-row justify-between items-center w-full gap-8">
+<div class="flex items-center gap-8">
+<span class="font-label-mono text-[14px] text-primary font-bold tracking-[0.2em] flex items-center">
+<img alt="STELLAR Logo" class="h-4 w-auto object-contain brightness-0 invert" src="https://lh3.googleusercontent.com/aida/ADBb0uirNAwI_BWgAnUmsvHV-7NN96S2ub_3TJPKTskkX1TGWYo2ZvkLOMNTaDIxspEsQsGV0wjEfRterkGJD4UvMGl9M1ngQdEFC8fQX0HpcUYhvQ3Fl8lPldIoUEKqOvzBUyB3xy_DIf-E1Z8FWRVUt2oeZRaK3lsw2ce7ofxgAfDzIyDXb_4oPrWlxj1AaVibB1hZE9KVD2L5QB5AAtxzhjQHyse9f25cIYLSjcA6Bi4nxfs4OLRZu-RIqiMDrH4hNCbpM6brqexum8Q"/>
+</span>
+<div class="hidden md:block h-4 w-[1px] bg-white/15"></div>
+<span class="font-label-mono text-[10px] text-outline tracking-widest uppercase">© 2024 STELLAR / STILL HERE. ALL RIGHTS RESERVED.</span>
+</div>
+<div class="flex gap-8">
+<a class="text-on-surface-variant font-label-mono text-[10px] uppercase tracking-widest hover:text-primary transition-colors duration-200" href="#">INSTAGRAM</a>
+<a class="text-on-surface-variant font-label-mono text-[10px] uppercase tracking-widest hover:text-primary transition-colors duration-200" href="#">BEHANCE</a>
+<a class="text-on-surface-variant font-label-mono text-[10px] uppercase tracking-widest hover:text-primary transition-colors duration-200" href="#">ARCHIVE</a>
+</div>
+</footer>
+<!-- Structural Overlay -->
+<div class="absolute inset-0 pointer-events-none z-[100] overflow-hidden">
+<div class="grid-line-h top-16"></div>
+</div>
+</div>
+<!-- Lightbox Modal -->
+<div id="lightbox-modal" class="fixed inset-0 z-[3000] bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center opacity-0 pointer-events-none transition-all duration-500 ease-out">
+    <!-- Technical Overlay -->
+    <div class="absolute inset-0 pointer-events-none border border-white/5 m-8">
+        <div class="absolute bottom-4 left-4 font-label-mono text-[10px] text-white/30">RESOLUTION: 3840 x 2160</div>
+        <div class="absolute bottom-4 right-4 font-label-mono text-[10px] text-white/30">ARCHIVE SYSTEM v1.0.8</div>
+    </div>
+    
+    <!-- Close Button -->
+    <button id="lightbox-close" class="absolute top-12 right-12 z-50 font-label-mono text-[12px] text-white/60 hover:text-white border border-white/20 hover:border-white px-4 py-2 bg-black/50 transition-all duration-300">
+        CLOSE [ESC]
+    </button>
+    
+    <!-- Main Content Wrapper -->
+    <div class="relative max-w-[90%] max-h-[80%] flex flex-col items-center gap-6 transform scale-95 opacity-0 transition-all duration-500 ease-out" id="lightbox-content">
+        <!-- Technical corners -->
+        <div class="relative p-2 border border-white/10 bg-black/40">
+            <div class="absolute -top-[1px] -left-[1px] w-2 h-2 border-t border-l border-white"></div>
+            <div class="absolute -top-[1px] -right-[1px] w-2 h-2 border-t border-r border-white"></div>
+            <div class="absolute -bottom-[1px] -left-[1px] w-2 h-2 border-b border-l border-white"></div>
+            <div class="absolute -bottom-[1px] -right-[1px] w-2 h-2 border-b border-r border-white"></div>
+            
+            <img id="lightbox-image" src="" alt="" class="max-w-full max-h-[70vh] object-contain block"/>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/FilmShader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/FilmPass.js"></script>
+<script src="app.js?v=1.0.3"></script>
+</body></html>

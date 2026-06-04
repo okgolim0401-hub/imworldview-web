@@ -1,0 +1,1 @@
+ = Get-Content app.js -Raw;  = New-Object System.Collections.Generic.Stack[int]; for ( = 0;  -lt .Length; ++) { if ([] -eq '(') { .Push() } elseif ([] -eq ')') { if (.Count -gt 0) { [void].Pop() } else { Write-Host Unmatched ) at index  } } }
