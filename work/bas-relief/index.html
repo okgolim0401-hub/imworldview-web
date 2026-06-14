@@ -6,8 +6,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;500;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link rel="preload" href="/work/bas-relief/BAS_main.jpg" as="image">
-<link rel="stylesheet" href="/work/bas-relief/style.css"/>
+<link rel="preload" href="./BAS_main.jpg" as="image">
+<link rel="stylesheet" href="./style.css"/>
 <script id="tailwind-config">
   tailwind.config = {
     darkMode: "class",
@@ -470,8 +470,8 @@
 <!-- Header -->
 <!-- TopNavBar -->
 <nav class="sticky top-0 w-full z-[60] bg-black/20 backdrop-blur-xl border-b border-white/10 h-[54px] md:h-[70px] flex justify-between items-center px-6 md:px-margin">
-<a href="/" class="font-label-mono text-[12px] font-bold tracking-[0.2em] text-primary flex items-center hover:opacity-80 transition-opacity">
-<img alt="IMWV Logo" class="h-[20px] md:h-[26px] w-auto object-contain nav-logo-hover" src="/IMWV_logo.png"/>
+<a href="../../index.html" class="font-label-mono text-[12px] font-bold tracking-[0.2em] text-primary flex items-center hover:opacity-80 transition-opacity">
+<img alt="IMWV Logo" class="h-[20px] md:h-[26px] w-auto object-contain nav-logo-hover" src="../../IMWV_logo.png"/>
 </a>
 <!-- Clicking Horizontal Line Menu Trigger (Mobile Always, Desktop Scroll-in) -->
 <button id="mobile-menu-trigger" class="flex md:opacity-0 md:translate-x-8 md:pointer-events-none items-center justify-end w-10 h-10 focus:outline-none focus:ring-0 focus-visible:outline-none z-[70] ml-auto relative transition-all duration-500" style="outline: none !important; border: none !important; box-shadow: none !important;" aria-label="Toggle Menu">
@@ -481,7 +481,7 @@
     <!-- Laser Scanning Cover Line (Positioned below the text) -->
     <div class="absolute left-0 right-0 h-[1px] bg-white bottom-[-6px] scale-x-0 origin-left transition-transform duration-300 ease-out z-10" id="header-scan-line"></div>
     <div class="flex items-center gap-8 transition-all duration-300" id="desktop-menu-links">
-        <a class="text-on-surface-variant font-label-mono text-[13px] uppercase tracking-wider hover:text-primary transition-colors duration-200" href="/work">WORK</a>
+        <a class="text-on-surface-variant font-label-mono text-[13px] uppercase tracking-wider hover:text-primary transition-colors duration-200" href="../index.html">WORK</a>
         <a class="text-on-surface-variant font-label-mono text-[13px] uppercase tracking-wider hover:text-primary transition-colors duration-200" href="#">INFO</a>
         <a class="text-on-surface-variant font-label-mono text-[13px] uppercase tracking-wider hover:text-primary transition-colors duration-200" href="#">LAB</a>
         <a class="text-on-surface-variant font-label-mono text-[13px] uppercase tracking-wider hover:text-primary transition-colors duration-200" href="#">GALLERY</a>
@@ -495,7 +495,7 @@
 <!-- Mobile Menu Overlay -->
 <div id="mobile-menu-overlay" class="fixed top-[54px] md:top-[70px] left-0 w-full h-[calc(100vh-54px)] md:h-[calc(100vh-70px)] bg-black/95 backdrop-blur-2xl z-[55] flex flex-col justify-center items-center gap-8 opacity-0 pointer-events-none transition-all duration-300">
     <div class="flex flex-col items-center gap-8 font-label-mono text-[18px] tracking-[0.2em] text-primary">
-        <a class="hover:text-primary transition-colors duration-200" href="/work" onclick="toggleMobileMenu()">WORK</a>
+        <a class="hover:text-primary transition-colors duration-200" href="../index.html" onclick="toggleMobileMenu()">WORK</a>
         <a class="hover:text-primary transition-colors duration-200" href="#" onclick="toggleMobileMenu()">INFO</a>
         <a class="hover:text-primary transition-colors duration-200" href="#" onclick="toggleMobileMenu()">LAB</a>
         <a class="hover:text-primary transition-colors duration-200" href="#" onclick="toggleMobileMenu()">GALLERY</a>
@@ -506,7 +506,7 @@
 <!-- Hero Section -->
 <section class="min-h-screen relative flex flex-col justify-start md:justify-end pb-12 md:pb-32 px-6 md:px-margin overflow-hidden">
     <div class="absolute inset-0 z-0 bg-black overflow-hidden">
-        <img alt="BAS RELIEF Hero Image" decoding="async" fetchpriority="high" class="absolute w-[160%] max-w-none h-auto left-1/2 -translate-x-1/2 top-[40px] mobile-fade-mask md:w-full md:h-full md:object-cover md:object-[center_80%] md:left-0 md:translate-x-0 md:top-0" src="/work/bas-relief/BAS_main.jpg"/>
+        <img alt="BAS RELIEF Hero Image" decoding="async" fetchpriority="high" class="absolute w-[160%] max-w-none h-auto left-1/2 -translate-x-1/2 top-[40px] mobile-fade-mask md:w-full md:h-full md:object-cover md:object-[center_80%] md:left-0 md:translate-x-0 md:top-0" src="./BAS_main.jpg"/>
         <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent pointer-events-none"></div>
     </div>
     <div class="relative z-10 flex flex-col gap-4 md:gap-6 mt-[310px] md:mt-0">
@@ -553,7 +553,7 @@
     <div class="mt-12 w-full flex flex-col gap-8" id="deconstructed-lights-container">
         <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 md:gap-4 w-full" id="deconstructed-grid">            <div class="relative aspect-square border border-white/10 bg-black overflow-hidden group/light cursor-pointer" onclick="openLightbox('BUBBLE.png', 'SOURCE_LIGHT_01')">
                 <div class="absolute inset-0 border border-white/0 group-hover/light:border-white/20 transition-all duration-300 z-20"></div>
-                <img loading="eager" decoding="async" src="/work/bas-relief/thumbs/BUBBLE.jpg" alt="Source Light 01" class="absolute inset-0 w-full h-full object-contain object-bottom p-0 opacity-60 group-hover/light:opacity-100 group-hover/light:scale-105 transition-all duration-500 z-0" />
+                <img loading="eager" decoding="async" src="./thumbs/BUBBLE.jpg" alt="Source Light 01" class="absolute inset-0 w-full h-full object-contain object-bottom p-0 opacity-60 group-hover/light:opacity-100 group-hover/light:scale-105 transition-all duration-500 z-0" />
                 
                 <!-- Stroke Diet Lines -->
                 <div class="absolute top-0 left-[8px] w-[calc(100%-16px)] h-[2px] bg-white shadow-[0_0_6px_rgba(255,255,255,0.8)] scale-x-0 origin-left transition-all duration-[300ms] cubic-bezier(0.16, 1, 0.3, 1) delay-[50ms] group-hover/light:scale-x-100 group-hover/light:h-[1.5px] group-hover/light:bg-white group-hover/light:shadow-[0_0_4px_rgba(255,255,255,0.6)] z-40 pointer-events-none"></div>
@@ -582,7 +582,7 @@
             </div>
             <div class="relative aspect-square border border-white/10 bg-black overflow-hidden group/light cursor-pointer" onclick="openLightbox('COOKIE.png', 'SOURCE_LIGHT_02')">
                 <div class="absolute inset-0 border border-white/0 group-hover/light:border-white/20 transition-all duration-300 z-20"></div>
-                <img loading="eager" decoding="async" src="/work/bas-relief/thumbs/COOKIE.jpg" alt="Source Light 02" class="absolute inset-0 w-full h-full object-contain object-bottom p-0 opacity-60 group-hover/light:opacity-100 group-hover/light:scale-105 transition-all duration-500 z-0" />
+                <img loading="eager" decoding="async" src="./thumbs/COOKIE.jpg" alt="Source Light 02" class="absolute inset-0 w-full h-full object-contain object-bottom p-0 opacity-60 group-hover/light:opacity-100 group-hover/light:scale-105 transition-all duration-500 z-0" />
                 
                 <!-- Stroke Diet Lines -->
                 <div class="absolute top-0 left-[8px] w-[calc(100%-16px)] h-[2px] bg-white shadow-[0_0_6px_rgba(255,255,255,0.8)] scale-x-0 origin-left transition-all duration-[300ms] cubic-bezier(0.16, 1, 0.3, 1) delay-[50ms] group-hover/light:scale-x-100 group-hover/light:h-[1.5px] group-hover/light:bg-white group-hover/light:shadow-[0_0_4px_rgba(255,255,255,0.6)] z-40 pointer-events-none"></div>
@@ -611,7 +611,7 @@
             </div>
             <div class="relative aspect-square border border-white/10 bg-black overflow-hidden group/light cursor-pointer" onclick="openLightbox('Crane.png', 'SOURCE_LIGHT_03')">
                 <div class="absolute inset-0 border border-white/0 group-hover/light:border-white/20 transition-all duration-300 z-20"></div>
-                <img loading="eager" decoding="async" src="/work/bas-relief/thumbs/Crane.jpg" alt="Source Light 03" class="absolute inset-0 w-full h-full object-contain object-bottom p-0 opacity-60 group-hover/light:opacity-100 group-hover/light:scale-105 transition-all duration-500 z-0" />
+                <img loading="eager" decoding="async" src="./thumbs/Crane.jpg" alt="Source Light 03" class="absolute inset-0 w-full h-full object-contain object-bottom p-0 opacity-60 group-hover/light:opacity-100 group-hover/light:scale-105 transition-all duration-500 z-0" />
                 
                 <!-- Stroke Diet Lines -->
                 <div class="absolute top-0 left-[8px] w-[calc(100%-16px)] h-[2px] bg-white shadow-[0_0_6px_rgba(255,255,255,0.8)] scale-x-0 origin-left transition-all duration-[300ms] cubic-bezier(0.16, 1, 0.3, 1) delay-[50ms] group-hover/light:scale-x-100 group-hover/light:h-[1.5px] group-hover/light:bg-white group-hover/light:shadow-[0_0_4px_rgba(255,255,255,0.6)] z-40 pointer-events-none"></div>
@@ -640,7 +640,7 @@
             </div>
             <div class="relative aspect-square border border-white/10 bg-black overflow-hidden group/light cursor-pointer" onclick="openLightbox('FACTORY.png', 'SOURCE_LIGHT_04')">
                 <div class="absolute inset-0 border border-white/0 group-hover/light:border-white/20 transition-all duration-300 z-20"></div>
-                <img loading="eager" decoding="async" src="/work/bas-relief/thumbs/FACTORY.jpg" alt="Source Light 04" class="absolute inset-0 w-full h-full object-contain object-bottom p-0 opacity-60 group-hover/light:opacity-100 group-hover/light:scale-105 transition-all duration-500 z-0" />
+                <img loading="eager" decoding="async" src="./thumbs/FACTORY.jpg" alt="Source Light 04" class="absolute inset-0 w-full h-full object-contain object-bottom p-0 opacity-60 group-hover/light:opacity-100 group-hover/light:scale-105 transition-all duration-500 z-0" />
                 
                 <!-- Stroke Diet Lines -->
                 <div class="absolute top-0 left-[8px] w-[calc(100%-16px)] h-[2px] bg-white shadow-[0_0_6px_rgba(255,255,255,0.8)] scale-x-0 origin-left transition-all duration-[300ms] cubic-bezier(0.16, 1, 0.3, 1) delay-[50ms] group-hover/light:scale-x-100 group-hover/light:h-[1.5px] group-hover/light:bg-white group-hover/light:shadow-[0_0_4px_rgba(255,255,255,0.6)] z-40 pointer-events-none"></div>
@@ -669,7 +669,7 @@
             </div>
             <div class="relative aspect-square border border-white/10 bg-black overflow-hidden group/light cursor-pointer" onclick="openLightbox('GLUTTON.png', 'SOURCE_LIGHT_05')">
                 <div class="absolute inset-0 border border-white/0 group-hover/light:border-white/20 transition-all duration-300 z-20"></div>
-                <img loading="eager" decoding="async" src="/work/bas-relief/thumbs/GLUTTON.jpg" alt="Source Light 05" class="absolute inset-0 w-full h-full object-contain object-bottom p-0 opacity-60 group-hover/light:opacity-100 group-hover/light:scale-105 transition-all duration-500 z-0" />
+                <img loading="eager" decoding="async" src="./thumbs/GLUTTON.jpg" alt="Source Light 05" class="absolute inset-0 w-full h-full object-contain object-bottom p-0 opacity-60 group-hover/light:opacity-100 group-hover/light:scale-105 transition-all duration-500 z-0" />
                 
                 <!-- Stroke Diet Lines -->
                 <div class="absolute top-0 left-[8px] w-[calc(100%-16px)] h-[2px] bg-white shadow-[0_0_6px_rgba(255,255,255,0.8)] scale-x-0 origin-left transition-all duration-[300ms] cubic-bezier(0.16, 1, 0.3, 1) delay-[50ms] group-hover/light:scale-x-100 group-hover/light:h-[1.5px] group-hover/light:bg-white group-hover/light:shadow-[0_0_4px_rgba(255,255,255,0.6)] z-40 pointer-events-none"></div>
@@ -698,7 +698,7 @@
             </div>
             <div class="relative aspect-square border border-white/10 bg-black overflow-hidden group/light cursor-pointer" onclick="openLightbox('HANGER BAR.png', 'SOURCE_LIGHT_06')">
                 <div class="absolute inset-0 border border-white/0 group-hover/light:border-white/20 transition-all duration-300 z-20"></div>
-                <img loading="eager" decoding="async" src="/work/bas-relief/thumbs/HANGER BAR.jpg" alt="Source Light 06" class="absolute inset-0 w-full h-full object-contain object-bottom p-0 opacity-60 group-hover/light:opacity-100 group-hover/light:scale-105 transition-all duration-500 z-0" />
+                <img loading="eager" decoding="async" src="./thumbs/HANGER BAR.jpg" alt="Source Light 06" class="absolute inset-0 w-full h-full object-contain object-bottom p-0 opacity-60 group-hover/light:opacity-100 group-hover/light:scale-105 transition-all duration-500 z-0" />
                 
                 <!-- Stroke Diet Lines -->
                 <div class="absolute top-0 left-[8px] w-[calc(100%-16px)] h-[2px] bg-white shadow-[0_0_6px_rgba(255,255,255,0.8)] scale-x-0 origin-left transition-all duration-[300ms] cubic-bezier(0.16, 1, 0.3, 1) delay-[50ms] group-hover/light:scale-x-100 group-hover/light:h-[1.5px] group-hover/light:bg-white group-hover/light:shadow-[0_0_4px_rgba(255,255,255,0.6)] z-40 pointer-events-none"></div>
@@ -727,7 +727,7 @@
             </div>
             <div class="relative aspect-square border border-white/10 bg-black overflow-hidden group/light cursor-pointer" onclick="openLightbox('Light House.png', 'SOURCE_LIGHT_07')">
                 <div class="absolute inset-0 border border-white/0 group-hover/light:border-white/20 transition-all duration-300 z-20"></div>
-                <img loading="eager" decoding="async" src="/work/bas-relief/thumbs/Light House.jpg" alt="Source Light 07" class="absolute inset-0 w-full h-full object-contain object-bottom p-0 opacity-60 group-hover/light:opacity-100 group-hover/light:scale-105 transition-all duration-500 z-0" />
+                <img loading="eager" decoding="async" src="./thumbs/Light House.jpg" alt="Source Light 07" class="absolute inset-0 w-full h-full object-contain object-bottom p-0 opacity-60 group-hover/light:opacity-100 group-hover/light:scale-105 transition-all duration-500 z-0" />
                 
                 <!-- Stroke Diet Lines -->
                 <div class="absolute top-0 left-[8px] w-[calc(100%-16px)] h-[2px] bg-white shadow-[0_0_6px_rgba(255,255,255,0.8)] scale-x-0 origin-left transition-all duration-[300ms] cubic-bezier(0.16, 1, 0.3, 1) delay-[50ms] group-hover/light:scale-x-100 group-hover/light:h-[1.5px] group-hover/light:bg-white group-hover/light:shadow-[0_0_4px_rgba(255,255,255,0.6)] z-40 pointer-events-none"></div>
@@ -756,7 +756,7 @@
             </div>
             <div class="relative aspect-square border border-white/10 bg-black overflow-hidden group/light cursor-pointer" onclick="openLightbox('NOMAD.png', 'SOURCE_LIGHT_08')">
                 <div class="absolute inset-0 border border-white/0 group-hover/light:border-white/20 transition-all duration-300 z-20"></div>
-                <img loading="eager" decoding="async" src="/work/bas-relief/thumbs/NOMAD.jpg" alt="Source Light 08" class="absolute inset-0 w-full h-full object-contain object-bottom p-0 opacity-60 group-hover/light:opacity-100 group-hover/light:scale-105 transition-all duration-500 z-0" />
+                <img loading="eager" decoding="async" src="./thumbs/NOMAD.jpg" alt="Source Light 08" class="absolute inset-0 w-full h-full object-contain object-bottom p-0 opacity-60 group-hover/light:opacity-100 group-hover/light:scale-105 transition-all duration-500 z-0" />
                 
                 <!-- Stroke Diet Lines -->
                 <div class="absolute top-0 left-[8px] w-[calc(100%-16px)] h-[2px] bg-white shadow-[0_0_6px_rgba(255,255,255,0.8)] scale-x-0 origin-left transition-all duration-[300ms] cubic-bezier(0.16, 1, 0.3, 1) delay-[50ms] group-hover/light:scale-x-100 group-hover/light:h-[1.5px] group-hover/light:bg-white group-hover/light:shadow-[0_0_4px_rgba(255,255,255,0.6)] z-40 pointer-events-none"></div>
@@ -785,7 +785,7 @@
             </div>
             <div class="relative aspect-square border border-white/10 bg-black overflow-hidden group/light cursor-pointer" onclick="openLightbox('PIPE.png', 'SOURCE_LIGHT_09')">
                 <div class="absolute inset-0 border border-white/0 group-hover/light:border-white/20 transition-all duration-300 z-20"></div>
-                <img loading="eager" decoding="async" src="/work/bas-relief/thumbs/PIPE.jpg" alt="Source Light 09" class="absolute inset-0 w-full h-full object-contain object-bottom p-0 opacity-60 group-hover/light:opacity-100 group-hover/light:scale-105 transition-all duration-500 z-0" />
+                <img loading="eager" decoding="async" src="./thumbs/PIPE.jpg" alt="Source Light 09" class="absolute inset-0 w-full h-full object-contain object-bottom p-0 opacity-60 group-hover/light:opacity-100 group-hover/light:scale-105 transition-all duration-500 z-0" />
                 
                 <!-- Stroke Diet Lines -->
                 <div class="absolute top-0 left-[8px] w-[calc(100%-16px)] h-[2px] bg-white shadow-[0_0_6px_rgba(255,255,255,0.8)] scale-x-0 origin-left transition-all duration-[300ms] cubic-bezier(0.16, 1, 0.3, 1) delay-[50ms] group-hover/light:scale-x-100 group-hover/light:h-[1.5px] group-hover/light:bg-white group-hover/light:shadow-[0_0_4px_rgba(255,255,255,0.6)] z-40 pointer-events-none"></div>
@@ -814,7 +814,7 @@
             </div>
             <div class="relative aspect-square border border-white/10 bg-black overflow-hidden group/light cursor-pointer" onclick="openLightbox('PUMPKIN.png', 'SOURCE_LIGHT_10')">
                 <div class="absolute inset-0 border border-white/0 group-hover/light:border-white/20 transition-all duration-300 z-20"></div>
-                <img loading="eager" decoding="async" src="/work/bas-relief/thumbs/PUMPKIN.jpg" alt="Source Light 10" class="absolute inset-0 w-full h-full object-contain object-bottom p-0 opacity-60 group-hover/light:opacity-100 group-hover/light:scale-105 transition-all duration-500 z-0" />
+                <img loading="eager" decoding="async" src="./thumbs/PUMPKIN.jpg" alt="Source Light 10" class="absolute inset-0 w-full h-full object-contain object-bottom p-0 opacity-60 group-hover/light:opacity-100 group-hover/light:scale-105 transition-all duration-500 z-0" />
                 
                 <!-- Stroke Diet Lines -->
                 <div class="absolute top-0 left-[8px] w-[calc(100%-16px)] h-[2px] bg-white shadow-[0_0_6px_rgba(255,255,255,0.8)] scale-x-0 origin-left transition-all duration-[300ms] cubic-bezier(0.16, 1, 0.3, 1) delay-[50ms] group-hover/light:scale-x-100 group-hover/light:h-[1.5px] group-hover/light:bg-white group-hover/light:shadow-[0_0_4px_rgba(255,255,255,0.6)] z-40 pointer-events-none"></div>
@@ -843,7 +843,7 @@
             </div>
             <div class="relative aspect-square border border-white/10 bg-black overflow-hidden group/light cursor-pointer" onclick="openLightbox('ROLYPOLY.png', 'SOURCE_LIGHT_11')">
                 <div class="absolute inset-0 border border-white/0 group-hover/light:border-white/20 transition-all duration-300 z-20"></div>
-                <img loading="eager" decoding="async" src="/work/bas-relief/thumbs/ROLYPOLY.jpg" alt="Source Light 11" class="absolute inset-0 w-full h-full object-contain object-bottom p-0 opacity-60 group-hover/light:opacity-100 group-hover/light:scale-105 transition-all duration-500 z-0" />
+                <img loading="eager" decoding="async" src="./thumbs/ROLYPOLY.jpg" alt="Source Light 11" class="absolute inset-0 w-full h-full object-contain object-bottom p-0 opacity-60 group-hover/light:opacity-100 group-hover/light:scale-105 transition-all duration-500 z-0" />
                 
                 <!-- Stroke Diet Lines -->
                 <div class="absolute top-0 left-[8px] w-[calc(100%-16px)] h-[2px] bg-white shadow-[0_0_6px_rgba(255,255,255,0.8)] scale-x-0 origin-left transition-all duration-[300ms] cubic-bezier(0.16, 1, 0.3, 1) delay-[50ms] group-hover/light:scale-x-100 group-hover/light:h-[1.5px] group-hover/light:bg-white group-hover/light:shadow-[0_0_4px_rgba(255,255,255,0.6)] z-40 pointer-events-none"></div>
@@ -872,7 +872,7 @@
             </div>
             <div class="relative aspect-square border border-white/10 bg-black overflow-hidden group/light cursor-pointer" onclick="openLightbox('Satellite.png', 'SOURCE_LIGHT_12')">
                 <div class="absolute inset-0 border border-white/0 group-hover/light:border-white/20 transition-all duration-300 z-20"></div>
-                <img loading="eager" decoding="async" src="/work/bas-relief/thumbs/Satellite.jpg" alt="Source Light 12" class="absolute inset-0 w-full h-full object-contain object-bottom p-0 opacity-60 group-hover/light:opacity-100 group-hover/light:scale-105 transition-all duration-500 z-0" />
+                <img loading="eager" decoding="async" src="./thumbs/Satellite.jpg" alt="Source Light 12" class="absolute inset-0 w-full h-full object-contain object-bottom p-0 opacity-60 group-hover/light:opacity-100 group-hover/light:scale-105 transition-all duration-500 z-0" />
                 
                 <!-- Stroke Diet Lines -->
                 <div class="absolute top-0 left-[8px] w-[calc(100%-16px)] h-[2px] bg-white shadow-[0_0_6px_rgba(255,255,255,0.8)] scale-x-0 origin-left transition-all duration-[300ms] cubic-bezier(0.16, 1, 0.3, 1) delay-[50ms] group-hover/light:scale-x-100 group-hover/light:h-[1.5px] group-hover/light:bg-white group-hover/light:shadow-[0_0_4px_rgba(255,255,255,0.6)] z-40 pointer-events-none"></div>
@@ -901,7 +901,7 @@
             </div>
             <div class="relative aspect-square border border-white/10 bg-black overflow-hidden group/light cursor-pointer" onclick="openLightbox('TRAY.png', 'SOURCE_LIGHT_13')">
                 <div class="absolute inset-0 border border-white/0 group-hover/light:border-white/20 transition-all duration-300 z-20"></div>
-                <img loading="eager" decoding="async" src="/work/bas-relief/thumbs/TRAY.jpg" alt="Source Light 13" class="absolute inset-0 w-full h-full object-contain object-bottom p-0 opacity-60 group-hover/light:opacity-100 group-hover/light:scale-105 transition-all duration-500 z-0" />
+                <img loading="eager" decoding="async" src="./thumbs/TRAY.jpg" alt="Source Light 13" class="absolute inset-0 w-full h-full object-contain object-bottom p-0 opacity-60 group-hover/light:opacity-100 group-hover/light:scale-105 transition-all duration-500 z-0" />
                 
                 <!-- Stroke Diet Lines -->
                 <div class="absolute top-0 left-[8px] w-[calc(100%-16px)] h-[2px] bg-white shadow-[0_0_6px_rgba(255,255,255,0.8)] scale-x-0 origin-left transition-all duration-[300ms] cubic-bezier(0.16, 1, 0.3, 1) delay-[50ms] group-hover/light:scale-x-100 group-hover/light:h-[1.5px] group-hover/light:bg-white group-hover/light:shadow-[0_0_4px_rgba(255,255,255,0.6)] z-40 pointer-events-none"></div>
@@ -930,7 +930,7 @@
             </div>
             <div class="relative aspect-square border border-white/10 bg-black overflow-hidden group/light cursor-pointer" onclick="openLightbox('Tunnel.png', 'SOURCE_LIGHT_14')">
                 <div class="absolute inset-0 border border-white/0 group-hover/light:border-white/20 transition-all duration-300 z-20"></div>
-                <img loading="eager" decoding="async" src="/work/bas-relief/thumbs/Tunnel.jpg" alt="Source Light 14" class="absolute inset-0 w-full h-full object-contain object-bottom p-0 opacity-60 group-hover/light:opacity-100 group-hover/light:scale-105 transition-all duration-500 z-0" />
+                <img loading="eager" decoding="async" src="./thumbs/Tunnel.jpg" alt="Source Light 14" class="absolute inset-0 w-full h-full object-contain object-bottom p-0 opacity-60 group-hover/light:opacity-100 group-hover/light:scale-105 transition-all duration-500 z-0" />
                 
                 <!-- Stroke Diet Lines -->
                 <div class="absolute top-0 left-[8px] w-[calc(100%-16px)] h-[2px] bg-white shadow-[0_0_6px_rgba(255,255,255,0.8)] scale-x-0 origin-left transition-all duration-[300ms] cubic-bezier(0.16, 1, 0.3, 1) delay-[50ms] group-hover/light:scale-x-100 group-hover/light:h-[1.5px] group-hover/light:bg-white group-hover/light:shadow-[0_0_4px_rgba(255,255,255,0.6)] z-40 pointer-events-none"></div>
@@ -959,7 +959,7 @@
             </div>
             <div class="relative aspect-square border border-white/10 bg-black overflow-hidden group/light cursor-pointer" onclick="openLightbox('Umbrella.png', 'SOURCE_LIGHT_15')">
                 <div class="absolute inset-0 border border-white/0 group-hover/light:border-white/20 transition-all duration-300 z-20"></div>
-                <img loading="eager" decoding="async" src="/work/bas-relief/thumbs/Umbrella.jpg" alt="Source Light 15" class="absolute inset-0 w-full h-full object-contain object-bottom p-0 opacity-60 group-hover/light:opacity-100 group-hover/light:scale-105 transition-all duration-500 z-0" />
+                <img loading="eager" decoding="async" src="./thumbs/Umbrella.jpg" alt="Source Light 15" class="absolute inset-0 w-full h-full object-contain object-bottom p-0 opacity-60 group-hover/light:opacity-100 group-hover/light:scale-105 transition-all duration-500 z-0" />
                 
                 <!-- Stroke Diet Lines -->
                 <div class="absolute top-0 left-[8px] w-[calc(100%-16px)] h-[2px] bg-white shadow-[0_0_6px_rgba(255,255,255,0.8)] scale-x-0 origin-left transition-all duration-[300ms] cubic-bezier(0.16, 1, 0.3, 1) delay-[50ms] group-hover/light:scale-x-100 group-hover/light:h-[1.5px] group-hover/light:bg-white group-hover/light:shadow-[0_0_4px_rgba(255,255,255,0.6)] z-40 pointer-events-none"></div>
@@ -988,7 +988,7 @@
             </div>
             <div class="relative aspect-square border border-white/10 bg-black overflow-hidden group/light cursor-pointer" onclick="openLightbox('WITCH.png', 'SOURCE_LIGHT_16')">
                 <div class="absolute inset-0 border border-white/0 group-hover/light:border-white/20 transition-all duration-300 z-20"></div>
-                <img loading="eager" decoding="async" src="/work/bas-relief/thumbs/WITCH.jpg" alt="Source Light 16" class="absolute inset-0 w-full h-full object-contain object-bottom p-0 opacity-60 group-hover/light:opacity-100 group-hover/light:scale-105 transition-all duration-500 z-0" />
+                <img loading="eager" decoding="async" src="./thumbs/WITCH.jpg" alt="Source Light 16" class="absolute inset-0 w-full h-full object-contain object-bottom p-0 opacity-60 group-hover/light:opacity-100 group-hover/light:scale-105 transition-all duration-500 z-0" />
                 
                 <!-- Stroke Diet Lines -->
                 <div class="absolute top-0 left-[8px] w-[calc(100%-16px)] h-[2px] bg-white shadow-[0_0_6px_rgba(255,255,255,0.8)] scale-x-0 origin-left transition-all duration-[300ms] cubic-bezier(0.16, 1, 0.3, 1) delay-[50ms] group-hover/light:scale-x-100 group-hover/light:h-[1.5px] group-hover/light:bg-white group-hover/light:shadow-[0_0_4px_rgba(255,255,255,0.6)] z-40 pointer-events-none"></div>
@@ -1025,7 +1025,7 @@
             <div class="absolute -bottom-[1px] -right-[1px] w-3 h-3 border-b border-r border-white"></div>
             
             <div class="relative w-full aspect-video bg-surface-container-lowest border border-white/5 overflow-hidden pointer-events-none" id="video-wrapper">
-                <video id="premium-video" src="/work/bas-relief/BAS_ANI.mp4" class="absolute inset-0 w-full h-full object-cover pointer-events-none" autoplay loop muted playsinline style="pointer-events: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;"></video>
+                <video id="premium-video" src="./BAS_ANI.mp4" class="absolute inset-0 w-full h-full object-cover pointer-events-none" autoplay loop muted playsinline style="pointer-events: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;"></video>
             </div>
         </div>
     </div>
@@ -1043,7 +1043,7 @@
         <div class="flex flex-col gap-[10px]">
             <!-- Large Featured Image -->
             <div class="relative w-full overflow-hidden bg-black">
-                <img alt="MATERIALITY Perspective" loading="lazy" decoding="async" class="w-full h-auto block" src="/work/bas-relief/BAS_main.jpg"/>
+                <img alt="MATERIALITY Perspective" loading="lazy" decoding="async" class="w-full h-auto block" src="./BAS_main.jpg"/>
                 <div class="absolute bottom-2 md:bottom-6 right-2 md:right-6 bg-black/80 backdrop-blur-sm px-2 md:px-4 py-1 md:py-2 border border-white/10 md:border-white/15 cursor-pointer hover:bg-white/20 hover:border-white/40 transition-all duration-300 z-20 group/btn flex items-center justify-center h-6 md:h-auto" onclick="openLightbox('BAS_main.jpg', 'BAS_MAIN_01')">
                     <span class="font-label-mono text-[8px] md:text-[10px] text-primary tracking-widest uppercase transition-colors duration-300 leading-none md:leading-normal">BAS_MAIN_01</span>
                 </div>
@@ -1051,13 +1051,13 @@
             <!-- Bottom Two Images -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-[10px]">
                 <div class="relative overflow-hidden bg-black">
-                    <img alt="MATERIALITY Detail 1" loading="lazy" decoding="async" class="w-full h-auto block" src="/work/bas-relief/BAS_detail_1.jpg"/>
+                    <img alt="MATERIALITY Detail 1" loading="lazy" decoding="async" class="w-full h-auto block" src="./BAS_detail_1.jpg"/>
                     <div class="absolute bottom-2 md:bottom-6 right-2 md:right-6 bg-black/80 backdrop-blur-sm px-2 md:px-4 py-1 md:py-2 border border-white/10 md:border-white/15 cursor-pointer hover:bg-white/20 hover:border-white/40 transition-all duration-300 z-20 group/btn flex items-center justify-center h-6 md:h-auto" onclick="openLightbox('BAS_detail_1.jpg', 'BAS_DETAIL_01')">
                         <span class="font-label-mono text-[8px] md:text-[10px] text-primary tracking-widest uppercase transition-colors duration-300 leading-none md:leading-normal">BAS_DETAIL_01</span>
                     </div>
                 </div>
                 <div class="relative overflow-hidden bg-black">
-                    <img alt="MATERIALITY Detail 2" loading="lazy" decoding="async" class="w-full h-auto block" src="/work/bas-relief/BAS_detail_2.jpg"/>
+                    <img alt="MATERIALITY Detail 2" loading="lazy" decoding="async" class="w-full h-auto block" src="./BAS_detail_2.jpg"/>
                     <div class="absolute bottom-2 md:bottom-6 right-2 md:right-6 bg-black/80 backdrop-blur-sm px-2 md:px-4 py-1 md:py-2 border border-white/10 md:border-white/15 cursor-pointer hover:bg-white/20 hover:border-white/40 transition-all duration-300 z-20 group/btn flex items-center justify-center h-6 md:h-auto" onclick="openLightbox('BAS_detail_2.jpg', 'BAS_DETAIL_02')">
                         <span class="font-label-mono text-[8px] md:text-[10px] text-primary tracking-widest uppercase transition-colors duration-300 leading-none md:leading-normal">BAS_DETAIL_02</span>
                     </div>
@@ -1096,7 +1096,7 @@
         <div class="flex flex-col gap-[10px]">
             <!-- Large Featured Image -->
             <div class="relative w-full overflow-hidden bg-black">
-                <img alt="PRODUCTION LOG Main" loading="lazy" decoding="async" class="w-full h-auto block" src="/work/bas-relief/Bas_Env.jpg"/>
+                <img alt="PRODUCTION LOG Main" loading="lazy" decoding="async" class="w-full h-auto block" src="./Bas_Env.jpg"/>
                 <div class="absolute bottom-2 md:bottom-6 right-2 md:right-6 bg-black/80 backdrop-blur-sm px-2 md:px-4 py-1 md:py-2 border border-white/10 md:border-white/15 cursor-pointer hover:bg-white/20 hover:border-white/40 transition-all duration-300 z-20 group/btn flex items-center justify-center h-6 md:h-auto" onclick="openLightbox('Bas_Env.jpg', 'BAS_ENV_04')">
                     <span class="font-label-mono text-[8px] md:text-[10px] text-primary tracking-widest uppercase transition-colors duration-300 leading-none md:leading-normal">BAS_ENVIORMENT_04</span>
                 </div>
@@ -1104,22 +1104,22 @@
             <!-- Bottom Six Images (6 cols single row) -->
             <div class="grid grid-cols-6 gap-[10px]">
                 <div class="relative overflow-hidden bg-black">
-                    <img alt="PRODUCTION LOG 2" class="w-full h-auto block" src="/work/bas-relief/Bas_test_04.png"/>
+                    <img alt="PRODUCTION LOG 2" class="w-full h-auto block" src="./Bas_test_04.png"/>
                 </div>
                 <div class="relative overflow-hidden bg-black">
-                    <img alt="PRODUCTION LOG 3" class="w-full h-auto block" src="/work/bas-relief/Bas_test_05.png"/>
+                    <img alt="PRODUCTION LOG 3" class="w-full h-auto block" src="./Bas_test_05.png"/>
                 </div>
                 <div class="relative overflow-hidden bg-black">
-                    <img alt="PRODUCTION LOG 4" class="w-full h-auto block" src="/work/bas-relief/Bas_test_06.png"/>
+                    <img alt="PRODUCTION LOG 4" class="w-full h-auto block" src="./Bas_test_06.png"/>
                 </div>
                 <div class="relative overflow-hidden bg-black">
-                    <img alt="PRODUCTION LOG 5" class="w-full h-auto block" src="/work/bas-relief/Bas_test_07.png"/>
+                    <img alt="PRODUCTION LOG 5" class="w-full h-auto block" src="./Bas_test_07.png"/>
                 </div>
                 <div class="relative overflow-hidden bg-black">
-                    <img alt="PRODUCTION LOG 6" class="w-full h-auto block" src="/work/bas-relief/Bas_test_08.png"/>
+                    <img alt="PRODUCTION LOG 6" class="w-full h-auto block" src="./Bas_test_08.png"/>
                 </div>
                 <div class="relative overflow-hidden bg-black">
-                    <img alt="PRODUCTION LOG 7" class="w-full h-auto block" src="/work/bas-relief/Bas_test_09.png"/>
+                    <img alt="PRODUCTION LOG 7" class="w-full h-auto block" src="./Bas_test_09.png"/>
                 </div>
             </div>
         </div>
@@ -1223,7 +1223,7 @@
         <div class="flex flex-col md:flex-row justify-between items-start w-full gap-12">
             <!-- Left Column: Navigation List -->
             <div class="flex flex-col gap-3">
-                <a href="/work" class="font-label-mono text-[11px] text-primary hover:text-outline tracking-[0.2em] transition-colors duration-200">WORK</a>
+                <a href="../index.html" class="font-label-mono text-[11px] text-primary hover:text-outline tracking-[0.2em] transition-colors duration-200">WORK</a>
                 <a href="#" class="font-label-mono text-[11px] text-primary hover:text-outline tracking-[0.2em] transition-colors duration-200">INFO</a>
                 <a href="#" class="font-label-mono text-[11px] text-primary hover:text-outline tracking-[0.2em] transition-colors duration-200">LAB</a>
                 <a href="#" class="font-label-mono text-[11px] text-primary hover:text-outline tracking-[0.2em] transition-colors duration-200">GALLERY</a>
@@ -1279,7 +1279,7 @@
     </div>
 </div>
 
-<script src="/work/bas-relief/app_v2.js?v=9"></script>
+<script src="./app_v2.js?v=9"></script>
 <script>
     function toggleMobileMenu() {
         const overlay = document.getElementById('mobile-menu-overlay');
