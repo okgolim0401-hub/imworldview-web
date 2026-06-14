@@ -233,6 +233,70 @@
     </style>
 </head>
 <body class="font-body-base text-body-base selection:bg-primary selection:text-background bg-black" id="main-body-container">
+<style>
+@keyframes logo-fade-in {
+    0% { transform: scale(0.9); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+.animate-logo-fade {
+    animation: logo-fade-in 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+.filter-red {
+    filter: invert(16%) sepia(99%) saturate(7404%) hue-rotate(356deg) brightness(97%) contrast(114%);
+}
+#intro-logo-wrapper {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 64px;
+    z-index: 101;
+    transition: all 1s cubic-bezier(0.76, 0, 0.24, 1);
+}
+#intro-logo-wrapper-static {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 64px;
+    z-index: 100;
+}
+@media (min-width: 768px) {
+    #intro-logo-wrapper, #intro-logo-wrapper-static {
+        width: 700px;
+        height: 110px;
+    }
+}
+.nav-logo-hover {
+    /* To enable perfectly smooth transition from RED original image to WHITE:
+       We use grayscale(1) to make it gray, then brightness(10) to blow it out to pure white.
+       On hover, we drop them to 0 and 1, revealing the beautiful original red! */
+    filter: grayscale(1) brightness(10);
+    transition: filter 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.nav-logo-hover:hover {
+    filter: grayscale(0) brightness(1);
+}
+</style>
+<!-- Layer 1: White Background, Red Logo -->
+<div id="intro-layer-1" class="fixed inset-0 z-[100] bg-white pointer-events-none flex justify-center items-center">
+    <div id="intro-logo-wrapper-static" class="pointer-events-none flex justify-center items-center">
+        <div class="w-full h-full relative animate-logo-fade">
+            <img src="IMWV_logo.png" alt="IMWV Logo" class="absolute inset-0 w-full h-full object-contain object-center filter-red" />
+        </div>
+    </div>
+</div>
+
+<!-- Layer 2: Black Background, White Logo (Revealed via Clip-Path) -->
+<div id="intro-layer-2" class="fixed inset-0 z-[101] bg-black pointer-events-none transition-opacity duration-1000 ease-in-out" style="clip-path: polygon(0 0, 0 0, 0 0, 0 0);">
+    <div id="intro-logo-wrapper" class="pointer-events-none flex justify-center items-center">
+        <div class="w-full h-full relative animate-logo-fade">
+            <img id="intro-logo" src="IMWV_logo.png" alt="IMWV Logo" class="absolute inset-0 w-full h-full object-contain object-center brightness-0 invert" />
+        </div>
+    </div>
+</div>
 
 <div class="w-full relative bg-black">
 <!-- Global Layout Lines -->
@@ -240,8 +304,8 @@
 </div>
 <!-- TopNavBar -->
 <nav class="sticky top-0 w-full z-[60] bg-black/20 backdrop-blur-xl border-b border-white/10 h-[54px] md:h-[70px] flex justify-between items-center px-6 md:px-margin">
-<a href="index.html" class="font-label-mono text-[12px] font-bold tracking-[0.2em] text-primary flex items-center hover:opacity-80 transition-opacity">
-<img alt="IMWV Logo" class="h-[18px] md:h-[23px] w-auto object-contain brightness-0 invert" src="IMWV_logo.png"/>
+<a href="index.html" class="font-label-mono text-[12px] font-bold tracking-[0.2em] text-primary flex items-center transition-opacity hover:opacity-80">
+    <img alt="IMWV Logo" class="h-[22px] md:h-[28px] w-auto object-contain nav-logo-hover" src="IMWV_logo.png"/>
 </a>
 <!-- Clicking Horizontal Line Menu Trigger (Mobile Always, Desktop Scroll-in) -->
 <button id="mobile-menu-trigger" class="flex md:opacity-0 md:translate-x-8 md:pointer-events-none items-center justify-end w-10 h-10 focus:outline-none focus:ring-0 focus-visible:outline-none z-[70] ml-auto relative transition-all duration-500" style="outline: none !important; border: none !important; box-shadow: none !important;" aria-label="Toggle Menu">

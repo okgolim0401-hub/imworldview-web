@@ -1,6 +1,130 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Orbital Neural Brain Intro (Removed) ---
+    // --- Refik Anadol Style Intro Animation ---
+    (function initIntroAnimation() {
+        const layer1 = document.getElementById('intro-layer-1');
+        const layer2 = document.getElementById('intro-layer-2');
+        const logoWrapper = document.getElementById('intro-logo-wrapper');
+        const navLogo = document.querySelector('nav img');
+        
+        if (!layer1 || !layer2 || !logoWrapper) return;
 
+        // Check if intro has already been played in this browser session
+        if (sessionStorage.getItem('introPlayed') === 'true') {
+            layer1.remove();
+            layer2.remove();
+            return;
+        }
+
+        // Mark intro as played for future navigation
+        sessionStorage.setItem('introPlayed', 'true');
+
+        const numBlinds = 40;
+        const columns = new Array(numBlinds).fill(0); 
+        
+        function updateClipPath() {
+            let polygons = [];
+            polygons.push(`0% 0%`); // Start at top-left of screen
+            
+            for (let i = 0; i < numBlinds; i++) {
+                let startX = (i / numBlinds) * 100;
+                let width = columns[i] * (100 / numBlinds);
+                let overlapEndX = startX + (width * 1.05);
+                
+                if (i > 0) {
+                    polygons.push(`${startX}% 100%`);
+                    polygons.push(`${startX}% 0%`);
+                }
+                polygons.push(`${overlapEndX}% 0%`);
+                polygons.push(`${overlapEndX}% 100%`);
+            }
+            // Return to bottom-left to close the polygon correctly without diagonal lines
+            polygons.push(`0% 100%`);
+            
+            layer2.style.clipPath = `polygon(${polygons.join(', ')})`;
+        }
+        updateClipPath();
+
+        const fadeDelay = 1500;
+        const durationMs = 1200; 
+        const staggerMs = 25; 
+        let startTime = null;
+
+        setTimeout(() => {
+            startTime = performance.now();
+            requestAnimationFrame(animateBlinds);
+        }, fadeDelay);
+
+        function animateBlinds(time) {
+            let elapsed = time - startTime;
+            let allDone = true;
+
+            for (let i = 0; i < numBlinds; i++) {
+                let blindStart = i * staggerMs;
+                let blindElapsed = elapsed - blindStart;
+                
+                if (blindElapsed < 0) {
+                    columns[i] = 0;
+                    allDone = false;
+                } else if (blindElapsed < durationMs) {
+                    let t = blindElapsed / durationMs;
+                    // cubic ease-out
+                    let ease = 1 - Math.pow(1 - t, 4); 
+                    columns[i] = ease;
+                    allDone = false;
+                } else {
+                    columns[i] = 1;
+                }
+            }
+
+            updateClipPath();
+
+            if (!allDone) {
+                requestAnimationFrame(animateBlinds);
+            } else {
+                finishAnimation();
+            }
+        }
+
+        function finishAnimation() {
+            layer2.style.clipPath = 'none';
+            layer1.remove(); 
+
+            const pauseBeforeFlip = 800;
+            setTimeout(() => {
+                if (navLogo) {
+                    const targetRect = navLogo.getBoundingClientRect();
+                    const initialRect = logoWrapper.getBoundingClientRect();
+                    
+                    // Calculate center positions to perform a pure transform-based FLIP
+                    const initialCX = initialRect.left + initialRect.width / 2;
+                    const initialCY = initialRect.top + initialRect.height / 2;
+                    
+                    const targetCX = targetRect.left + targetRect.width / 2;
+                    const targetCY = targetRect.top + targetRect.height / 2;
+                    
+                    const translateX = targetCX - initialCX;
+                    const translateY = targetCY - initialCY;
+                    
+                    const scaleX = targetRect.width / initialRect.width;
+                    const scaleY = targetRect.height / initialRect.height;
+                    
+                    // Apply linear straight-line translation using transform
+                    logoWrapper.style.transform = `translate(-50%, -50%) translate(${translateX}px, ${translateY}px) scale(${scaleX}, ${scaleY})`;
+                    
+                    navLogo.style.opacity = '0';
+                    layer2.classList.add('opacity-0');
+                }
+            }, pauseBeforeFlip);
+
+            setTimeout(() => {
+                if (navLogo) navLogo.style.opacity = '1';
+                logoWrapper.style.opacity = '0';
+                setTimeout(() => {
+                    layer2.remove();
+                }, 500);
+            }, pauseBeforeFlip + 1000);
+        }
+    })();
 
     // --- Dynamic Header Scanline Scroll transition (Stellar Exact Match) ---
     let isHeaderScrolled = false;
