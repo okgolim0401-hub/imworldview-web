@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;500;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="../style.css" rel="stylesheet"/>
+<link href="/style.css" rel="stylesheet"/>
 <script id="tailwind-config">
   tailwind.config = {
     darkMode: "class",
@@ -281,8 +281,8 @@
 </div>
 <!-- TopNavBar -->
 <nav class="sticky top-0 w-full z-[60] bg-black/20 backdrop-blur-xl border-b border-white/10 h-[54px] md:h-[70px] flex justify-between items-center px-6 md:px-margin">
-<a href="../index.html" class="font-label-mono text-[12px] font-bold tracking-[0.2em] text-primary flex items-center transition-opacity hover:opacity-80">
-    <img alt="IMWV Logo" class="h-[20px] md:h-[26px] w-auto object-contain nav-logo-hover" src="../IMWV_logo.png"/>
+<a href="/" class="font-label-mono text-[12px] font-bold tracking-[0.2em] text-primary flex items-center transition-opacity hover:opacity-80">
+    <img alt="IMWV Logo" class="h-[20px] md:h-[26px] w-auto object-contain nav-logo-hover" src="/IMWV_logo.png"/>
 </a>
 <!-- Clicking Horizontal Line Menu Trigger (Mobile Always, Desktop Scroll-in) -->
 <button id="mobile-menu-trigger" class="flex md:opacity-0 md:translate-x-8 md:pointer-events-none items-center justify-end w-10 h-10 focus:outline-none focus:ring-0 focus-visible:outline-none z-[70] ml-auto relative transition-all duration-500" style="outline: none !important; border: none !important; box-shadow: none !important;" aria-label="Toggle Menu">
@@ -325,9 +325,9 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
         
         <!-- ITEM 1: STELLAR RESTOMOD -->
-        <a href="./stellar-restomod" class="group block relative overflow-hidden aspect-video bg-black group/img-card">
-            <!-- Image -->
-            <img src="./stellar-restomod/3.jpg" alt="Stellar Restomod" class="absolute inset-0 w-full h-full object-cover opacity-100 group-hover/img-card:opacity-40 group-hover/img-card:scale-[1.02] transition-[transform,opacity] duration-700 cubic-bezier(0.16, 1, 0.3, 1) z-0" style="will-change: transform, opacity;" />
+        <a href="/work/stellar-restomod" class="group block relative overflow-hidden aspect-video bg-black group/img-card">
+            <!-- Project Image -->
+            <img src="/work/stellar-restomod/3.jpg" alt="Stellar Restomod" class="absolute inset-0 w-full h-full object-cover opacity-100 group-hover/img-card:opacity-40 group-hover/img-card:scale-[1.02] transition-[transform,opacity] duration-700 cubic-bezier(0.16, 1, 0.3, 1) z-0" style="will-change: transform, opacity;" />
             
             <!-- Hover Overlay -->
             <div class="absolute inset-0 bg-transparent group-hover/img-card:bg-black/60 transition-all duration-700 z-[1]"></div>
@@ -355,9 +355,9 @@
         </a>
 
         <!-- ITEM 2: BAS RELIEF -->
-        <a href="./bas-relief" class="group block relative overflow-hidden aspect-video bg-black group/img-card">
-            <!-- Image -->
-            <img src="./bas-relief/BAS_main.jpg" alt="Bas-Relief" class="absolute inset-0 w-full h-full object-cover opacity-100 group-hover/img-card:opacity-40 group-hover/img-card:scale-[1.02] transition-[transform,opacity] duration-700 cubic-bezier(0.16, 1, 0.3, 1) z-0" style="will-change: transform, opacity;" />
+        <a href="/work/bas-relief" class="group block relative overflow-hidden aspect-video bg-black group/img-card">
+            <!-- Project Image -->
+            <img src="/work/bas-relief/BAS_main.jpg" alt="Bas-Relief" class="absolute inset-0 w-full h-full object-cover opacity-100 group-hover/img-card:opacity-40 group-hover/img-card:scale-[1.02] transition-[transform,opacity] duration-700 cubic-bezier(0.16, 1, 0.3, 1) z-0" style="will-change: transform, opacity;" />
             
             <!-- Hover Overlay -->
             <div class="absolute inset-0 bg-transparent group-hover/img-card:bg-black/60 transition-all duration-700 z-[1]"></div>
@@ -428,7 +428,7 @@
 </div>
 </div>
 
-<script src="../app.js"></script>
+<script src="/app.js"></script>
 <script>
     function toggleMobileMenu() {
         const overlay = document.getElementById('mobile-menu-overlay');
