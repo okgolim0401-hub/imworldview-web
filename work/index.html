@@ -314,36 +314,67 @@
 </div>
 
 <main class="pt-[70px] px-6 md:px-margin pb-32">
-    <!-- HERO SECTION -->
-    <div class="mt-20 mb-32 flex flex-col items-center justify-center text-center">
-        <h1 class="font-display-lg text-[40px] md:text-[80px] text-primary/90 uppercase tracking-[-0.04em] font-light leading-[0.95]">
-            SELECTED <span class="font-d-din">WORKS</span>
+    <!-- HERO SECTION (Dry, Left-Aligned) -->
+    <div class="mt-20 mb-16 md:mb-24 flex flex-col text-left">
+        <h1 class="font-display-lg text-[60px] md:text-[100px] text-primary uppercase tracking-[-0.04em] font-light leading-[0.9]">
+            WORK
         </h1>
-        <p class="font-label-mono text-[10px] md:text-[12px] text-primary mt-6 tracking-[0.3em] uppercase opacity-60">IMWV Portfolio Gallery</p>
     </div>
 
     <!-- MASONRY GRID GALLERY -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
         
         <!-- ITEM 1: STELLAR RESTOMOD -->
-        <a href="/work/stellar-restomod" class="group block relative overflow-hidden aspect-[4/5] bg-black/40">
-            <img src="/work/stellar-restomod/4.jpg" alt="Stellar Restomod" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-[1.05]" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-80"></div>
+        <a href="/work/stellar-restomod" class="group block relative overflow-hidden aspect-[4/5] md:aspect-square bg-black">
+            <!-- Image -->
+            <img src="/work/stellar-restomod/4.jpg" alt="Stellar Restomod" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
             
-            <div class="absolute bottom-0 left-0 w-full p-8 flex flex-col gap-2 transform translate-y-4 transition-transform duration-500 group-hover:translate-y-0">
-                <span class="font-label-mono text-[10px] text-primary uppercase tracking-[0.3em] opacity-80">HYUNDAI RESTOMOD</span>
-                <h2 class="font-display-lg text-[28px] md:text-[36px] text-white uppercase tracking-tight leading-none transition-colors duration-500 group-hover:text-primary">STELLAR, STILL HERE</h2>
+            <!-- Hover Overlay -->
+            <div class="absolute inset-0 bg-black/70 opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+            
+            <!-- Hover Borders (Drawing Lines) -->
+            <div class="absolute top-6 left-6 right-6 h-[1px] bg-primary/60 origin-left scale-x-0 transition-transform duration-500 ease-out group-hover:scale-x-100"></div>
+            <div class="absolute bottom-6 left-6 right-6 h-[1px] bg-primary/60 origin-right scale-x-0 transition-transform duration-500 ease-out group-hover:scale-x-100"></div>
+            <div class="absolute top-6 bottom-6 left-6 w-[1px] bg-primary/60 origin-bottom scale-y-0 transition-transform duration-500 ease-out group-hover:scale-y-100"></div>
+            <div class="absolute top-6 bottom-6 right-6 w-[1px] bg-primary/60 origin-top scale-y-0 transition-transform duration-500 ease-out group-hover:scale-y-100"></div>
+
+            <!-- Hover Corner Dots -->
+            <div class="absolute top-[22px] left-[22px] w-[5px] h-[5px] bg-primary rounded-full opacity-0 scale-0 transition-all duration-300 delay-300 group-hover:opacity-100 group-hover:scale-100"></div>
+            <div class="absolute top-[22px] right-[22px] w-[5px] h-[5px] bg-primary rounded-full opacity-0 scale-0 transition-all duration-300 delay-300 group-hover:opacity-100 group-hover:scale-100"></div>
+            <div class="absolute bottom-[22px] left-[22px] w-[5px] h-[5px] bg-primary rounded-full opacity-0 scale-0 transition-all duration-300 delay-300 group-hover:opacity-100 group-hover:scale-100"></div>
+            <div class="absolute bottom-[22px] right-[22px] w-[5px] h-[5px] bg-primary rounded-full opacity-0 scale-0 transition-all duration-300 delay-300 group-hover:opacity-100 group-hover:scale-100"></div>
+
+            <!-- Text Reveal -->
+            <div class="absolute inset-0 p-10 flex flex-col justify-end opacity-0 transform translate-y-4 transition-all duration-500 delay-200 group-hover:opacity-100 group-hover:translate-y-0">
+                <span class="font-label-mono text-[10px] md:text-[12px] text-primary uppercase tracking-[0.3em]">HYUNDAI RESTOMOD</span>
+                <h2 class="font-display-lg text-[24px] md:text-[32px] text-white uppercase tracking-tight leading-none mt-3">STELLAR, STILL HERE</h2>
             </div>
         </a>
 
         <!-- ITEM 2: BAS RELIEF -->
-        <a href="/work/bas-relief" class="group block relative overflow-hidden aspect-[4/5] bg-black/40 md:mt-32">
-            <img src="/work/bas-relief/Bas_Env.jpg" alt="Bas-Relief" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-[1.05]" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-80"></div>
+        <a href="/work/bas-relief" class="group block relative overflow-hidden aspect-[4/5] md:aspect-square bg-black">
+            <!-- Image -->
+            <img src="/work/bas-relief/Bas_Env.jpg" alt="Bas-Relief" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
             
-            <div class="absolute bottom-0 left-0 w-full p-8 flex flex-col gap-2 transform translate-y-4 transition-transform duration-500 group-hover:translate-y-0">
-                <span class="font-label-mono text-[10px] text-primary uppercase tracking-[0.3em] opacity-80">TOKTOK SHADOW</span>
-                <h2 class="font-display-lg text-[28px] md:text-[36px] text-white uppercase tracking-tight leading-none transition-colors duration-500 group-hover:text-primary">BAS-RELIEF</h2>
+            <!-- Hover Overlay -->
+            <div class="absolute inset-0 bg-black/70 opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+            
+            <!-- Hover Borders (Drawing Lines) -->
+            <div class="absolute top-6 left-6 right-6 h-[1px] bg-primary/60 origin-left scale-x-0 transition-transform duration-500 ease-out group-hover:scale-x-100"></div>
+            <div class="absolute bottom-6 left-6 right-6 h-[1px] bg-primary/60 origin-right scale-x-0 transition-transform duration-500 ease-out group-hover:scale-x-100"></div>
+            <div class="absolute top-6 bottom-6 left-6 w-[1px] bg-primary/60 origin-bottom scale-y-0 transition-transform duration-500 ease-out group-hover:scale-y-100"></div>
+            <div class="absolute top-6 bottom-6 right-6 w-[1px] bg-primary/60 origin-top scale-y-0 transition-transform duration-500 ease-out group-hover:scale-y-100"></div>
+
+            <!-- Hover Corner Dots -->
+            <div class="absolute top-[22px] left-[22px] w-[5px] h-[5px] bg-primary rounded-full opacity-0 scale-0 transition-all duration-300 delay-300 group-hover:opacity-100 group-hover:scale-100"></div>
+            <div class="absolute top-[22px] right-[22px] w-[5px] h-[5px] bg-primary rounded-full opacity-0 scale-0 transition-all duration-300 delay-300 group-hover:opacity-100 group-hover:scale-100"></div>
+            <div class="absolute bottom-[22px] left-[22px] w-[5px] h-[5px] bg-primary rounded-full opacity-0 scale-0 transition-all duration-300 delay-300 group-hover:opacity-100 group-hover:scale-100"></div>
+            <div class="absolute bottom-[22px] right-[22px] w-[5px] h-[5px] bg-primary rounded-full opacity-0 scale-0 transition-all duration-300 delay-300 group-hover:opacity-100 group-hover:scale-100"></div>
+
+            <!-- Text Reveal -->
+            <div class="absolute inset-0 p-10 flex flex-col justify-end opacity-0 transform translate-y-4 transition-all duration-500 delay-200 group-hover:opacity-100 group-hover:translate-y-0">
+                <span class="font-label-mono text-[10px] md:text-[12px] text-primary uppercase tracking-[0.3em]">TOKTOK SHADOW</span>
+                <h2 class="font-display-lg text-[24px] md:text-[32px] text-white uppercase tracking-tight leading-none mt-3">BAS-RELIEF</h2>
             </div>
         </a>
     </div>
