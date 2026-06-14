@@ -9,7 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!layer1 || !layer2 || !logoWrapper) return;
 
         // Check if intro has already been played in this browser session
-        if (sessionStorage.getItem('introPlayed') === 'true') {
+        const forceIntro = new URLSearchParams(window.location.search).get('intro') === '1';
+        if (!forceIntro && sessionStorage.getItem('introPlayed') === 'true') {
             layer1.remove();
             layer2.remove();
             return;
