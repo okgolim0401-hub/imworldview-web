@@ -112,24 +112,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Apply linear straight-line translation using transform
                     logoWrapper.style.transform = `translate(-50%, -50%) translate(${translateX}px, ${translateY}px) scale(${scaleX}, ${scaleY})`;
                     
-                    // Do NOT fade out layer2 yet. Keep the screen black while it flies.
+                    navLogo.style.opacity = '0';
+                    layer2.classList.add('opacity-0');
                 }
             }, pauseBeforeFlip);
 
-            const flightDuration = 1000; // logoWrapper transition is 1s
             setTimeout(() => {
-                // Logo has arrived at the destination.
-                // Now smoothly fade out the black background to reveal the main page
-                layer2.style.transition = 'background-color 1s ease-in-out';
-                layer2.style.backgroundColor = 'transparent';
-                
+                if (navLogo) navLogo.style.opacity = '1';
+                logoWrapper.style.opacity = '0';
                 setTimeout(() => {
-                    // Background has completely faded out.
-                    // logoWrapper perfectly overlaps the real navLogo underneath.
-                    // Safe to remove the intro layers without any visual popping.
                     layer2.remove();
-                }, 1000);
-            }, pauseBeforeFlip + flightDuration);
+                }, 500);
+            }, pauseBeforeFlip + 1000);
         }
     })();
 
