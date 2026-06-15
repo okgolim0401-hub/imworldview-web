@@ -452,6 +452,7 @@
         }
         
         el.innerHTML = output;
+        el.style.opacity = '1'; // CSS initially hides .scramble-text to prevent flicker, so we must reveal the container
         
         const spans = el.querySelectorAll('.reveal-char');
         const indices = Array.from({length: spans.length}, (_, i) => i);
