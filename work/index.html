@@ -321,12 +321,28 @@
         </h1>
         
         <!-- Decorative 2 dots and line (Footer Style) -->
-        <div class="flex items-center gap-3 mt-4 md:mt-6 w-[200px] md:w-[280px]">
-            <div class="flex items-center gap-2 shrink-0">
-                <div id="hero-dot-1" class="w-[2px] h-[2px] bg-white rounded-full opacity-0 transition-opacity duration-[300ms] shadow-[0_0_6px_rgba(255,255,255,1)]"></div>
-                <div id="hero-dot-2" class="w-[2px] h-[2px] bg-white rounded-full opacity-0 transition-opacity duration-[300ms] shadow-[0_0_6px_rgba(255,255,255,1)]"></div>
+        <div class="w-full flex items-center mt-6 md:mt-10 relative">
+            
+            <!-- Left Dot (with vertical line coming from below) -->
+            <div class="relative shrink-0 flex items-center justify-center">
+                <div id="hero-dot-1" class="w-[2px] h-[2px] bg-white rounded-full opacity-0 transition-opacity duration-[300ms] shadow-[0_0_6px_rgba(255,255,255,1)] z-20"></div>
+                <div class="v-line-container absolute top-[2px] left-1/2 -translate-x-1/2 w-[1px] h-[60px] overflow-hidden pointer-events-none">
+                    <div id="hero-v-line" class="w-full h-[40px] bg-gradient-to-t from-transparent via-white/40 to-white/80 absolute top-[60px] transition-transform duration-[1200ms] ease-in-out"></div>
+                </div>
             </div>
-            <div id="hero-line" class="w-full h-[1px] bg-white/30 scale-x-0 origin-left transition-transform duration-[1200ms] ease-out"></div>
+        
+            <!-- Gap exactly matching footer (~20vw) -->
+            <div class="w-[22vw] max-w-[280px] shrink-0"></div>
+        
+            <!-- Right Dot -->
+            <div class="relative shrink-0 flex items-center justify-center mr-6">
+                <div id="hero-dot-2" class="w-[2px] h-[2px] bg-white rounded-full opacity-0 transition-opacity duration-[300ms] shadow-[0_0_6px_rgba(255,255,255,1)] z-20"></div>
+            </div>
+        
+            <!-- Horizontal Line (extends to end of grid) -->
+            <div class="flex-grow flex items-center h-[2px]">
+                <div id="hero-line" class="w-full h-[1px] bg-white/30 scale-x-0 origin-left transition-transform duration-[1200ms] ease-out"></div>
+            </div>
         </div>
     </div>
 
@@ -485,11 +501,13 @@
 
         // Trigger Footer-Style Dots and Line after text reveal starts
         setTimeout(() => {
-            const line = document.getElementById('hero-line');
+            const hLine = document.getElementById('hero-line');
+            const vLine = document.getElementById('hero-v-line');
             const dot1 = document.getElementById('hero-dot-1');
             const dot2 = document.getElementById('hero-dot-2');
             
-            if (line) line.classList.replace('scale-x-0', 'scale-x-100');
+            if (hLine) hLine.classList.replace('scale-x-0', 'scale-x-100');
+            if (vLine) vLine.style.transform = 'translateY(-100px)';
             if (dot1) setTimeout(() => { dot1.classList.replace('opacity-0', 'opacity-100'); }, 700);
             if (dot2) setTimeout(() => { dot2.classList.replace('opacity-0', 'opacity-100'); }, 1000);
         }, 800);
