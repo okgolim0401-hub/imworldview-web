@@ -272,15 +272,6 @@
 .nav-logo-hover:hover {
     filter: grayscale(0) brightness(1);
 }
-
-@keyframes draw-line-x {
-    0% { transform: scaleX(0); }
-    100% { transform: scaleX(1); }
-}
-@keyframes fade-in-up {
-    0% { opacity: 0; transform: translateY(10px); }
-    100% { opacity: 1; transform: translateY(0); }
-}
 </style>
 
 
@@ -329,13 +320,13 @@
             WORK
         </h1>
         
-        <!-- Decorative 2 dots and line -->
-        <div class="flex items-center gap-3 mt-4 md:mt-6 w-[200px] md:w-[280px] opacity-0" style="animation: fade-in-up 0.8s ease-out 1s forwards;">
-            <div class="flex items-center gap-1.5 shrink-0">
-                <div class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></div>
-                <div class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" style="animation-delay: 0.5s"></div>
+        <!-- Decorative 2 dots and line (Footer Style) -->
+        <div class="flex items-center gap-3 mt-4 md:mt-6 w-[200px] md:w-[280px]">
+            <div class="flex items-center gap-2 shrink-0">
+                <div id="hero-dot-1" class="w-[2px] h-[2px] bg-white rounded-full opacity-0 transition-opacity duration-[300ms] shadow-[0_0_6px_rgba(255,255,255,1)]"></div>
+                <div id="hero-dot-2" class="w-[2px] h-[2px] bg-white rounded-full opacity-0 transition-opacity duration-[300ms] shadow-[0_0_6px_rgba(255,255,255,1)]"></div>
             </div>
-            <div class="h-[1px] bg-primary/40 flex-grow origin-left scale-x-0" style="animation: draw-line-x 1.2s cubic-bezier(0.16, 1, 0.3, 1) 1.5s forwards;"></div>
+            <div id="hero-line" class="w-full h-[1px] bg-white/30 scale-x-0 origin-left transition-transform duration-[1200ms] ease-out"></div>
         </div>
     </div>
 
@@ -491,6 +482,17 @@
                 }, (i / Math.max(1, indices.length)) * 800); // 800ms stagger duration
             });
         }, 100);
+
+        // Trigger Footer-Style Dots and Line after text reveal starts
+        setTimeout(() => {
+            const line = document.getElementById('hero-line');
+            const dot1 = document.getElementById('hero-dot-1');
+            const dot2 = document.getElementById('hero-dot-2');
+            
+            if (line) line.classList.replace('scale-x-0', 'scale-x-100');
+            if (dot1) setTimeout(() => { dot1.classList.replace('opacity-0', 'opacity-100'); }, 700);
+            if (dot2) setTimeout(() => { dot2.classList.replace('opacity-0', 'opacity-100'); }, 1000);
+        }, 800);
     }
 
     if (document.readyState === 'loading') {
