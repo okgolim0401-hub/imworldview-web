@@ -446,7 +446,7 @@
                     continue;
                 }
                 const safeChar = escapeHTML(originalText[i]);
-                output += <span class="reveal-char" style="opacity: 0; filter: blur(3px); display: inline-block; transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);"></span>;
+                output += `<span class="reveal-char" style="opacity: 0; filter: blur(3px); display: inline-block; transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);">${safeChar}</span>`;
             }
             
             el.innerHTML = output;
@@ -522,7 +522,7 @@
             setTimeout(() => {
                 fragments.forEach((f) => {
                     const duration = 0.6 + Math.random() * 0.4;
-                    f.el.style.transition = left \s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s;
+                    f.el.style.transition = `left ${duration}s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s`;
                     setTimeout(() => {
                         f.el.style.left = '50%';
                         f.el.style.opacity = '1';
@@ -532,7 +532,7 @@
                 setTimeout(() => {
                     fragments.forEach((f) => {
                         const duration = 0.6 + Math.random() * 0.4;
-                        f.el.style.transition = 	op \s cubic-bezier(0.16, 1, 0.3, 1), transform \s cubic-bezier(0.16, 1, 0.3, 1);
+                        f.el.style.transition = `top ${duration}s cubic-bezier(0.16, 1, 0.3, 1), transform ${duration}s cubic-bezier(0.16, 1, 0.3, 1)`;
                         setTimeout(() => {
                             f.el.style.top = '50%';
                             f.el.style.transform = 'translate(-50%, -50%) scale(0.2)';
@@ -544,7 +544,7 @@
                             f.el.style.transition = 'opacity 0.4s ease-out, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
                             const burstX = (Math.random() - 0.5) * 300;
                             const burstY = (Math.random() - 0.5) * 300;
-                            f.el.style.transform = 	ranslate(\px, \px) scale(0);
+                            f.el.style.transform = `translate(${burstX}px, ${burstY}px) scale(0)`;
                             f.el.style.opacity = '0';
                         });
                         
