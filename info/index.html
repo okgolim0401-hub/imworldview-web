@@ -313,51 +313,90 @@
     </div>
 </div>
 
-            <!-- Dot Dispersion -->
-            <div class="absolute inset-0 pointer-events-none">
-                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[3px] h-[3px] bg-white opacity-0 rounded-full shadow-[0_0_6px_rgba(255,255,255,0.8)] transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) group-hover/img-card:top-[1.5px] group-hover/img-card:left-[1.5px] group-hover/img-card:opacity-100 z-20"></div>
-                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[3px] h-[3px] bg-white opacity-0 rounded-full shadow-[0_0_6px_rgba(255,255,255,0.8)] transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) group-hover/img-card:top-[1.5px] group-hover/img-card:left-[calc(100%-1.5px)] group-hover/img-card:opacity-100 z-20"></div>
-                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[3px] h-[3px] bg-white opacity-0 rounded-full shadow-[0_0_6px_rgba(255,255,255,0.8)] transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) group-hover/img-card:top-[calc(100%-1.5px)] group-hover/img-card:left-[calc(100%-1.5px)] group-hover/img-card:opacity-100 z-20"></div>
-                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[3px] h-[3px] bg-white opacity-0 rounded-full shadow-[0_0_6px_rgba(255,255,255,0.8)] transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) group-hover/img-card:top-[calc(100%-1.5px)] group-hover/img-card:left-[1.5px] group-hover/img-card:opacity-100 z-20"></div>
-            </div>
-
-            <!-- Text Reveal (Centered layout) -->
-            <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover/img-card:opacity-100 transition-opacity duration-700 pointer-events-none z-30">
-                <h2 class="font-display-lg text-[32px] md:text-[40px] text-white uppercase font-light tracking-tight mb-2 text-center">STELLAR, STILL HERE</h2>
-                <span class="font-body-base text-[14px] md:text-[16px] text-white/80 font-light tracking-wide mb-1">Mobility</span>
-                <span class="font-body-base text-[12px] md:text-[14px] text-white/50 font-light tracking-wide">2025</span>
-            </div>
-        </a>
-
-        <!-- ITEM 2: BAS RELIEF -->
-        <a href="/work/bas-relief" class="group block relative overflow-hidden aspect-video bg-black group/img-card">
-            <!-- Project Image -->
-            <img src="/work/bas-relief/BAS_main.jpg" alt="Bas-Relief" class="absolute inset-0 w-full h-full object-cover opacity-100 group-hover/img-card:opacity-40 group-hover/img-card:scale-[1.02] transition-[transform,opacity] duration-700 cubic-bezier(0.16, 1, 0.3, 1) z-0" style="will-change: transform, opacity;" />
+<main class="pt-[70px] pb-32">
+    <!-- HERO SECTION (Interactive Logo) -->
+    <div class="w-full min-h-[60vh] md:min-h-[70vh] flex items-center justify-center relative overflow-hidden group cursor-crosshair" id="interactive-logo-container">
+        <!-- Interactive 3D Logo Element -->
+        <div id="imwv-3d-logo" class="relative transition-[transform] duration-75 ease-out will-change-transform z-10 w-[70%] max-w-[800px] pointer-events-none">
+            <!-- Base Logo -->
+            <img src="/IMWV_logo.png" alt="IMWV Logo" class="w-full h-auto brightness-0 invert opacity-90 drop-shadow-[0_0_20px_rgba(255,255,255,0.4)] transition-all duration-300 group-hover:drop-shadow-[0_0_35px_rgba(255,255,255,0.8)]">
             
-            <!-- Hover Overlay -->
-            <div class="absolute inset-0 bg-transparent group-hover/img-card:bg-black/60 transition-all duration-700 z-[1]"></div>
-            
-            <!-- Stroke Diet Lines -->
-            <div class="absolute top-0 left-[16px] w-[calc(100%-32px)] h-[3px] bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)] scale-x-0 origin-left transition-all duration-[400ms] cubic-bezier(0.16, 1, 0.3, 1) delay-[100ms] group-hover/img-card:scale-x-100 group-hover/img-card:h-[0.8px] group-hover/img-card:bg-white/30 group-hover/img-card:shadow-none z-10 pointer-events-none"></div>
-            <div class="absolute top-[16px] right-0 h-[calc(100%-32px)] w-[3px] bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)] scale-y-0 origin-top transition-all duration-[400ms] cubic-bezier(0.16, 1, 0.3, 1) delay-[300ms] group-hover/img-card:scale-y-100 group-hover/img-card:w-[0.8px] group-hover/img-card:bg-white/30 group-hover/img-card:shadow-none z-10 pointer-events-none"></div>
-            <div class="absolute bottom-0 right-[16px] w-[calc(100%-32px)] h-[3px] bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)] scale-x-0 origin-right transition-all duration-[400ms] cubic-bezier(0.16, 1, 0.3, 1) delay-[500ms] group-hover/img-card:scale-x-100 group-hover/img-card:h-[0.8px] group-hover/img-card:bg-white/30 group-hover/img-card:shadow-none z-10 pointer-events-none"></div>
-            <div class="absolute bottom-[16px] left-0 h-[calc(100%-32px)] w-[3px] bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)] scale-y-0 origin-bottom transition-all duration-[400ms] cubic-bezier(0.16, 1, 0.3, 1) delay-[700ms] group-hover/img-card:scale-y-100 group-hover/img-card:w-[0.8px] group-hover/img-card:bg-white/30 group-hover/img-card:shadow-none z-10 pointer-events-none"></div>
+            <!-- Mouse Tracker Glow inside Logo -->
+            <div id="logo-glow" class="absolute inset-0 bg-[radial-gradient(circle_at_var(--x,50%)_var(--y,50%),rgba(255,255,255,0.25)_0%,transparent_60%)] mix-blend-overlay opacity-0 transition-opacity duration-300 pointer-events-none blur-[10px]"></div>
+        </div>
+        
+        <!-- Background Ambient Glow -->
+        <div class="absolute inset-0 flex justify-center items-center pointer-events-none z-0">
+            <div class="w-[500px] h-[500px] bg-white/5 rounded-full blur-[120px] opacity-30 group-hover:opacity-60 transition-opacity duration-700"></div>
+        </div>
+    </div>
 
-            <!-- Dot Dispersion -->
-            <div class="absolute inset-0 pointer-events-none">
-                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[3px] h-[3px] bg-white opacity-0 rounded-full shadow-[0_0_6px_rgba(255,255,255,0.8)] transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) group-hover/img-card:top-[1.5px] group-hover/img-card:left-[1.5px] group-hover/img-card:opacity-100 z-20"></div>
-                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[3px] h-[3px] bg-white opacity-0 rounded-full shadow-[0_0_6px_rgba(255,255,255,0.8)] transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) group-hover/img-card:top-[1.5px] group-hover/img-card:left-[calc(100%-1.5px)] group-hover/img-card:opacity-100 z-20"></div>
-                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[3px] h-[3px] bg-white opacity-0 rounded-full shadow-[0_0_6px_rgba(255,255,255,0.8)] transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) group-hover/img-card:top-[calc(100%-1.5px)] group-hover/img-card:left-[calc(100%-1.5px)] group-hover/img-card:opacity-100 z-20"></div>
-                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[3px] h-[3px] bg-white opacity-0 rounded-full shadow-[0_0_6px_rgba(255,255,255,0.8)] transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) group-hover/img-card:top-[calc(100%-1.5px)] group-hover/img-card:left-[1.5px] group-hover/img-card:opacity-100 z-20"></div>
+    <!-- CONTENT SECTION (Left Aligned Text) -->
+    <div class="px-6 md:px-margin mt-12 md:mt-16 max-w-screen-xl mx-auto flex flex-col gap-24">
+        
+        <!-- About Section -->
+        <div class="flex flex-col md:flex-row items-start gap-8 md:gap-24 w-full">
+            <div class="w-full md:w-[25%] shrink-0">
+                <span class="font-label-mono text-[12px] text-primary uppercase tracking-[0.3em] opacity-60 scramble-text" data-original="ABOUT US">ABOUT US</span>
+                <div class="w-full h-[1px] bg-white/20 mt-4"></div>
             </div>
+            <div class="w-full md:w-[75%] max-w-[800px] text-left">
+                <p class="font-body-base text-[20px] md:text-[28px] font-light leading-[1.6] text-primary tracking-[-0.01em] mb-8">
+                    IMWV is a creative studio specializing in visual storytelling and digital craftsmanship. We bridge the gap between imagination and reality through cutting-edge 3D motion, bold art direction, and immersive web experiences.
+                </p>
+                <p class="font-body-base text-[16px] md:text-[18px] font-light leading-[1.7] text-on-surface-variant">
+                    Your custom studio philosophy or description will go here. You can provide any details about your process, history, or vision, and we will format it elegantly within this brutalist, left-aligned layout.
+                </p>
+            </div>
+        </div>
 
-            <!-- Text Reveal (Centered layout) -->
-            <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover/img-card:opacity-100 transition-opacity duration-700 pointer-events-none z-30">
-                <h2 class="font-display-lg text-[32px] md:text-[40px] text-white uppercase font-light tracking-tight mb-2 text-center">BAS-RELIEF</h2>
-                <span class="font-body-base text-[14px] md:text-[16px] text-white/80 font-light tracking-wide mb-1">Installation</span>
-                <span class="font-body-base text-[12px] md:text-[14px] text-white/50 font-light tracking-wide">2024</span>
+        <!-- Capabilities Section -->
+        <div class="flex flex-col md:flex-row items-start gap-8 md:gap-24 w-full">
+            <div class="w-full md:w-[25%] shrink-0">
+                <span class="font-label-mono text-[12px] text-primary uppercase tracking-[0.3em] opacity-60 scramble-text" data-original="CAPABILITIES">CAPABILITIES</span>
+                <div class="w-full h-[1px] bg-white/20 mt-4"></div>
             </div>
-        </a>
+            <div class="w-full md:w-[75%] max-w-[800px] text-left grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-12">
+                <div class="flex flex-col gap-2">
+                    <span class="font-label-mono text-[14px] text-primary tracking-wider">01. ART DIRECTION</span>
+                    <span class="font-body-base text-[14px] text-on-surface-variant opacity-80">Visual Identity &amp; Concept Design</span>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <span class="font-label-mono text-[14px] text-primary tracking-wider">02. 3D MOTION</span>
+                    <span class="font-body-base text-[14px] text-on-surface-variant opacity-80">CGI, Animation &amp; VFX</span>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <span class="font-label-mono text-[14px] text-primary tracking-wider">03. DIGITAL EXPERIENCE</span>
+                    <span class="font-body-base text-[14px] text-on-surface-variant opacity-80">Web Development &amp; Interactive Design</span>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <span class="font-label-mono text-[14px] text-primary tracking-wider">04. BRANDING</span>
+                    <span class="font-body-base text-[14px] text-on-surface-variant opacity-80">Brand Strategy &amp; Guidelines</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="flex flex-col md:flex-row items-start gap-8 md:gap-24 w-full mb-12">
+            <div class="w-full md:w-[25%] shrink-0">
+                <span class="font-label-mono text-[12px] text-primary uppercase tracking-[0.3em] opacity-60 scramble-text" data-original="CONTACT">CONTACT</span>
+                <div class="w-full h-[1px] bg-white/20 mt-4"></div>
+            </div>
+            <div class="w-full md:w-[75%] max-w-[800px] text-left flex flex-col gap-8">
+                <div>
+                    <h3 class="font-body-base text-[14px] text-on-surface-variant opacity-60 mb-2 uppercase tracking-widest">General Inquiries</h3>
+                    <a href="mailto:hello@imwv.com" class="font-display-lg text-[24px] md:text-[32px] text-primary hover:text-outline transition-colors duration-300">hello@imwv.com</a>
+                </div>
+                <div>
+                    <h3 class="font-body-base text-[14px] text-on-surface-variant opacity-60 mb-2 uppercase tracking-widest">Studio</h3>
+                    <p class="font-body-base text-[16px] text-primary leading-relaxed">
+                        Seoul, South Korea<br>
+                        (Available Worldwide)
+                    </p>
+                </div>
+            </div>
+        </div>
+
     </div>
 </main>
 
@@ -514,95 +553,8 @@
         }
     }
 </script>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    // Interactive 3D Parallax Logo
-    const container = document.getElementById('interactive-logo-container');
-    const logo = document.getElementById('imwv-3d-logo');
-    const glow = document.getElementById('logo-glow');
-    
-    if(container && logo) {
-        container.addEventListener('mousemove', (e) => {
-            const rect = container.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            // Calculate percentages from -1 to 1
-            const xPercent = (x / rect.width) * 2 - 1;
-            const yPercent = (y / rect.height) * 2 - 1;
-            
-            // Tilt the logo (max 15 degrees)
-            const tiltX = yPercent * -15;
-            const tiltY = xPercent * 15;
-            
-            // Add subtle translation for stronger parallax
-            const translateX = xPercent * -20;
-            const translateY = yPercent * -20;
-            
-            logo.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateX(${translateX}px) translateY(${translateY}px) scale3d(1.05, 1.05, 1.05)`;
-            
-            // Update glow position based on logo's internal coordinates
-            if (glow) {
-                const logoRect = logo.getBoundingClientRect();
-                const logoX = e.clientX - logoRect.left;
-                const logoY = e.clientY - logoRect.top;
-                glow.style.setProperty('--x', `${(logoX / logoRect.width) * 100}%`);
-                glow.style.setProperty('--y', `${(logoY / logoRect.height) * 100}%`);
-            }
-        });
-        
-        container.addEventListener('mouseenter', () => {
-            if(glow) glow.style.opacity = '1';
-            logo.style.transition = 'transform 0.1s ease-out'; // Fast tracking when inside
-        });
-        
-        container.addEventListener('mouseleave', () => {
-            logo.style.transition = 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)'; // Smooth return
-            logo.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateX(0px) translateY(0px) scale3d(1, 1, 1)';
-            if(glow) glow.style.opacity = '0';
-        });
-    }
-
-    // Text Reveal Effect for Section Headers (Blur/Opacity)
-    function initInfoTextReveal() {
-        const els = document.querySelectorAll('.scramble-text');
-        if (!els.length) return;
-        
-        els.forEach(el => {
-            const text = el.getAttribute('data-original') || el.innerText.trim();
-            el.innerHTML = '';
-            
-            [...text].forEach((char, index) => {
-                const span = document.createElement('span');
-                span.innerText = char === ' ' ? '\u00A0' : char;
-                span.className = 'inline-block opacity-0 blur-[8px] transition-[opacity,filter] duration-700 ease-out';
-                span.style.transitionDelay = `${index * 40}ms`;
-                el.appendChild(span);
-            });
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const spans = entry.target.querySelectorAll('span');
-                        spans.forEach(span => {
-                            span.classList.remove('opacity-0', 'blur-[8px]');
-                            span.classList.add('opacity-100', 'blur-0');
-                        });
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-            
-            observer.observe(el);
-        });
-    }
-    
-    setTimeout(initInfoTextReveal, 100);
-});
-</script>
 </body>
 </html>
-
 
 
 
