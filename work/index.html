@@ -316,14 +316,9 @@
 <main class="pt-[70px] px-6 md:px-margin pb-32">
     <!-- HERO SECTION (Dry, Left-Aligned) -->
     <div class="mt-20 mb-24 md:mb-32 flex items-baseline gap-4 md:gap-6 text-left">
-        <h1 class="digital-scramble font-display-lg text-[54px] md:text-[90px] text-primary uppercase tracking-[-0.04em] font-light leading-[0.9]" data-decode-delay="100" data-decode-duration="40">
+        <h1 class="scramble-text font-display-lg text-[54px] md:text-[90px] text-primary uppercase tracking-[-0.04em] font-light leading-[0.9]">
             WORK
         </h1>
-        <!-- 2 Dots Motion -->
-        <div class="flex items-center gap-1.5 mb-2 md:mb-4">
-            <div class="w-1.5 h-1.5 rounded-full bg-primary/80 animate-pulse"></div>
-            <div class="w-1.5 h-1.5 rounded-full bg-primary/80 animate-pulse" style="animation-delay: 0.5s"></div>
-        </div>
     </div>
 
     <!-- MASONRY GRID GALLERY -->
@@ -435,44 +430,45 @@
 
 <script src="/app.js"></script>
 <script>
-    // Digital Scramble Effect
+    // Text Reveal Effect (Character by Character Blur/Opacity)
     document.addEventListener('DOMContentLoaded', () => {
-        const chars = '!<>-_\\/[]{}??+*^?#_0123456789ILTFJ';
-        const elements = document.querySelectorAll('.digital-scramble');
-        elements.forEach(el => {
-            const originalText = el.dataset.original || el.innerText.trim();
-            el.dataset.original = originalText;
-            const length = originalText.length;
-            const maxFrames = parseInt(el.dataset.decodeDuration) || 40;
-            const delay = parseInt(el.dataset.decodeDelay) || 0;
-            let frame = 0;
-            
-            el.innerText = '';
-            
-            setTimeout(() => {
-                const update = () => {
-                    let output = '';
-                    for (let i = 0; i < length; i++) {
-                        if (originalText[i] === ' ' || originalText[i] === '\n') {
-                            output += originalText[i];
-                            continue;
-                        }
-                        if (frame > maxFrames * (i / length)) {
-                            output += originalText[i];
-                        } else {
-                            output += chars[Math.floor(Math.random() * chars.length)];
-                        }
-                    }
-                    el.innerText = output;
-                    
-                    if (frame < maxFrames) {
-                        frame++;
-                        requestAnimationFrame(update);
-                    }
-                };
-                update();
-            }, delay);
-        });
+        const el = document.querySelector('.scramble-text');
+        if (!el) return;
+        
+        const originalText = el.innerText.trim();
+        const length = originalText.length;
+        
+        let output = '';
+        const escapeHTML = (str) => str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        
+        for (let i = 0; i < length; i++) {
+            if (originalText[i] === ' ') {
+                output += ' ';
+                continue;
+            }
+            const safeChar = escapeHTML(originalText[i]);
+            output += `<span class="reveal-char" style="opacity: 0; filter: blur(3px); display: inline-block; transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);">${safeChar}</span>`;
+        }
+        
+        el.innerHTML = output;
+        
+        const spans = el.querySelectorAll('.reveal-char');
+        const indices = Array.from(spans.keys());
+        
+        // Shuffle indices for random reveal order
+        for (let i = indices.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [indices[i], indices[j]] = [indices[j], indices[i]];
+        }
+        
+        setTimeout(() => {
+            indices.forEach((spanIndex, i) => {
+                setTimeout(() => {
+                    spans[spanIndex].style.opacity = '1';
+                    spans[spanIndex].style.filter = 'blur(0px)';
+                }, (i / indices.length) * 800); // 800ms stagger duration
+            });
+        }, 100);
     });
 
     function toggleMobileMenu() {
