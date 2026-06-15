@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMWV</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;500;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="/style.css" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "secondary-container": "#474746",
+                "outline-variant": "#444748",
+                "surface-container-highest": "#353535",
+                "primary-fixed": "#e2e2e2",
+                "on-tertiary-container": "#636565",
+                "tertiary-container": "#e2e2e2",
+                "on-secondary-fixed": "#1c1b1b",
+                "primary-fixed-dim": "#c6c6c7",
+                "on-surface-variant": "#c4c7c8",
+                "on-primary-fixed-variant": "#454747",
+                "surface-dim": "#131313",
+                "on-primary": "#2f3131",
+                "error-container": "#93000a",
+                "background": "#131313",
+                "surface": "#131313",
+                "surface-container": "#1f1f1f",
+                "primary": "#ffffff",
+                "on-tertiary-fixed-variant": "#454747",
+                "surface-variant": "#353535",
+                "secondary-fixed-dim": "#c8c6c5",
+                "inverse-on-surface": "#303030",
+                "on-tertiary-fixed": "#1a1c1c",
+                "inverse-primary": "#5d5f5f",
+                "secondary-fixed": "#e5e2e1",
+                "on-error-container": "#ffdad6",
+                "tertiary-fixed-dim": "#c6c6c7",
+                "on-surface": "#e2e2e2",
+                "surface-container-low": "#1b1b1b",
+                "surface-container-lowest": "#0e0e0e",
+                "outline": "#8e9192",
+                "on-primary-fixed": "#1a1c1c",
+                "on-primary-container": "#636565",
+                "on-secondary-container": "#b7b5b4",
+                "on-error": "#690005",
+                "on-background": "#e2e2e2",
+                "secondary": "#c8c6c5",
+                "on-secondary-fixed-variant": "#474746",
+                "tertiary-fixed": "#e2e2e2",
+                "tertiary": "#ffffff",
+                "surface-bright": "#393939",
+                "primary-container": "#e2e2e2",
+                "error": "#ffb4ab",
+                "on-tertiary": "#2f3131",
+                "on-secondary": "#313030",
+                "surface-container-high": "#2a2a2a",
+                "inverse-surface": "#e2e2e2",
+                "surface-tint": "#c6c6c7"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "margin": "48px",
+                "gutter": "24px",
+                "container-max": "1440px",
+                "unit": "4px",
+                "8": "32px",
+                "16": "64px",
+                "24": "96px",
+                "32": "128px"
+        },
+        "fontFamily": {
+                "label-caps": ["Inter"],
+                "body-base": ["Inter"],
+                "headline-md": ["Inter"],
+                "display-lg": ["Space Grotesk"],
+                "mono-data": ["Inter"],
+                "label-mono": ["Space Grotesk"],
+                "d-din": ["D-DIN", "sans-serif"]
+        },
+        "fontSize": {
+                "label-caps": [
+                        "12px",
+                        {
+                                "lineHeight": "1",
+                                "letterSpacing": "0.15em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-base": [
+                        "16px",
+                        {
+                                "lineHeight": "1.6",
+                                "letterSpacing": "0em",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-md": [
+                        "32px",
+                        {
+                                "lineHeight": "1.2",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "display-lg": [
+                        "72px",
+                        {
+                                "lineHeight": "1.1",
+                                "letterSpacing": "-0.04em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "mono-data": [
+                        "14px",
+                        {
+                                "lineHeight": "1.4",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "500"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+    
+    <style>
+        /* Smooth scrolling for main page snap effect */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Hidden lang class for translation */
+        .hidden-lang {
+            display: none !important;
+        }
+        
+        /* Full-screen section setup */
+        .project-section {
+            height: 70vh;
+            min-height: 500px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; align-items: center;
+            overflow: hidden;
+        }
+        
+        .project-bg-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), filter 1s ease-out;
+            will-change: transform;
+        }
+        
+        .project-section:has(.project-link:hover) .project-bg-img {
+            filter: brightness(1.1);
+        }
+        
+
+        
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            /* Added a solid dark tint combined with the gradient for better text readability */
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.3) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .project-content {
+            position: relative;
+            z-index: 10;
+            padding-bottom: 3rem;
+        }
+        
+        @media (min-width: 768px) {
+            .project-content {
+                padding-bottom: 5rem;
+            }
+        }
+        
+        /* Interactive Title Hover Effect */
+        .project-title {
+            position: relative;
+            display: inline-block;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), letter-spacing 0.8s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s ease, text-shadow 0.4s ease;
+        }
+        
+        .project-link:hover .project-title {
+            color: #fff;
+            text-shadow: 0 0 40px rgba(255,255,255,0.6);
+            transform: scale(1.03);
+            letter-spacing: 0.05em;
+        }
+        
+        .project-subtitle {
+            transition: letter-spacing 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+        }
+        
+        .project-link:hover .project-subtitle {
+            letter-spacing: 0.45em;
+            opacity: 1;
+        }
+        
+        /* Arrow icon reveal */
+        .arrow-icon {
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        /* Arrow icon reveal */
+        .project-link:hover .arrow-icon {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="font-body-base text-body-base selection:bg-primary selection:text-background bg-black" id="main-body-container">
+<style>
+.filter-red {
+    filter: invert(16%) sepia(99%) saturate(7404%) hue-rotate(356deg) brightness(97%) contrast(114%);
+}
+#intro-logo-wrapper {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 64px;
+    z-index: 101;
+    transition: all 1s cubic-bezier(0.76, 0, 0.24, 1);
+}
+#intro-logo-wrapper-static {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 64px;
+    z-index: 100;
+}
+@media (min-width: 768px) {
+    #intro-logo-wrapper, #intro-logo-wrapper-static {
+        width: 700px;
+        height: 110px;
+    }
+}
+.nav-logo-hover {
+    /* To enable perfectly smooth transition from RED original image to WHITE:
+       We use grayscale(1) to make it gray, then brightness(10) to blow it out to pure white.
+       On hover, we drop them to 0 and 1, revealing the beautiful original red! */
+    filter: grayscale(1) brightness(10);
+    transition: filter 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.nav-logo-hover:hover {
+    filter: grayscale(0) brightness(1);
+}
+</style>
+
+
+<div class="w-full relative bg-black">
+<!-- Global Layout Lines -->
+<div class="absolute inset-0 pointer-events-none z-50 overflow-hidden">
+</div>
+<!-- TopNavBar -->
+<nav class="sticky top-0 w-full z-[60] bg-black/20 backdrop-blur-xl border-b border-white/10 h-[54px] md:h-[70px] flex justify-between items-center px-6 md:px-margin">
+<a href="/" class="font-label-mono text-[12px] font-bold tracking-[0.2em] text-primary flex items-center transition-opacity hover:opacity-80">
+    <img alt="IMWV Logo" class="h-[20px] md:h-[26px] w-auto object-contain nav-logo-hover" src="/IMWV_logo.png"/>
+</a>
+<!-- Clicking Horizontal Line Menu Trigger (Mobile Always, Desktop Scroll-in) -->
+<button id="mobile-menu-trigger" class="flex md:opacity-0 md:translate-x-8 md:pointer-events-none items-center justify-end w-10 h-10 focus:outline-none focus:ring-0 focus-visible:outline-none z-[70] ml-auto relative transition-all duration-500" style="outline: none !important; border: none !important; box-shadow: none !important;" aria-label="Toggle Menu">
+    <span class="w-6 h-[1.2px] bg-white transition-all duration-300 transform" id="menu-line"></span>
+</button>
+<div class="hidden md:flex items-center gap-8 ml-auto relative" id="desktop-menu-container">
+    <!-- Laser Scanning Cover Line (Positioned below the text) -->
+    <div class="absolute left-0 right-0 h-[1px] bg-white bottom-[-6px] scale-x-0 origin-left transition-transform duration-300 ease-out z-10" id="header-scan-line"></div>
+    <div class="flex items-center gap-8 transition-all duration-300" id="desktop-menu-links">
+        <a class="text-on-surface-variant font-label-mono font-light text-[13px] uppercase tracking-wider hover:text-primary transition-colors duration-200" href="/work">WORK</a>
+        <a class="text-on-surface-variant font-label-mono font-light text-[13px] uppercase tracking-wider hover:text-primary transition-colors duration-200" href="#">INFO</a>
+        <a class="text-on-surface-variant font-label-mono font-light text-[13px] uppercase tracking-wider hover:text-primary transition-colors duration-200" href="#">LAB</a>
+        <a class="text-on-surface-variant font-label-mono font-light text-[13px] uppercase tracking-wider hover:text-primary transition-colors duration-200" href="#">GALLERY</a>
+        <a aria-label="Instagram" class="text-on-surface-variant hover:text-primary transition-colors duration-200 ml-4" href="#">
+            <svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><rect height="20" rx="5" ry="5" width="20" x="2" y="2"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+        </a>
+    </div>
+</div>
+</nav>
+
+<!-- Mobile Menu Overlay -->
+<div id="mobile-menu-overlay" class="fixed top-[54px] md:top-[70px] left-0 w-full h-[calc(100vh-54px)] md:h-[calc(100vh-70px)] bg-black/95 backdrop-blur-2xl z-[55] flex flex-col justify-center items-center gap-8 opacity-0 pointer-events-none transition-all duration-300">
+    <div class="flex flex-col items-center gap-8 font-label-mono text-[18px] tracking-[0.2em] text-primary">
+        <a class="hover:text-primary transition-colors duration-200" href="/work" onclick="toggleMobileMenu()">WORK</a>
+        <a class="hover:text-primary transition-colors duration-200" href="#" onclick="toggleMobileMenu()">INFO</a>
+        <a class="hover:text-primary transition-colors duration-200" href="#" onclick="toggleMobileMenu()">LAB</a>
+        <a class="hover:text-primary transition-colors duration-200" href="#" onclick="toggleMobileMenu()">GALLERY</a>
+    </div>
+</div>
+
+            <!-- Dot Dispersion -->
+            <div class="absolute inset-0 pointer-events-none">
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[3px] h-[3px] bg-white opacity-0 rounded-full shadow-[0_0_6px_rgba(255,255,255,0.8)] transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) group-hover/img-card:top-[1.5px] group-hover/img-card:left-[1.5px] group-hover/img-card:opacity-100 z-20"></div>
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[3px] h-[3px] bg-white opacity-0 rounded-full shadow-[0_0_6px_rgba(255,255,255,0.8)] transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) group-hover/img-card:top-[1.5px] group-hover/img-card:left-[calc(100%-1.5px)] group-hover/img-card:opacity-100 z-20"></div>
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[3px] h-[3px] bg-white opacity-0 rounded-full shadow-[0_0_6px_rgba(255,255,255,0.8)] transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) group-hover/img-card:top-[calc(100%-1.5px)] group-hover/img-card:left-[calc(100%-1.5px)] group-hover/img-card:opacity-100 z-20"></div>
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[3px] h-[3px] bg-white opacity-0 rounded-full shadow-[0_0_6px_rgba(255,255,255,0.8)] transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) group-hover/img-card:top-[calc(100%-1.5px)] group-hover/img-card:left-[1.5px] group-hover/img-card:opacity-100 z-20"></div>
+            </div>
+
+            <!-- Text Reveal (Centered layout) -->
+            <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover/img-card:opacity-100 transition-opacity duration-700 pointer-events-none z-30">
+                <h2 class="font-display-lg text-[32px] md:text-[40px] text-white uppercase font-light tracking-tight mb-2 text-center">STELLAR, STILL HERE</h2>
+                <span class="font-body-base text-[14px] md:text-[16px] text-white/80 font-light tracking-wide mb-1">Mobility</span>
+                <span class="font-body-base text-[12px] md:text-[14px] text-white/50 font-light tracking-wide">2025</span>
+            </div>
+        </a>
+
+        <!-- ITEM 2: BAS RELIEF -->
+        <a href="/work/bas-relief" class="group block relative overflow-hidden aspect-video bg-black group/img-card">
+            <!-- Project Image -->
+            <img src="/work/bas-relief/BAS_main.jpg" alt="Bas-Relief" class="absolute inset-0 w-full h-full object-cover opacity-100 group-hover/img-card:opacity-40 group-hover/img-card:scale-[1.02] transition-[transform,opacity] duration-700 cubic-bezier(0.16, 1, 0.3, 1) z-0" style="will-change: transform, opacity;" />
+            
+            <!-- Hover Overlay -->
+            <div class="absolute inset-0 bg-transparent group-hover/img-card:bg-black/60 transition-all duration-700 z-[1]"></div>
+            
+            <!-- Stroke Diet Lines -->
+            <div class="absolute top-0 left-[16px] w-[calc(100%-32px)] h-[3px] bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)] scale-x-0 origin-left transition-all duration-[400ms] cubic-bezier(0.16, 1, 0.3, 1) delay-[100ms] group-hover/img-card:scale-x-100 group-hover/img-card:h-[0.8px] group-hover/img-card:bg-white/30 group-hover/img-card:shadow-none z-10 pointer-events-none"></div>
+            <div class="absolute top-[16px] right-0 h-[calc(100%-32px)] w-[3px] bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)] scale-y-0 origin-top transition-all duration-[400ms] cubic-bezier(0.16, 1, 0.3, 1) delay-[300ms] group-hover/img-card:scale-y-100 group-hover/img-card:w-[0.8px] group-hover/img-card:bg-white/30 group-hover/img-card:shadow-none z-10 pointer-events-none"></div>
+            <div class="absolute bottom-0 right-[16px] w-[calc(100%-32px)] h-[3px] bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)] scale-x-0 origin-right transition-all duration-[400ms] cubic-bezier(0.16, 1, 0.3, 1) delay-[500ms] group-hover/img-card:scale-x-100 group-hover/img-card:h-[0.8px] group-hover/img-card:bg-white/30 group-hover/img-card:shadow-none z-10 pointer-events-none"></div>
+            <div class="absolute bottom-[16px] left-0 h-[calc(100%-32px)] w-[3px] bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)] scale-y-0 origin-bottom transition-all duration-[400ms] cubic-bezier(0.16, 1, 0.3, 1) delay-[700ms] group-hover/img-card:scale-y-100 group-hover/img-card:w-[0.8px] group-hover/img-card:bg-white/30 group-hover/img-card:shadow-none z-10 pointer-events-none"></div>
+
+            <!-- Dot Dispersion -->
+            <div class="absolute inset-0 pointer-events-none">
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[3px] h-[3px] bg-white opacity-0 rounded-full shadow-[0_0_6px_rgba(255,255,255,0.8)] transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) group-hover/img-card:top-[1.5px] group-hover/img-card:left-[1.5px] group-hover/img-card:opacity-100 z-20"></div>
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[3px] h-[3px] bg-white opacity-0 rounded-full shadow-[0_0_6px_rgba(255,255,255,0.8)] transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) group-hover/img-card:top-[1.5px] group-hover/img-card:left-[calc(100%-1.5px)] group-hover/img-card:opacity-100 z-20"></div>
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[3px] h-[3px] bg-white opacity-0 rounded-full shadow-[0_0_6px_rgba(255,255,255,0.8)] transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) group-hover/img-card:top-[calc(100%-1.5px)] group-hover/img-card:left-[calc(100%-1.5px)] group-hover/img-card:opacity-100 z-20"></div>
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[3px] h-[3px] bg-white opacity-0 rounded-full shadow-[0_0_6px_rgba(255,255,255,0.8)] transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) group-hover/img-card:top-[calc(100%-1.5px)] group-hover/img-card:left-[1.5px] group-hover/img-card:opacity-100 z-20"></div>
+            </div>
+
+            <!-- Text Reveal (Centered layout) -->
+            <div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover/img-card:opacity-100 transition-opacity duration-700 pointer-events-none z-30">
+                <h2 class="font-display-lg text-[32px] md:text-[40px] text-white uppercase font-light tracking-tight mb-2 text-center">BAS-RELIEF</h2>
+                <span class="font-body-base text-[14px] md:text-[16px] text-white/80 font-light tracking-wide mb-1">Installation</span>
+                <span class="font-body-base text-[12px] md:text-[14px] text-white/50 font-light tracking-wide">2024</span>
+            </div>
+        </a>
+    </div>
+</main>
+
+<div id="footer-glow-wrapper" class="relative bg-black overflow-hidden pt-24">
+    <!-- Animated Top Line -->
+    <div class="special-line-top absolute top-0 left-0 w-full h-[120px] flex items-start z-20 pointer-events-none"></div>
+
+    <!-- Refik Anadol Museum-Grade Tech-Style Footer -->
+    <footer class="bg-transparent pb-20 px-6 md:px-margin flex flex-col gap-28 w-full relative z-20">
+        <!-- Top Section -->
+        <div class="flex flex-col md:flex-row justify-between items-start w-full gap-12">
+            <!-- Left Column: Navigation List -->
+            <div class="flex flex-col gap-3">
+                <a href="/work" class="font-label-mono text-[11px] text-primary hover:text-outline tracking-[0.2em] transition-colors duration-200">WORK</a>
+                <a href="#" class="font-label-mono text-[11px] text-primary hover:text-outline tracking-[0.2em] transition-colors duration-200">INFO</a>
+                <a href="#" class="font-label-mono text-[11px] text-primary hover:text-outline tracking-[0.2em] transition-colors duration-200">LAB</a>
+                <a href="#" class="font-label-mono text-[11px] text-primary hover:text-outline tracking-[0.2em] transition-colors duration-200">GALLERY</a>
+            </div>
+        </div>
+        
+                        <!-- Bottom Section -->
+        <div class="flex flex-col md:flex-row justify-between items-center w-full gap-12 md:gap-8 pt-12 relative">
+            <!-- Animated Bottom Line -->
+            <div class="special-line-bottom absolute top-0 left-0 w-full h-[80px] flex items-start z-10 pointer-events-none"></div>
+            
+            <!-- Left Info Block -->
+            <div class="flex flex-col md:flex-row items-center gap-4 md:gap-8 text-center md:text-left w-full md:w-auto">
+                <span class="font-label-mono text-[14px] text-primary font-bold tracking-[0.2em]">
+                    IM WORLDVIEW
+                </span>
+                <div class="hidden md:block h-3 w-[1px] bg-white/15"></div>
+                <span class="font-label-mono text-[10px] text-outline tracking-widest uppercase">© 2026 @IMWV. ALL RIGHTS RESERVED.</span>
+            </div>
+            
+            <!-- Right Social Links -->
+            <div class="flex gap-6 items-center mt-4 md:mt-0">
+                <a href="#" class="text-outline hover:text-primary font-label-mono text-[10px] uppercase tracking-widest transition-colors duration-200">INSTAGRAM</a>
+                <a href="#" class="text-outline hover:text-primary font-label-mono text-[10px] uppercase tracking-widest transition-colors duration-200">BEHANCE</a>
+                <a href="#" class="text-outline hover:text-primary font-label-mono text-[10px] uppercase tracking-widest transition-colors duration-200">CONTACT</a>
+            </div>
+        </div>
+    </footer>
+</div>
+</div>
+
+<script src="/app.js"></script>
+<script>
+    // Text Reveal Effect (Character by Character Blur/Opacity)
+    function initWorkTextReveal() {
+        const el = document.querySelector('.scramble-text');
+        if (!el || el.dataset.revealed) return;
+        el.dataset.revealed = 'true';
+        
+        const originalText = el.textContent.trim();
+        const length = originalText.length;
+        
+        let output = '';
+        const escapeHTML = (str) => str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        
+        for (let i = 0; i < length; i++) {
+            if (originalText[i] === ' ' || originalText[i] === '\n' || originalText[i] === '\r') {
+                output += ' ';
+                continue;
+            }
+            const safeChar = escapeHTML(originalText[i]);
+            output += `<span class="reveal-char" style="opacity: 0; filter: blur(3px); display: inline-block; transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);">${safeChar}</span>`;
+        }
+        
+        el.innerHTML = output;
+        el.style.opacity = '1'; // CSS initially hides .scramble-text to prevent flicker, so we must reveal the container
+        
+        const spans = el.querySelectorAll('.reveal-char');
+        const indices = Array.from({length: spans.length}, (_, i) => i);
+        
+        // Shuffle indices for random reveal order
+        for (let i = indices.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [indices[i], indices[j]] = [indices[j], indices[i]];
+        }
+        
+        setTimeout(() => {
+            indices.forEach((spanIndex, i) => {
+                setTimeout(() => {
+                    if(spans[spanIndex]) {
+                        spans[spanIndex].style.opacity = '1';
+                        spans[spanIndex].style.filter = 'blur(0px)';
+                    }
+                }, (i / Math.max(1, indices.length)) * 800); // 800ms stagger duration
+            });
+        }, 100);
+
+        // Trigger synchronized shooting lines and dots
+        setTimeout(() => {
+            const hLine = document.getElementById('hero-line');
+            const vLine = document.getElementById('hero-v-line');
+            const dot1 = document.getElementById('hero-dot-1');
+            const dot2 = document.getElementById('hero-dot-2');
+            
+            if (hLine) hLine.classList.replace('scale-x-0', 'scale-x-100');
+            if (vLine) vLine.style.transform = 'translateY(-120px)';
+            
+            setTimeout(() => {
+                if (dot1) dot1.classList.replace('opacity-0', 'opacity-100');
+                if (dot2) dot2.classList.replace('opacity-0', 'opacity-100');
+            }, 750);
+        }, 800);
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initWorkTextReveal);
+    } else {
+        initWorkTextReveal();
+    }
+
+    function toggleMobileMenu() {
+        const overlay = document.getElementById('mobile-menu-overlay');
+        const line = document.getElementById('menu-line');
+        if (!overlay || !line) return;
+        
+        const isHidden = overlay.classList.contains('opacity-0');
+        if (isHidden) {
+            overlay.classList.remove('pointer-events-none');
+            overlay.classList.remove('opacity-0');
+            overlay.classList.add('opacity-100');
+            line.style.transform = 'scaleX(0.6)';
+            line.style.backgroundColor = '#e2e2e2';
+        } else {
+            overlay.classList.add('pointer-events-none');
+            overlay.classList.remove('opacity-100');
+            overlay.classList.add('opacity-0');
+            line.style.transform = 'scaleX(1)';
+            line.style.backgroundColor = '#fff';
+        }
+    }
+    document.getElementById('mobile-menu-trigger').addEventListener('click', toggleMobileMenu);
+
+    function toggleLanguage(btn, lang) {
+        document.querySelectorAll('.lang-btn').forEach(b => {
+            b.classList.remove('active', 'text-primary');
+            b.classList.add('text-outline');
+        });
+        btn.classList.remove('text-outline');
+        btn.classList.add('active', 'text-primary');
+        
+        const koTexts = document.querySelectorAll('.mobile-ko-text');
+        const enTexts = document.querySelectorAll('.mobile-en-text');
+        
+        if (lang === 'ko') {
+            koTexts.forEach(t => t.classList.remove('hidden-lang'));
+            enTexts.forEach(t => t.classList.add('hidden-lang'));
+        } else {
+            koTexts.forEach(t => t.classList.add('hidden-lang'));
+            enTexts.forEach(t => t.classList.remove('hidden-lang'));
+        }
+    }
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Interactive 3D Parallax Logo
+    const container = document.getElementById('interactive-logo-container');
+    const logo = document.getElementById('imwv-3d-logo');
+    const glow = document.getElementById('logo-glow');
+    
+    if(container && logo) {
+        container.addEventListener('mousemove', (e) => {
+            const rect = container.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            // Calculate percentages from -1 to 1
+            const xPercent = (x / rect.width) * 2 - 1;
+            const yPercent = (y / rect.height) * 2 - 1;
+            
+            // Tilt the logo (max 15 degrees)
+            const tiltX = yPercent * -15;
+            const tiltY = xPercent * 15;
+            
+            // Add subtle translation for stronger parallax
+            const translateX = xPercent * -20;
+            const translateY = yPercent * -20;
+            
+            logo.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateX(${translateX}px) translateY(${translateY}px) scale3d(1.05, 1.05, 1.05)`;
+            
+            // Update glow position based on logo's internal coordinates
+            if (glow) {
+                const logoRect = logo.getBoundingClientRect();
+                const logoX = e.clientX - logoRect.left;
+                const logoY = e.clientY - logoRect.top;
+                glow.style.setProperty('--x', `${(logoX / logoRect.width) * 100}%`);
+                glow.style.setProperty('--y', `${(logoY / logoRect.height) * 100}%`);
+            }
+        });
+        
+        container.addEventListener('mouseenter', () => {
+            if(glow) glow.style.opacity = '1';
+            logo.style.transition = 'transform 0.1s ease-out'; // Fast tracking when inside
+        });
+        
+        container.addEventListener('mouseleave', () => {
+            logo.style.transition = 'transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)'; // Smooth return
+            logo.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateX(0px) translateY(0px) scale3d(1, 1, 1)';
+            if(glow) glow.style.opacity = '0';
+        });
+    }
+
+    // Text Reveal Effect for Section Headers (Blur/Opacity)
+    function initInfoTextReveal() {
+        const els = document.querySelectorAll('.scramble-text');
+        if (!els.length) return;
+        
+        els.forEach(el => {
+            const text = el.getAttribute('data-original') || el.innerText.trim();
+            el.innerHTML = '';
+            
+            [...text].forEach((char, index) => {
+                const span = document.createElement('span');
+                span.innerText = char === ' ' ? '\u00A0' : char;
+                span.className = 'inline-block opacity-0 blur-[8px] transition-[opacity,filter] duration-700 ease-out';
+                span.style.transitionDelay = `${index * 40}ms`;
+                el.appendChild(span);
+            });
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const spans = entry.target.querySelectorAll('span');
+                        spans.forEach(span => {
+                            span.classList.remove('opacity-0', 'blur-[8px]');
+                            span.classList.add('opacity-100', 'blur-0');
+                        });
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+            
+            observer.observe(el);
+        });
+    }
+    
+    setTimeout(initInfoTextReveal, 100);
+});
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
