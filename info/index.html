@@ -315,7 +315,7 @@
 
 <main class="pt-[70px] pb-32">
     <!-- HERO SECTION (Interactive Logo) -->
-    <div class="w-full min-h-[60vh] md:min-h-[70vh] flex items-center justify-center relative overflow-hidden group cursor-crosshair" id="interactive-logo-container">
+    <div class="w-full min-h-[60vh] md:min-h-[70vh] flex items-center justify-start px-6 md:px-margin relative overflow-hidden group cursor-crosshair" id="interactive-logo-container">
         <!-- Interactive 3D Logo Element -->
         <div id="imwv-3d-logo" class="relative transition-[transform] duration-75 ease-out will-change-transform z-10 w-[70%] max-w-[800px] pointer-events-none">
             <!-- Base Logo -->
@@ -331,69 +331,48 @@
         </div>
     </div>
 
-    <!-- CONTENT SECTION (Left Aligned Text) -->
-    <div class="px-6 md:px-margin mt-12 md:mt-16 max-w-screen-xl mx-auto flex flex-col gap-24">
+    <!-- CONTENT SECTION (Original Left Aligned Style) -->
+    <div class="px-6 md:px-margin mt-12 md:mt-24 w-full flex flex-col gap-32">
         
         <!-- About Section -->
-        <div class="flex flex-col md:flex-row items-start gap-8 md:gap-24 w-full">
-            <div class="w-full md:w-[25%] shrink-0">
-                <span class="font-label-mono text-[12px] text-primary uppercase tracking-[0.3em] opacity-60 scramble-text" data-original="ABOUT US">ABOUT US</span>
-                <div class="w-full h-[1px] bg-white/20 mt-4"></div>
-            </div>
-            <div class="w-full md:w-[75%] max-w-[800px] text-left">
-                <p class="font-body-base text-[20px] md:text-[28px] font-light leading-[1.6] text-primary tracking-[-0.01em] mb-8">
+        <div>
+            <h2 class="font-headline-md text-[32px] md:text-[56px] text-primary tracking-tight font-light font-label-mono leading-[1.15] uppercase text-left scramble-text" data-scramble-type="random" data-original="ABOUT US">ABOUT US</h2>
+            <div class="flex flex-col gap-10 max-w-[900px] mt-8 md:mt-16">
+                <p class="font-body-base text-[16px] md:text-[18px] text-on-surface leading-[2.2] font-light text-left scramble-text">
                     IMWV is a creative studio specializing in visual storytelling and digital craftsmanship. We bridge the gap between imagination and reality through cutting-edge 3D motion, bold art direction, and immersive web experiences.
                 </p>
-                <p class="font-body-base text-[16px] md:text-[18px] font-light leading-[1.7] text-on-surface-variant">
+                <p class="font-body-base text-[15px] md:text-[17px] text-on-surface-variant leading-[2.2] font-light tracking-wide text-left opacity-40 scramble-text">
                     Your custom studio philosophy or description will go here. You can provide any details about your process, history, or vision, and we will format it elegantly within this brutalist, left-aligned layout.
                 </p>
             </div>
         </div>
 
         <!-- Capabilities Section -->
-        <div class="flex flex-col md:flex-row items-start gap-8 md:gap-24 w-full">
-            <div class="w-full md:w-[25%] shrink-0">
-                <span class="font-label-mono text-[12px] text-primary uppercase tracking-[0.3em] opacity-60 scramble-text" data-original="CAPABILITIES">CAPABILITIES</span>
-                <div class="w-full h-[1px] bg-white/20 mt-4"></div>
-            </div>
-            <div class="w-full md:w-[75%] max-w-[800px] text-left grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-12">
-                <div class="flex flex-col gap-2">
-                    <span class="font-label-mono text-[14px] text-primary tracking-wider">01. ART DIRECTION</span>
-                    <span class="font-body-base text-[14px] text-on-surface-variant opacity-80">Visual Identity &amp; Concept Design</span>
-                </div>
-                <div class="flex flex-col gap-2">
-                    <span class="font-label-mono text-[14px] text-primary tracking-wider">02. 3D MOTION</span>
-                    <span class="font-body-base text-[14px] text-on-surface-variant opacity-80">CGI, Animation &amp; VFX</span>
-                </div>
-                <div class="flex flex-col gap-2">
-                    <span class="font-label-mono text-[14px] text-primary tracking-wider">03. DIGITAL EXPERIENCE</span>
-                    <span class="font-body-base text-[14px] text-on-surface-variant opacity-80">Web Development &amp; Interactive Design</span>
-                </div>
-                <div class="flex flex-col gap-2">
-                    <span class="font-label-mono text-[14px] text-primary tracking-wider">04. BRANDING</span>
-                    <span class="font-body-base text-[14px] text-on-surface-variant opacity-80">Brand Strategy &amp; Guidelines</span>
-                </div>
+        <div>
+            <h2 class="font-headline-md text-[32px] md:text-[56px] text-primary tracking-tight font-light font-label-mono leading-[1.15] uppercase text-left scramble-text" data-scramble-type="random" data-original="CAPABILITIES">CAPABILITIES</h2>
+            <div class="flex flex-col gap-10 max-w-[900px] mt-8 md:mt-16">
+                <p class="font-body-base text-[16px] md:text-[18px] text-on-surface leading-[2.2] font-light text-left scramble-text">
+                    01. ART DIRECTION &mdash; Visual Identity &amp; Concept Design<br><br>
+                    02. 3D MOTION &mdash; CGI, Animation &amp; VFX<br><br>
+                    03. DIGITAL EXPERIENCE &mdash; Web Development &amp; Interactive Design<br><br>
+                    04. BRANDING &mdash; Brand Strategy &amp; Guidelines
+                </p>
             </div>
         </div>
 
         <!-- Contact Section -->
-        <div class="flex flex-col md:flex-row items-start gap-8 md:gap-24 w-full mb-12">
-            <div class="w-full md:w-[25%] shrink-0">
-                <span class="font-label-mono text-[12px] text-primary uppercase tracking-[0.3em] opacity-60 scramble-text" data-original="CONTACT">CONTACT</span>
-                <div class="w-full h-[1px] bg-white/20 mt-4"></div>
-            </div>
-            <div class="w-full md:w-[75%] max-w-[800px] text-left flex flex-col gap-8">
-                <div>
-                    <h3 class="font-body-base text-[14px] text-on-surface-variant opacity-60 mb-2 uppercase tracking-widest">General Inquiries</h3>
-                    <a href="mailto:hello@imwv.com" class="font-display-lg text-[24px] md:text-[32px] text-primary hover:text-outline transition-colors duration-300">hello@imwv.com</a>
-                </div>
-                <div>
-                    <h3 class="font-body-base text-[14px] text-on-surface-variant opacity-60 mb-2 uppercase tracking-widest">Studio</h3>
-                    <p class="font-body-base text-[16px] text-primary leading-relaxed">
-                        Seoul, South Korea<br>
-                        (Available Worldwide)
-                    </p>
-                </div>
+        <div>
+            <h2 class="font-headline-md text-[32px] md:text-[56px] text-primary tracking-tight font-light font-label-mono leading-[1.15] uppercase text-left scramble-text" data-scramble-type="random" data-original="CONTACT">CONTACT</h2>
+            <div class="flex flex-col gap-10 max-w-[900px] mt-8 md:mt-16">
+                <p class="font-body-base text-[16px] md:text-[18px] text-on-surface leading-[2.2] font-light text-left scramble-text">
+                    General Inquiries<br>
+                    <a href="mailto:hello@imwv.com" class="hover:text-outline transition-colors duration-300">hello@imwv.com</a>
+                </p>
+                <p class="font-body-base text-[15px] md:text-[17px] text-on-surface-variant leading-[2.2] font-light tracking-wide text-left opacity-40 scramble-text">
+                    Studio<br>
+                    Seoul, South Korea<br>
+                    (Available Worldwide)
+                </p>
             </div>
         </div>
 
@@ -555,6 +534,9 @@
 </script>
 </body>
 </html>
+
+
+
 
 
 
