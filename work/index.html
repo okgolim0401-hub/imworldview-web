@@ -431,18 +431,19 @@
 <script src="/app.js"></script>
 <script>
     // Text Reveal Effect (Character by Character Blur/Opacity)
-    document.addEventListener('DOMContentLoaded', () => {
+    function initWorkTextReveal() {
         const el = document.querySelector('.scramble-text');
-        if (!el) return;
+        if (!el || el.dataset.revealed) return;
+        el.dataset.revealed = 'true';
         
-        const originalText = el.innerText.trim();
+        const originalText = el.textContent.trim();
         const length = originalText.length;
         
         let output = '';
         const escapeHTML = (str) => str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
         
         for (let i = 0; i < length; i++) {
-            if (originalText[i] === ' ') {
+            if (originalText[i] === ' ' || originalText[i] === '\n' || originalText[i] === '\r') {
                 output += ' ';
                 continue;
             }
@@ -453,7 +454,7 @@
         el.innerHTML = output;
         
         const spans = el.querySelectorAll('.reveal-char');
-        const indices = Array.from(spans.keys());
+        const indices = Array.from({length: spans.length}, (_, i) => i);
         
         // Shuffle indices for random reveal order
         for (let i = indices.length - 1; i > 0; i--) {
@@ -464,12 +465,20 @@
         setTimeout(() => {
             indices.forEach((spanIndex, i) => {
                 setTimeout(() => {
-                    spans[spanIndex].style.opacity = '1';
-                    spans[spanIndex].style.filter = 'blur(0px)';
-                }, (i / indices.length) * 800); // 800ms stagger duration
+                    if(spans[spanIndex]) {
+                        spans[spanIndex].style.opacity = '1';
+                        spans[spanIndex].style.filter = 'blur(0px)';
+                    }
+                }, (i / Math.max(1, indices.length)) * 800); // 800ms stagger duration
             });
         }, 100);
-    });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initWorkTextReveal);
+    } else {
+        initWorkTextReveal();
+    }
 
     function toggleMobileMenu() {
         const overlay = document.getElementById('mobile-menu-overlay');
