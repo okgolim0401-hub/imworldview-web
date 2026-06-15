@@ -315,9 +315,10 @@
 
 <main class="pt-[70px] pb-32">
     <!-- HERO SECTION (Interactive Logo) -->
-    <div class="w-full min-h-[60vh] md:min-h-[70vh] flex items-center justify-start px-6 md:px-margin relative overflow-hidden group cursor-crosshair" id="interactive-logo-container">
+    <div class="w-full min-h-[60vh] md:min-h-[70vh] flex items-center justify-center relative overflow-hidden group cursor-crosshair" id="interactive-logo-container">
         <!-- Interactive 3D Logo Element -->
-        <div id="imwv-3d-logo" class="relative transition-[transform] duration-75 ease-out will-change-transform z-10 w-[70%] max-w-[800px] pointer-events-none">
+        <div id="motion-grid" class="absolute inset-0 pointer-events-none z-20"></div>
+        <div id="imwv-3d-logo" class="relative transition-all duration-[1500ms] cubic-bezier(0.16, 1, 0.3, 1) will-change-transform z-10 w-[70%] max-w-[800px] pointer-events-none opacity-0 scale-90">
             <!-- Base Logo -->
             <img src="/IMWV_logo.png" alt="IMWV Logo" class="w-full h-auto brightness-0 invert opacity-90 drop-shadow-[0_0_20px_rgba(255,255,255,0.4)] transition-all duration-300 group-hover:drop-shadow-[0_0_35px_rgba(255,255,255,0.8)]">
             
@@ -342,7 +343,7 @@
                     IMWV is a creative studio specializing in visual storytelling and digital craftsmanship. We bridge the gap between imagination and reality through cutting-edge 3D motion, bold art direction, and immersive web experiences.
                 </p>
                 <p class="font-body-base text-[15px] md:text-[17px] text-on-surface-variant leading-[2.2] font-light tracking-wide text-left opacity-40 scramble-text">
-                    Your custom studio philosophy or description will go here. You can provide any details about your process, history, or vision, and we will format it elegantly within this brutalist, left-aligned layout.
+                    IMWV is a multidisciplinary design studio dedicated to pioneering the intersection of art and technology. We transcend conventional boundaries by blending cinematic 3D motion, sophisticated art direction, and immersive interactive experiences. Our philosophy is rooted in precise craftsmanship and bold experimentation.
                 </p>
             </div>
         </div>
@@ -423,71 +424,160 @@
 
 <script src="/app.js"></script>
 <script>
-    // Text Reveal Effect (Character by Character Blur/Opacity)
-    function initWorkTextReveal() {
-        const el = document.querySelector('.scramble-text');
-        if (!el || el.dataset.revealed) return;
-        el.dataset.revealed = 'true';
-        
-        const originalText = el.textContent.trim();
-        const length = originalText.length;
-        
-        let output = '';
-        const escapeHTML = (str) => str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-        
-        for (let i = 0; i < length; i++) {
-            if (originalText[i] === ' ' || originalText[i] === '\n' || originalText[i] === '\r') {
-                output += ' ';
-                continue;
-            }
-            const safeChar = escapeHTML(originalText[i]);
-            output += `<span class="reveal-char" style="opacity: 0; filter: blur(3px); display: inline-block; transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);">${safeChar}</span>`;
-        }
-        
-        el.innerHTML = output;
-        el.style.opacity = '1'; // CSS initially hides .scramble-text to prevent flicker, so we must reveal the container
-        
-        const spans = el.querySelectorAll('.reveal-char');
-        const indices = Array.from({length: spans.length}, (_, i) => i);
-        
-        // Shuffle indices for random reveal order
-        for (let i = indices.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [indices[i], indices[j]] = [indices[j], indices[i]];
-        }
-        
-        setTimeout(() => {
-            indices.forEach((spanIndex, i) => {
-                setTimeout(() => {
-                    if(spans[spanIndex]) {
-                        spans[spanIndex].style.opacity = '1';
-                        spans[spanIndex].style.filter = 'blur(0px)';
-                    }
-                }, (i / Math.max(1, indices.length)) * 800); // 800ms stagger duration
-            });
-        }, 100);
-
-        // Trigger synchronized shooting lines and dots
-        setTimeout(() => {
-            const hLine = document.getElementById('hero-line');
-            const vLine = document.getElementById('hero-v-line');
-            const dot1 = document.getElementById('hero-dot-1');
-            const dot2 = document.getElementById('hero-dot-2');
+    function initInfoPageTextReveal() {
+        const els = document.querySelectorAll('.scramble-text');
+        els.forEach(el => {
+            if (el.dataset.revealed) return;
+            el.dataset.revealed = 'true';
             
-            if (hLine) hLine.classList.replace('scale-x-0', 'scale-x-100');
-            if (vLine) vLine.style.transform = 'translateY(-120px)';
+            const originalText = el.dataset.original || el.innerHTML.replace(/<br\s*[\/]?>/gi, '\n').trim();
+            const length = originalText.length;
+            
+            let output = '';
+            const escapeHTML = (str) => str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            
+            for (let i = 0; i < length; i++) {
+                if (originalText[i] === '\n') {
+                    output += '<br/>';
+                    continue;
+                }
+                if (originalText[i] === ' ' || originalText[i] === '\r') {
+                    output += ' ';
+                    continue;
+                }
+                const safeChar = escapeHTML(originalText[i]);
+                output += <span class="reveal-char" style="opacity: 0; filter: blur(3px); display: inline-block; transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);"></span>;
+            }
+            
+            el.innerHTML = output;
+            el.style.opacity = '1';
+            
+            const spans = el.querySelectorAll('.reveal-char');
+            const indices = Array.from({length: spans.length}, (_, i) => i);
+            
+            for (let i = indices.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [indices[i], indices[j]] = [indices[j], indices[i]];
+            }
             
             setTimeout(() => {
-                if (dot1) dot1.classList.replace('opacity-0', 'opacity-100');
-                if (dot2) dot2.classList.replace('opacity-0', 'opacity-100');
-            }, 750);
-        }, 800);
+                indices.forEach((spanIndex, i) => {
+                    setTimeout(() => {
+                        if(spans[spanIndex]) {
+                            spans[spanIndex].style.opacity = '1';
+                            spans[spanIndex].style.filter = 'blur(0px)';
+                        }
+                    }, (i / Math.max(1, indices.length)) * 600);
+                });
+            }, 100);
+        });
+    }
+
+    function initGridMotionGraphic() {
+        const grid = document.getElementById('motion-grid');
+        const logo = document.getElementById('imwv-3d-logo');
+        if (!grid || !logo || grid.dataset.animated) return;
+        grid.dataset.animated = 'true';
+        
+        const fragmentCount = 50;
+        const fragments = [];
+        
+        for (let i=0; i<fragmentCount; i++) {
+            const el = document.createElement('div');
+            el.className = 'absolute bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)] opacity-0';
+            
+            const isDot = Math.random() > 0.6;
+            if (isDot) {
+                el.style.width = '3px';
+                el.style.height = '3px';
+                el.style.borderRadius = '50%';
+            } else {
+                const isHorizontal = Math.random() > 0.5;
+                if (isHorizontal) {
+                    el.style.width = (Math.random() * 50 + 20) + 'px';
+                    el.style.height = '1px';
+                } else {
+                    el.style.width = '1px';
+                    el.style.height = (Math.random() * 50 + 20) + 'px';
+                }
+            }
+            
+            const startX = Math.random() * 100;
+            const startY = Math.random() * 100;
+            el.style.left = startX + '%';
+            el.style.top = startY + '%';
+            el.style.transform = 'translate(-50%, -50%)';
+            el.style.transition = 'all 0s';
+            
+            grid.appendChild(el);
+            fragments.push({el, isDot, startX, startY});
+        }
+        
+        setTimeout(() => {
+            fragments.forEach(f => {
+                f.el.style.transition = 'opacity 0.6s ease-in-out';
+                f.el.style.opacity = (Math.random() * 0.6 + 0.4).toString();
+            });
+            
+            setTimeout(() => {
+                fragments.forEach((f) => {
+                    const duration = 0.6 + Math.random() * 0.4;
+                    f.el.style.transition = left \s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s;
+                    setTimeout(() => {
+                        f.el.style.left = '50%';
+                        f.el.style.opacity = '1';
+                    }, Math.random() * 500);
+                });
+                
+                setTimeout(() => {
+                    fragments.forEach((f) => {
+                        const duration = 0.6 + Math.random() * 0.4;
+                        f.el.style.transition = 	op \s cubic-bezier(0.16, 1, 0.3, 1), transform \s cubic-bezier(0.16, 1, 0.3, 1);
+                        setTimeout(() => {
+                            f.el.style.top = '50%';
+                            f.el.style.transform = 'translate(-50%, -50%) scale(0.2)';
+                        }, Math.random() * 500);
+                    });
+                    
+                    setTimeout(() => {
+                        fragments.forEach(f => {
+                            f.el.style.transition = 'opacity 0.4s ease-out, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+                            const burstX = (Math.random() - 0.5) * 300;
+                            const burstY = (Math.random() - 0.5) * 300;
+                            f.el.style.transform = 	ranslate(\px, \px) scale(0);
+                            f.el.style.opacity = '0';
+                        });
+                        
+                        logo.classList.remove('opacity-0', 'scale-90');
+                        logo.classList.add('opacity-100', 'scale-100');
+                        
+                        const flash = document.createElement('div');
+                        flash.className = 'absolute inset-0 bg-white z-0 opacity-0 pointer-events-none transition-opacity duration-1000';
+                        grid.appendChild(flash);
+                        
+                        setTimeout(() => {
+                            flash.style.transition = 'opacity 0.1s ease-out';
+                            flash.style.opacity = '0.2';
+                            setTimeout(() => {
+                                flash.style.transition = 'opacity 1.5s ease-in-out';
+                                flash.style.opacity = '0';
+                            }, 100);
+                        }, 50);
+                        
+                    }, 1100);
+                }, 1100);
+            }, 800);
+        }, 200);
     }
 
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initWorkTextReveal);
+        document.addEventListener('DOMContentLoaded', () => {
+            initInfoPageTextReveal();
+            initGridMotionGraphic();
+        });
     } else {
-        initWorkTextReveal();
+        initInfoPageTextReveal();
+        initGridMotionGraphic();
     }
 
     function toggleMobileMenu() {
@@ -534,6 +624,9 @@
 </script>
 </body>
 </html>
+
+
+
 
 
 
