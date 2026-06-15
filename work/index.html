@@ -325,8 +325,10 @@
             
             <!-- Left Dot (with vertical line coming from below) -->
             <div class="relative shrink-0 flex flex-col items-center justify-end h-[60px] w-[10px]">
-                <div class="absolute bottom-[2px] left-1/2 -translate-x-1/2 w-[0.5px] h-[60px] overflow-hidden pointer-events-none">
-                    <div id="hero-v-line" class="w-[0.5px] h-[60px] bg-white absolute top-[60px] transition-transform duration-[1500ms] ease-in-out"></div>
+                <div class="absolute bottom-[2px] left-1/2 -translate-x-1/2 w-[1px] h-[60px] overflow-hidden pointer-events-none">
+                    <div id="hero-v-line" class="w-[1px] h-[60px] absolute top-[60px] transition-transform duration-[1500ms] ease-in-out">
+                        <div class="w-full h-full bg-white scale-x-[0.25] origin-center"></div>
+                    </div>
                 </div>
                 <div id="hero-dot-1" class="w-[2px] h-[2px] bg-white rounded-full opacity-0 transition-opacity duration-[500ms] z-20 absolute bottom-0"></div>
             </div>
@@ -341,8 +343,10 @@
         
             <!-- Horizontal Line (Stretches to end of grid and stays) -->
             <div class="flex-grow flex items-end h-[60px]">
-                <div class="w-full h-[0.5px] relative mb-[0.5px]">
-                    <div id="hero-line" class="w-full h-[0.5px] bg-white/30 scale-x-0 origin-left transition-transform duration-[1500ms] ease-in-out"></div>
+                <div class="w-full h-[1px] relative mb-[0.5px]">
+                    <div id="hero-line" class="w-full h-[1px] scale-x-0 origin-left transition-transform duration-[1500ms] ease-in-out">
+                        <div class="w-full h-full bg-white scale-y-[0.25] origin-center"></div>
+                    </div>
                 </div>
             </div>
         </div>
