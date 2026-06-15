@@ -326,7 +326,7 @@
             <!-- Left Dot (with vertical line coming from below) -->
             <div class="relative shrink-0 flex flex-col items-center justify-end h-[60px] w-[10px]">
                 <div class="absolute bottom-[2px] left-1/2 -translate-x-1/2 w-[1px] h-[60px] overflow-hidden pointer-events-none">
-                    <div id="hero-v-line" class="w-[1px] h-[60px] bg-white/30 absolute top-[60px] transition-transform duration-[1500ms] ease-in-out"></div>
+                    <div id="hero-v-line" class="w-[1px] h-[60px] bg-white absolute top-[60px] transition-transform duration-[1500ms] ease-in-out"></div>
                 </div>
                 <div id="hero-dot-1" class="w-[2px] h-[2px] bg-white rounded-full opacity-0 transition-opacity duration-[500ms] z-20 absolute bottom-0"></div>
             </div>
@@ -339,10 +339,10 @@
                 <div id="hero-dot-2" class="w-[2px] h-[2px] bg-white rounded-full opacity-0 transition-opacity duration-[500ms] z-20 absolute bottom-0"></div>
             </div>
         
-            <!-- Horizontal Line (Shooting across the full grid width) -->
-            <div class="flex-grow h-[60px] relative overflow-hidden flex items-end">
-                <div class="w-full h-[1px] relative overflow-hidden bottom-[0.5px]">
-                    <div id="hero-line" class="w-full h-[1px] bg-white/30 absolute top-0 left-[-100%] transition-transform duration-[1500ms] ease-in-out"></div>
+            <!-- Horizontal Line (Stretches to end of grid and stays) -->
+            <div class="flex-grow flex items-end h-[60px]">
+                <div class="w-full h-[1px] relative mb-[0.5px]">
+                    <div id="hero-line" class="w-full h-[1px] bg-white/30 scale-x-0 origin-left transition-transform duration-[1500ms] ease-in-out"></div>
                 </div>
             </div>
         </div>
@@ -508,7 +508,7 @@
             const dot1 = document.getElementById('hero-dot-1');
             const dot2 = document.getElementById('hero-dot-2');
             
-            if (hLine) hLine.style.transform = 'translateX(200%)';
+            if (hLine) hLine.classList.replace('scale-x-0', 'scale-x-100');
             if (vLine) vLine.style.transform = 'translateY(-120px)';
             
             setTimeout(() => {
