@@ -479,7 +479,7 @@
         if (!grid || !logo || grid.dataset.animated) return;
         grid.dataset.animated = 'true';
         
-        const fragmentCount = 50;
+        const fragmentCount = 60;
         const fragments = [];
         
         for (let i=0; i<fragmentCount; i++) {
@@ -494,11 +494,11 @@
             } else {
                 const isHorizontal = Math.random() > 0.5;
                 if (isHorizontal) {
-                    el.style.width = (Math.random() * 50 + 20) + 'px';
+                    el.style.width = (Math.random() * 60 + 20) + 'px';
                     el.style.height = '1px';
                 } else {
                     el.style.width = '1px';
-                    el.style.height = (Math.random() * 50 + 20) + 'px';
+                    el.style.height = (Math.random() * 60 + 20) + 'px';
                 }
             }
             
@@ -517,56 +517,65 @@
             fragments.forEach(f => {
                 f.el.style.transition = 'opacity 0.6s ease-in-out';
                 f.el.style.opacity = (Math.random() * 0.6 + 0.4).toString();
+                
+                const moveXFirst = Math.random() > 0.5;
+                
+                const delay1 = Math.random() * 800;
+                const duration1 = 0.5 + Math.random() * 0.5;
+                const delay2 = delay1 + (duration1 * 1000) + (Math.random() * 300);
+                const duration2 = 0.5 + Math.random() * 0.5;
+                
+                if (moveXFirst) {
+                    setTimeout(() => {
+                        f.el.style.transition = `left ${duration1}s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s`;
+                        f.el.style.left = '50%';
+                    }, delay1);
+                    
+                    setTimeout(() => {
+                        f.el.style.transition = `top ${duration2}s cubic-bezier(0.16, 1, 0.3, 1), transform ${duration2}s cubic-bezier(0.16, 1, 0.3, 1)`;
+                        f.el.style.top = '50%';
+                        f.el.style.transform = 'translate(-50%, -50%) scale(0.2)';
+                    }, delay2);
+                } else {
+                    setTimeout(() => {
+                        f.el.style.transition = `top ${duration1}s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s`;
+                        f.el.style.top = '50%';
+                    }, delay1);
+                    
+                    setTimeout(() => {
+                        f.el.style.transition = `left ${duration2}s cubic-bezier(0.16, 1, 0.3, 1), transform ${duration2}s cubic-bezier(0.16, 1, 0.3, 1)`;
+                        f.el.style.left = '50%';
+                        f.el.style.transform = 'translate(-50%, -50%) scale(0.2)';
+                    }, delay2);
+                }
             });
             
             setTimeout(() => {
-                fragments.forEach((f) => {
-                    const duration = 0.6 + Math.random() * 0.4;
-                    f.el.style.transition = `left ${duration}s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s`;
-                    setTimeout(() => {
-                        f.el.style.left = '50%';
-                        f.el.style.opacity = '1';
-                    }, Math.random() * 500);
+                fragments.forEach(f => {
+                    f.el.style.transition = 'opacity 0.4s ease-out, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+                    const burstX = (Math.random() - 0.5) * 400;
+                    const burstY = (Math.random() - 0.5) * 400;
+                    f.el.style.transform = `translate(${burstX}px, ${burstY}px) scale(0)`;
+                    f.el.style.opacity = '0';
                 });
                 
+                logo.classList.remove('opacity-0', 'scale-90');
+                logo.classList.add('opacity-100', 'scale-100');
+                
+                const flash = document.createElement('div');
+                flash.className = 'absolute inset-0 bg-white z-0 opacity-0 pointer-events-none transition-opacity duration-1000';
+                grid.appendChild(flash);
+                
                 setTimeout(() => {
-                    fragments.forEach((f) => {
-                        const duration = 0.6 + Math.random() * 0.4;
-                        f.el.style.transition = `top ${duration}s cubic-bezier(0.16, 1, 0.3, 1), transform ${duration}s cubic-bezier(0.16, 1, 0.3, 1)`;
-                        setTimeout(() => {
-                            f.el.style.top = '50%';
-                            f.el.style.transform = 'translate(-50%, -50%) scale(0.2)';
-                        }, Math.random() * 500);
-                    });
-                    
+                    flash.style.transition = 'opacity 0.1s ease-out';
+                    flash.style.opacity = '0.3';
                     setTimeout(() => {
-                        fragments.forEach(f => {
-                            f.el.style.transition = 'opacity 0.4s ease-out, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
-                            const burstX = (Math.random() - 0.5) * 300;
-                            const burstY = (Math.random() - 0.5) * 300;
-                            f.el.style.transform = `translate(${burstX}px, ${burstY}px) scale(0)`;
-                            f.el.style.opacity = '0';
-                        });
-                        
-                        logo.classList.remove('opacity-0', 'scale-90');
-                        logo.classList.add('opacity-100', 'scale-100');
-                        
-                        const flash = document.createElement('div');
-                        flash.className = 'absolute inset-0 bg-white z-0 opacity-0 pointer-events-none transition-opacity duration-1000';
-                        grid.appendChild(flash);
-                        
-                        setTimeout(() => {
-                            flash.style.transition = 'opacity 0.1s ease-out';
-                            flash.style.opacity = '0.2';
-                            setTimeout(() => {
-                                flash.style.transition = 'opacity 1.5s ease-in-out';
-                                flash.style.opacity = '0';
-                            }, 100);
-                        }, 50);
-                        
-                    }, 1100);
-                }, 1100);
-            }, 800);
+                        flash.style.transition = 'opacity 1.5s ease-in-out';
+                        flash.style.opacity = '0';
+                    }, 100);
+                }, 50);
+                
+            }, 3000);
         }, 200);
     }
 
