@@ -320,28 +320,30 @@
             WORK
         </h1>
         
-        <!-- Decorative 2 dots and line (Footer Style) -->
+        <!-- Decorative 2 dots and line (Footer Style Synchronized) -->
         <div class="w-full flex items-center mt-6 md:mt-10 relative">
             
             <!-- Left Dot (with vertical line coming from below) -->
-            <div class="relative shrink-0 flex items-center justify-center">
-                <div id="hero-dot-1" class="w-[2px] h-[2px] bg-white rounded-full opacity-0 transition-opacity duration-[300ms] shadow-[0_0_6px_rgba(255,255,255,1)] z-20"></div>
-                <div class="v-line-container absolute top-[2px] left-1/2 -translate-x-1/2 w-[1px] h-[60px] overflow-hidden pointer-events-none">
-                    <div id="hero-v-line" class="w-full h-[40px] bg-gradient-to-t from-transparent via-white/40 to-white/80 absolute top-[60px] transition-transform duration-[1200ms] ease-in-out"></div>
+            <div class="relative shrink-0 flex flex-col items-center justify-end h-[60px] w-[10px]">
+                <div class="absolute bottom-[2px] left-1/2 -translate-x-1/2 w-[1px] h-[60px] overflow-hidden pointer-events-none">
+                    <div id="hero-v-line" class="w-[1px] h-[60px] bg-white/30 absolute top-[60px] transition-transform duration-[1500ms] ease-in-out"></div>
                 </div>
+                <div id="hero-dot-1" class="w-[2px] h-[2px] bg-white rounded-full opacity-0 transition-opacity duration-[500ms] z-20 absolute bottom-0"></div>
             </div>
         
             <!-- Gap exactly matching footer top-right dots -->
             <div class="w-8 md:w-12 shrink-0"></div>
         
             <!-- Right Dot -->
-            <div class="relative shrink-0 flex items-center justify-center mr-6">
-                <div id="hero-dot-2" class="w-[2px] h-[2px] bg-white rounded-full opacity-0 transition-opacity duration-[300ms] shadow-[0_0_6px_rgba(255,255,255,1)] z-20"></div>
+            <div class="relative shrink-0 flex items-center justify-center mr-6 h-[60px] items-end">
+                <div id="hero-dot-2" class="w-[2px] h-[2px] bg-white rounded-full opacity-0 transition-opacity duration-[500ms] z-20 absolute bottom-0"></div>
             </div>
         
-            <!-- Horizontal Line (extends to end of grid) -->
-            <div class="flex-grow flex items-center h-[2px]">
-                <div id="hero-line" class="w-full h-[1px] bg-white/30 scale-x-0 origin-left transition-transform duration-[1200ms] ease-out"></div>
+            <!-- Horizontal Line (Shooting across the full grid width) -->
+            <div class="flex-grow h-[60px] relative overflow-hidden flex items-end">
+                <div class="w-full h-[1px] relative overflow-hidden bottom-[0.5px]">
+                    <div id="hero-line" class="w-full h-[1px] bg-white/30 absolute top-0 left-[-100%] transition-transform duration-[1500ms] ease-in-out"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -499,17 +501,20 @@
             });
         }, 100);
 
-        // Trigger Footer-Style Dots and Line after text reveal starts
+        // Trigger synchronized shooting lines and dots
         setTimeout(() => {
             const hLine = document.getElementById('hero-line');
             const vLine = document.getElementById('hero-v-line');
             const dot1 = document.getElementById('hero-dot-1');
             const dot2 = document.getElementById('hero-dot-2');
             
-            if (hLine) hLine.classList.replace('scale-x-0', 'scale-x-100');
-            if (vLine) vLine.style.transform = 'translateY(-100px)';
-            if (dot1) setTimeout(() => { dot1.classList.replace('opacity-0', 'opacity-100'); }, 700);
-            if (dot2) setTimeout(() => { dot2.classList.replace('opacity-0', 'opacity-100'); }, 1000);
+            if (hLine) hLine.style.transform = 'translateX(200%)';
+            if (vLine) vLine.style.transform = 'translateY(-120px)';
+            
+            setTimeout(() => {
+                if (dot1) dot1.classList.replace('opacity-0', 'opacity-100');
+                if (dot2) dot2.classList.replace('opacity-0', 'opacity-100');
+            }, 750);
         }, 800);
     }
 
