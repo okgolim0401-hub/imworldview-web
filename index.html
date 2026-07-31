@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IMWV</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Space+Grotesk:wght@300;400;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;500;700&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -230,8 +230,63 @@
             transform: translateX(0);
         }
     </style>
+<style id="intro-styles">
+/* ── IMWV Intro Overlay ─────────────────────────── */
+#intro-overlay {
+    position: fixed; inset: 0; z-index: 200;
+    overflow: hidden; pointer-events: all;
+    background: #d11919;
+    transition: opacity 1s cubic-bezier(0.76,0,0.24,1);
+}
+#intro-typo-wall {
+    position: absolute; inset: 0;
+    display: flex; flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: space-between;
+    padding: 20px; overflow: hidden; z-index: 1;
+}
+.intro-word {
+    font-size: calc(1.7vw + 0.4vh);
+    line-height: 0.8; text-transform: uppercase;
+    font-variation-settings: 'wght' 900;
+    letter-spacing: -0.075em;
+    display: inline-block; white-space: nowrap;
+    color: #120000; opacity: 0;
+    transition: color 0.2s steps(1);
+}
+.intro-word.show { opacity: 1; }
+.intro-word.keyword { font-size: calc(1.85vw + 0.45vh) !important; }
+.intro-word.lit  { color: #fff !important; }
+.intro-word.thin {
+    font-variation-settings: 'wght' 100 !important;
+    letter-spacing: -0.01em !important;
+    transition: color 0.2s steps(1),
+                font-variation-settings 0.85s cubic-bezier(0.25,1,0.25,1),
+                letter-spacing 0.85s cubic-bezier(0.25,1,0.25,1);
+}
+#intro-overlay.dark-bg { background: #000 !important; }
+#intro-overlay.dark-bg .intro-word:not(.keyword) {
+    opacity: 0; transition: opacity 0.3s ease;
+}
+.intro-flying {
+    position: fixed !important; z-index: 9999 !important;
+    font-family: 'Inter', sans-serif; text-transform: uppercase;
+    color: #fff !important; white-space: nowrap;
+    pointer-events: none; line-height: 0.8;
+    opacity: 1 !important; transform-origin: top left;
+    will-change: transform;
+}
+#intro-cursor {
+    position: fixed; width: 2px; background: #d11919;
+    z-index: 10000; pointer-events: none;
+    animation: intro-blink 0.55s step-end infinite;
+}
+@keyframes intro-blink {
+    0%, 100% { opacity: 1; } 50% { opacity: 0; }
+}
+</style>
 </head>
-<body class="font-body-base text-body-base selection:bg-primary selection:text-background bg-black" id="main-body-container">
+<body class="font-body-base text-body-base selection:bg-primary selection:text-background bg-black" id="main-body-container" style="overflow:hidden;">
 <style>
 @keyframes logo-fade-in {
     0% { transform: scale(0.9); opacity: 0; }
@@ -279,22 +334,9 @@
     filter: grayscale(0) brightness(1);
 }
 </style>
-<!-- Layer 1: White Background, Red Logo -->
-<div id="intro-layer-1" class="fixed inset-0 z-[100] bg-white pointer-events-none flex justify-center items-center">
-    <div id="intro-logo-wrapper-static" class="pointer-events-none flex justify-center items-center">
-        <div class="w-full h-full relative animate-logo-fade">
-            <img src="IMWV_logo.png" alt="IMWV Logo" class="absolute inset-0 w-full h-full object-contain object-center filter-red" />
-        </div>
-    </div>
-</div>
-
-<!-- Layer 2: Black Background, White Logo (Revealed via Clip-Path) -->
-<div id="intro-layer-2" class="fixed inset-0 z-[101] bg-black pointer-events-none transition-opacity duration-1000 ease-in-out" style="clip-path: polygon(0 0, 0 0, 0 0, 0 0);">
-    <div id="intro-logo-wrapper" class="pointer-events-none flex justify-center items-center">
-        <div class="w-full h-full relative animate-logo-fade">
-            <img id="intro-logo" src="IMWV_logo.png" alt="IMWV Logo" class="absolute inset-0 w-full h-full object-contain object-center brightness-0 invert" />
-        </div>
-    </div>
+<!-- ── IMWV Typo Wall Intro Overlay ───────────────── -->
+<div id="intro-overlay">
+    <div id="intro-typo-wall"></div>
 </div>
 
 <div class="w-full relative bg-black">
@@ -416,6 +458,248 @@
 </div>
 
 <script src="app.js"></script>
+<script>
+(function runTypoIntro() {
+    'use strict';
+    const overlay = document.getElementById('intro-overlay');
+    const wall    = document.getElementById('intro-typo-wall');
+    if (!overlay || !wall) return;
+
+    /* 세션 스토리지: 재방문 시 스킵 */
+    const forceIntro = new URLSearchParams(window.location.search).get('intro') === '1';
+    if (!forceIntro && sessionStorage.getItem('introPlayed') === 'true') {
+        overlay.remove();
+        document.body.style.overflow = '';
+        return;
+    }
+    sessionStorage.setItem('introPlayed', 'true');
+
+    /* ── 에세이 텍스트 ─────────────────────────────── */
+    const essayRaw = `HOW STRANGE IS THE LOT OF US MORTALS! EACH OF US IS HERE FOR A BRIEF
+SOJOURN; FOR WHAT PURPOSE HE KNOWS NOT, THOUGH HE SOMETIMES THINKS HE SENSES IT.
+BUT WITHOUT DEEPER REFLECTION ONE KNOWS FROM DAILY LIFE THAT ONE EXISTS FOR
+OTHER PEOPLE—ABOVE ALL FOR THOSE UPON WHOSE SMILES AND WELL-BEING OUR OWN
+HAPPINESS IS WHOLLY DEPENDENT, AND THEN FOR THE MANY, UNKNOWN TO US, TO WHOSE
+FATE WE ARE BOUND BY THE TIES OF SYMPATHY. A HUNDRED TIMES EVERY DAY I REMIND
+MYSELF THAT MY INNER AND OUTER LIFE ARE BASED ON THE LABORS OF OTHER MEN,
+LIVING AND DEAD, AND THAT I MUST EXERT MYSELF IN ORDER TO GIVE IN THE SAME
+MEASURE AS I HAVE RECEIVED AND AM STILL RECEIVING.
+I AM STRONGLY DRAWN TO A FRUGAL LIFE AND AM OFTEN OPPRESSED BY THE FEELING
+THAT I AM USING AN EXORBITANT AMOUNT OF THE LABOR OF MY FELLOW MEN. I REGARD
+CLASS DIFFERENCES AS CONTRARY TO JUSTICE AND, IN THE LAST RESORT, BASED ON
+FORCE. I ALSO CONSIDER THAT PLAIN LIVING IS GOOD FOR EVERYBODY, PHYSICALLY
+AND MENTALLY. I DO NOT AT ALL BELIEVE IN HUMAN FREEDOM IN THE PHILOSOPHICAL
+SENSE. EVERYBODY ACTS NOT ONLY UNDER EXTERNAL COMPULSION BUT ALSO IN
+ACCORDANCE WITH INNER NECESSITY. THE MOST BEAUTIFUL THING WE CAN EXPERIENCE
+IS THE MYSTERIOUS. IT IS THE SOURCE OF ALL TRUE ART AND SCIENCE. HE TO WHOM
+THIS EMOTION IS A STRANGER, WHO CAN NO LONGER PAUSE TO WONDER AND STAND RAPT
+IN AWE, IS AS GOOD AS DEAD. THIS INSIGHT INTO THE MYSTERY OF LIFE, COUPLED
+WITH FEAR AND AWE, HAS ALSO GIVEN RISE TO RELIGION. TO KNOW THAT WHAT IS
+IMPENETRABLE TO US REALLY EXISTS, MANIFESTING ITSELF AS THE HIGHEST WISDOM
+AND THE MOST RADIANT BEAUTY, WHICH OUR DULL FACULTIES CAN COMPREHEND ONLY IN
+THEIR MOST PRIMITIVE FORMS. THIS KNOWLEDGE, THIS FEELING, IS AT THE CENTER OF
+TRUE RELIGIOUSNESS. IN THIS SENSE ONLY, I BELONG TO THE RANKS OF DEVOUTLY
+RELIGIOUS MEN. I CANNOT IMAGINE A GOD WHO REWARDS AND PUNISHES THE OBJECTS OF
+HIS CREATION. NEITHER CAN I BELIEVE THAT THE INDIVIDUAL SURVIVES THE DEATH OF
+HIS BODY. IT IS ENOUGH FOR ME TO CONTEMPLATE THE MYSTERY OF CONSCIOUS LIFE
+PERPETUATING ITSELF THROUGH ALL ETERNITY, TO REFLECT UPON THE MARVELOUS
+STRUCTURE OF THE UNIVERSE WHICH WE CAN DIMLY PERCEIVE, AND TO TRY HUMBLY TO
+COMPREHEND EVEN AN INFINITESIMAL PART OF THE INTELLIGENCE MANIFESTED IN NATURE.`;
+    const filler = essayRaw
+        .replace(/\n/g,' ').replace(/[\u2014\u2013]/g,',').replace(/;/g,'.')
+        .replace(/[\u201c\u201d\u2018\u2019"']/g,'').split(/\s+/).filter(Boolean);
+
+    const KW_POSITIONS = [38, 115, 198, 272];
+    const KEYWORDS     = ['I','AM','WORLD','VIEW'];
+    const WORD_TEXTS   = { i:'I', am:'AM', world:'WORLD', view:'VIEW' };
+
+    function measureWidth(text, fontSize) {
+        const tmp = document.createElement('span');
+        Object.assign(tmp.style, {
+            position:'fixed', top:'-9999px', left:'-9999px', opacity:'0',
+            fontFamily:'Inter,sans-serif', fontSize:`${fontSize}px`,
+            fontVariationSettings:"'wght' 100", letterSpacing:'-0.01em',
+            textTransform:'uppercase', whiteSpace:'nowrap', lineHeight:'0.8'
+        });
+        tmp.textContent = text;
+        document.body.appendChild(tmp);
+        const w = tmp.getBoundingClientRect().width;
+        document.body.removeChild(tmp);
+        return w;
+    }
+
+    function buildWall() {
+        wall.innerHTML = '';
+        const total = window.innerWidth > 768 ? 320 : 150;
+        let ki = 0;
+        for (let i = 0; i < total; i++) {
+            const span = document.createElement('span');
+            if (KW_POSITIONS.includes(i) && ki < 4) {
+                span.textContent = KEYWORDS[ki];
+                span.className   = 'intro-word keyword';
+                span.id          = `kw-${KEYWORDS[ki].toLowerCase()}`;
+                ki++;
+            } else {
+                span.textContent = filler[i % filler.length];
+                span.className   = 'intro-word';
+            }
+            wall.appendChild(span);
+        }
+    }
+
+    const delay = ms => new Promise(r => setTimeout(r, ms));
+
+    async function run() {
+        overlay.className = '';
+        overlay.style.background = '#d11919';
+        overlay.style.opacity = '1';
+        document.querySelectorAll('.intro-flying').forEach(el => el.remove());
+        document.getElementById('intro-cursor')?.remove();
+        buildWall();
+
+        const all = [...document.querySelectorAll('.intro-word')];
+        const PER_WORD = 4;
+        all.slice().sort(() => Math.random() - 0.5)
+           .forEach((el, i) => setTimeout(() => el.classList.add('show'), i * PER_WORD));
+
+        await delay((all.length - 1) * PER_WORD + 300);
+
+        for (const k of ['i','am','world','view']) {
+            document.getElementById(`kw-${k}`).classList.add('lit');
+            await delay(450);
+        }
+        await delay(300);
+        overlay.classList.add('dark-bg');
+        await delay(500);
+        ['i','am','world','view'].forEach(k =>
+            document.getElementById(`kw-${k}`).classList.add('thin')
+        );
+        await delay(1050);
+        shootToLine();
+    }
+
+    function shootToLine() {
+        const keys = ['i','am','world','view'];
+        const isMobile = window.innerWidth <= 768;
+        const GAP = isMobile ? 10 : 22;
+        const rects = {}, srcSizes = {};
+        keys.forEach(k => {
+            const el = document.getElementById(`kw-${k}`);
+            rects[k]    = el.getBoundingClientRect();
+            srcSizes[k] = parseFloat(window.getComputedStyle(el).fontSize);
+        });
+        const widths = {};
+        keys.forEach(k => { widths[k] = measureWidth(WORD_TEXTS[k], srcSizes[k]); });
+        const totalW = widths.i + widths.am + widths.world + widths.view + GAP * 2;
+        const tX = {
+            i:     (window.innerWidth - totalW) / 2,
+            am:    (window.innerWidth - totalW) / 2 + widths.i + GAP,
+            world: (window.innerWidth - totalW) / 2 + widths.i + GAP + widths.am + GAP,
+            view:  (window.innerWidth - totalW) / 2 + widths.i + GAP + widths.am + GAP + widths.world
+        };
+        const tY = window.innerHeight / 2 - rects.i.height / 2;
+        const clones = {};
+        keys.forEach(k => {
+            const el = document.getElementById(`kw-${k}`);
+            const r  = rects[k];
+            const clone = document.createElement('span');
+            clone.textContent = WORD_TEXTS[k];
+            clone.className   = 'intro-flying';
+            Object.assign(clone.style, {
+                fontSize: `${srcSizes[k]}px`,
+                fontVariationSettings: "'wght' 100",
+                letterSpacing: '-0.01em',
+                top:  `${r.top}px`,
+                left: `${r.left}px`
+            });
+            document.body.appendChild(clone);
+            clones[k] = clone;
+            el.style.cssText += ';transition:none!important;opacity:0!important;';
+        });
+        const EASING = 'cubic-bezier(0.86, 0, 0.07, 1)';
+        keys.forEach((k, idx) => {
+            const r = rects[k];
+            clones[k].animate(
+                [{ transform:'translate3d(0,0,0)' },
+                 { transform:`translate3d(${tX[k]-r.left}px,${tY-r.top}px,0)` }],
+                { duration:700, delay:idx*180, easing:EASING, fill:'forwards' }
+            );
+        });
+        const shootTotal = (keys.length - 1) * 180 + 700;
+        setTimeout(() => deletePhase({ clones, rects, srcSizes, widths, tX, tY, GAP }), shootTotal + 500);
+    }
+
+    function deletePhase({ clones, rects, srcSizes, widths, tX, tY, GAP }) {
+        const cursorH  = rects.i.height;
+        const widthOfA = measureWidth('A', srcSizes.am);
+        const mWidth   = measureWidth('M', srcSizes.am);
+        const newX = {
+            m:     tX.i + widths.i,
+            world: tX.i + widths.i + mWidth + GAP,
+            view:  tX.i + widths.i + mWidth + GAP + widths.world
+        };
+        const fromDiffY = {
+            m:     tY - rects.am.top,
+            world: tY - rects.world.top,
+            view:  tY - rects.view.top
+        };
+        const EASE2 = 'cubic-bezier(0.86, 0, 0.07, 1)';
+
+        const cursor = document.createElement('div');
+        cursor.id = 'intro-cursor';
+        Object.assign(cursor.style, {
+            left: `${tX.am + widthOfA}px`,
+            top:  `${tY}px`,
+            height: `${cursorH}px`
+        });
+        document.body.appendChild(cursor);
+
+        setTimeout(() => {
+            clones.am.textContent = 'M';
+            cursor.style.left = `${tX.am}px`;
+
+            setTimeout(() => {
+                clones.am.animate([
+                    { transform:`translate3d(${tX.am-rects.am.left}px,${fromDiffY.m}px,0)` },
+                    { transform:`translate3d(${newX.m-rects.am.left}px,${fromDiffY.m}px,0)` }
+                ], { duration:380, easing:EASE2, fill:'forwards' });
+                clones.world.animate([
+                    { transform:`translate3d(${tX.world-rects.world.left}px,${fromDiffY.world}px,0)` },
+                    { transform:`translate3d(${newX.world-rects.world.left}px,${fromDiffY.world}px,0)` }
+                ], { duration:380, easing:EASE2, fill:'forwards' });
+                clones.view.animate([
+                    { transform:`translate3d(${tX.view-rects.view.left}px,${fromDiffY.view}px,0)` },
+                    { transform:`translate3d(${newX.view-rects.view.left}px,${fromDiffY.view}px,0)` }
+                ], { duration:380, easing:EASE2, fill:'forwards' });
+
+                cursor.style.animation = 'none';
+                cursor.style.opacity   = '1';
+                cursor.style.left = `${newX.m}px`;
+                setTimeout(() => {
+                    cursor.animate([{opacity:1},{opacity:0}], {duration:350, fill:'forwards'});
+                    setTimeout(() => {
+                        cursor.remove();
+                        finishIntro();
+                    }, 350);
+                }, 420);
+            }, 500);
+        }, 650);
+    }
+
+    function finishIntro() {
+        setTimeout(() => {
+            overlay.style.opacity = '0';
+            overlay.style.pointerEvents = 'none';
+            setTimeout(() => {
+                overlay.remove();
+                document.body.style.overflow = '';
+            }, 1000);
+        }, 400);
+    }
+
+    run();
+})();
+</script>
 <script>
     function toggleMobileMenu() {
         const overlay = document.getElementById('mobile-menu-overlay');
