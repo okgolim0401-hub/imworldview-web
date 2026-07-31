@@ -688,10 +688,17 @@ COMPREHEND EVEN AN INFINITESIMAL PART OF THE INTELLIGENCE MANIFESTED IN NATURE.`
 
     function finishIntro() {
         setTimeout(() => {
+            // 오버레이 + 플라잉 클론 동시 페이드아웃
             overlay.style.opacity = '0';
             overlay.style.pointerEvents = 'none';
+            document.querySelectorAll('.intro-flying').forEach(el => {
+                el.style.transition = 'opacity 1s cubic-bezier(0.76,0,0.24,1)';
+                el.style.opacity = '0';
+            });
             setTimeout(() => {
                 overlay.remove();
+                document.querySelectorAll('.intro-flying').forEach(el => el.remove());
+                document.getElementById('intro-cursor')?.remove();
                 document.body.style.overflow = '';
             }, 1000);
         }, 400);
